@@ -52,15 +52,21 @@ public class Test_TA_Grid {
 		coll.add(Pair.of(TA_GridConfig.RULESET_NORMAL, ar2));
 		coll.add(TA_GridConfig.RULESET_NORMAL);
 
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_FULL_GRID));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_OUTSIDE));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE_HORIZONTAL));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_HORIZONTAL));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_CORNERS_ONLY));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_CC_ONLY));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_VERTICAL));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE_VERTICAL));
+		this._printGrid(tg.addGrid(coll, TA_GridThemes.FULL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_OUTSIDE));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE_HORIZONTAL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_HORIZONTAL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_BOTTOM));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_TOP));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_TOPBOTTOM));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_LINE_TOPBOTTOM));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_BOTTOM));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_CORNERS_ONLY));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_CC_ONLY));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_VERTICAL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE_VERTICAL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_NO_GRID));
 
 //		System.err.println(map);
 	}
@@ -90,15 +96,16 @@ public class Test_TA_Grid {
 		coll.add(Pair.of(TA_GridConfig.RULESET_NORMAL, ar3));
 		coll.add(TA_GridConfig.RULESET_NORMAL);
 
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_FULL_GRID));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_OUTSIDE));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE_HORIZONTAL));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_HORIZONTAL));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_CORNERS_ONLY));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_CC_ONLY));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_VERTICAL));
-		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE_VERTICAL));
+		this._printGrid(tg.addGrid(coll, TA_GridThemes.FULL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_OUTSIDE));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE_HORIZONTAL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_HORIZONTAL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_CORNERS_ONLY));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_CC_ONLY));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_VERTICAL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_INSIDE_VERTICAL));
+//		this._printGrid(tg.addGrid(coll, TA_GridOptions.THEME_NO_GRID));
 
 //		System.err.println(map);
 	}

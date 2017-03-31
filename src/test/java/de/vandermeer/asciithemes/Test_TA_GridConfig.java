@@ -35,37 +35,37 @@ public class Test_TA_GridConfig {
 		assertEquals(4, TA_GridConfig.TYPE_LEFT);
 		assertEquals(8, TA_GridConfig.TYPE_RIGHT);
 
-		assertEquals(TA_GridConfig.TYPEPOS_HORIZONTAL, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT);
+		assertEquals(TA_GridConfig.PT_HORIZONTAL, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT);
 		assertEquals(12, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT);
 
-		assertEquals(TA_GridConfig.TYPEPOS_VERTICAL, TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
+		assertEquals(TA_GridConfig.PT_VERTICAL, TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
 		assertEquals(3, TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
 
-		assertEquals(TA_GridConfig.TYPEPOS_TOP_LEFT, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_DOWN);
+		assertEquals(TA_GridConfig.PT_TOP_LEFT, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_DOWN);
 		assertEquals(10, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_DOWN);
 
-		assertEquals(TA_GridConfig.TYPEPOS_TOP_RIGHT, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_DOWN);
+		assertEquals(TA_GridConfig.PT_TOP_RIGHT, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_DOWN);
 		assertEquals(6, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_DOWN);
 
-		assertEquals(TA_GridConfig.TYPEPOS_BOTTOM_LEFT, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP);
+		assertEquals(TA_GridConfig.PT_BOTTOM_LEFT, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP);
 		assertEquals(9, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP);
 
-		assertEquals(TA_GridConfig.TYPEPOS_BOTTOM_RIGHT, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_UP);
+		assertEquals(TA_GridConfig.PT_BOTTOM_RIGHT, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_UP);
 		assertEquals(5, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_UP);
 
-		assertEquals(TA_GridConfig.TYPEPOS_MID_LEFT, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
+		assertEquals(TA_GridConfig.PT_MID_LEFT, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
 		assertEquals(11, TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
 
-		assertEquals(TA_GridConfig.TYPEPOS_MID_RIGHT, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
+		assertEquals(TA_GridConfig.PT_MID_RIGHT, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
 		assertEquals(7, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
 
-		assertEquals(TA_GridConfig.TYPEPOS_MID_BOTH, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
+		assertEquals(TA_GridConfig.PT_MID_BOTH, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
 		assertEquals(15, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP | TA_GridConfig.TYPE_DOWN);
 
-		assertEquals(TA_GridConfig.TYPEPOS_MID_DOWN, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_DOWN);
+		assertEquals(TA_GridConfig.PT_MID_DOWN, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_DOWN);
 		assertEquals(14, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_DOWN);
 
-		assertEquals(TA_GridConfig.TYPEPOS_MID_UP, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP);
+		assertEquals(TA_GridConfig.PT_MID_UP, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP);
 		assertEquals(13, TA_GridConfig.TYPE_LEFT | TA_GridConfig.TYPE_RIGHT | TA_GridConfig.TYPE_UP);
 	}
 }

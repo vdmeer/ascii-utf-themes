@@ -25,30 +25,35 @@ package de.vandermeer.asciithemes;
 public interface TA_FrameOptions {
 
 	/** Option for using the top line of the frame. */
-	static int OPT_LINE_TOP           = 0b00000001;
+	static int OPT_LINE_TOP           = 0b0_000000_01;
 
 	/** Option for using the bottom line of the frame. */
-	static int OPT_LINE_BOTTOM        = 0b00000010;
+	static int OPT_LINE_BOTTOM        = 0b0_000000_10;
 
 
 	/** Option for using the left border of the frame. */
-	static int OPT_BORDER_LEFT        = 0b00000100;
+	static int OPT_BORDER_LEFT        = 0b0_0000_01_00;
 
 	/** Option for using the right border of the frame. */
-	static int OPT_BORDER_RIGHT       = 0b00001000;
+	static int OPT_BORDER_RIGHT       = 0b0_0000_10_00;
 
 
 	/** Option for using the top left corner of the frame. */
-	static int OPT_CORNER_TOPLEFT     = 0b00010000;
+	static int OPT_CORNER_TOPLEFT     = 0b0_0001_00_00;
 
 	/** Option for using the top right corner of the frame. */
-	static int OPT_CORNER_TOPRIGHT    = 0b00100000;
+	static int OPT_CORNER_TOPRIGHT    = 0b0_0010_00_00;
 
 	/** Option for using the bottom left corner of the frame. */
-	static int OPT_CORNER_BOTTOMLEFT  = 0b01000000;
+	static int OPT_CORNER_BOTTOMLEFT  = 0b0_0100_00_00;
 
 	/** Option for using the bottom right corner of the frame. */
-	static int OPT_CORNER_BOTTOMRIGHT = 0b10000000;
+	static int OPT_CORNER_BOTTOMRIGHT = 0b0_1000_00_00;
+
+
+	/** Option for showing empty horizontal rows. */
+	static int OPT_SHOW_EMPTY_ROWS    = 0b1_0000_00_00;
+
 
 	/** Theme for using the full frame. */
 	static int THEME_FULL_FRAME = 
@@ -255,5 +260,14 @@ public interface TA_FrameOptions {
 	 */
 	static boolean borderRightNeeded(int mode){
 		return ((mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT || (mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT);
+	}
+
+	/**
+	 * Tests if empty rows should be shown using an empty character.
+	 * @param mode the mode to test against
+	 * @return true if empty rows should be shown,false otherwise
+	 */
+	static boolean showEmptyRows(int mode){
+		return ((mode & OPT_SHOW_EMPTY_ROWS) == OPT_SHOW_EMPTY_ROWS);
 	}
 }

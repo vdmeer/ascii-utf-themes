@@ -63,17 +63,17 @@ public interface TA_Grid extends IsTextArt {
 		Validate.noNullElements(map.values());
 
 		map.put(TA_GridConfig.TYPE_NONE + ruleset, none);
-		map.put(TA_GridConfig.TYPEPOS_HORIZONTAL + ruleset, horizontal);
-		map.put(TA_GridConfig.TYPEPOS_VERTICAL + ruleset, vertical);
-		map.put(TA_GridConfig.TYPEPOS_TOP_LEFT + ruleset, topleft);
-		map.put(TA_GridConfig.TYPEPOS_TOP_RIGHT + ruleset, topright);
-		map.put(TA_GridConfig.TYPEPOS_BOTTOM_LEFT + ruleset, bottomleft);
-		map.put(TA_GridConfig.TYPEPOS_BOTTOM_RIGHT + ruleset, bottomright);
-		map.put(TA_GridConfig.TYPEPOS_MID_LEFT + ruleset, midleft);
-		map.put(TA_GridConfig.TYPEPOS_MID_RIGHT + ruleset, midright);
-		map.put(TA_GridConfig.TYPEPOS_MID_BOTH + ruleset, midboth);
-		map.put(TA_GridConfig.TYPEPOS_MID_DOWN + ruleset, middown);
-		map.put(TA_GridConfig.TYPEPOS_MID_UP + ruleset, midup);
+		map.put(TA_GridConfig.PT_HORIZONTAL + ruleset, horizontal);
+		map.put(TA_GridConfig.PT_VERTICAL + ruleset, vertical);
+		map.put(TA_GridConfig.PT_TOP_LEFT + ruleset, topleft);
+		map.put(TA_GridConfig.PT_TOP_RIGHT + ruleset, topright);
+		map.put(TA_GridConfig.PT_BOTTOM_LEFT + ruleset, bottomleft);
+		map.put(TA_GridConfig.PT_BOTTOM_RIGHT + ruleset, bottomright);
+		map.put(TA_GridConfig.PT_MID_LEFT + ruleset, midleft);
+		map.put(TA_GridConfig.PT_MID_RIGHT + ruleset, midright);
+		map.put(TA_GridConfig.PT_MID_BOTH + ruleset, midboth);
+		map.put(TA_GridConfig.PT_MID_DOWN + ruleset, middown);
+		map.put(TA_GridConfig.PT_MID_UP + ruleset, midup);
 
 		this.addSupportedRuleSet(ruleset);
 		return this;
@@ -90,7 +90,7 @@ public interface TA_Grid extends IsTextArt {
 	 * @return this to allow chaining
 	 */
 	default TA_Grid addTopruleCharacterMap(int ruleset, char none, char horizontal, char topleft, char topright, char middown){
-		this.addCharacterMap(ruleset | TA_GridConfig.RULESET_TOP_RULE, none, horizontal, ' ', topleft, topright, ' ', ' ', ' ', ' ', ' ', middown, ' ');
+		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_TOP_RULE, none, horizontal, ' ', topleft, topright, ' ', ' ', ' ', ' ', ' ', middown, ' ');
 		return this;
 	}
 
@@ -105,7 +105,7 @@ public interface TA_Grid extends IsTextArt {
 	 * @return this to allow chaining
 	 */
 	default TA_Grid addBottomRuleCharacterMap(int ruleset, char none, char horizontal, char bottomleft, char bottomright, char midup){
-		this.addCharacterMap(ruleset | TA_GridConfig.RULESET_BOTTOM_RULE, none, horizontal, ' ', ' ', ' ', bottomleft, bottomright, ' ', ' ', ' ', ' ', midup);
+		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_BOTTOM_RULE, none, horizontal, ' ', ' ', ' ', bottomleft, bottomright, ' ', ' ', ' ', ' ', midup);
 		return this;
 	}
 
@@ -122,7 +122,7 @@ public interface TA_Grid extends IsTextArt {
 	 * @return this to allow chaining
 	 */
 	default TA_Grid addMidruleCharacterMap(int ruleset, char none, char vertical, char midleft, char midright, char midboth, char middown, char midup){
-		this.addCharacterMap(ruleset | TA_GridConfig.RULESET_MID_RULE, none, ' ', vertical, ' ', ' ', ' ', ' ', midleft, midright, midboth, middown, midup);
+		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_MID_RULE, none, ' ', vertical, ' ', ' ', ' ', ' ', midleft, midright, midboth, middown, midup);
 		return this;
 	}
 
@@ -136,7 +136,7 @@ public interface TA_Grid extends IsTextArt {
 	 * @return this to allow chaining
 	 */
 	default TA_Grid addCharacterMap(int ruleset, char none, char vertical, char midleft, char midright){
-		this.addCharacterMap(ruleset | TA_GridConfig.RULESET_CONTENT_RULE, none, ' ', vertical, ' ', ' ', ' ', ' ', midleft, midright, ' ', ' ', ' ');
+		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_CONTENT_RULE, none, ' ', vertical, ' ', ' ', ' ', ' ', midleft, midright, ' ', ' ', ' ');
 		return this;
 	}
 
@@ -162,7 +162,7 @@ public interface TA_Grid extends IsTextArt {
 	}
 
 	/**
-	 * Calculates columns from the first content entry in the given table.
+	 * Calculates column width across the table, using columns with content to calculate width.
 	 * @param table a table with rules and content
 	 * @return calculated columns
 	 */
@@ -172,10 +172,25 @@ public interface TA_Grid extends IsTextArt {
 			if(o instanceof Pair){
 				if(((Pair<?, ?>)o).getValue().getClass().isInstance(new String[][]{})){
 					String[][]ar = (String[][])((Pair<?, ?>)o).getValue();
-					for(int i=0; i<ar[0].length; i++){
-						ret.add(ar[0][i].length());
+					for(int r=0; r<ar.length; r++){
+						for(int c=0;c<ar[r].length; c++){
+							//add to array if not set
+							if(c>=ret.size()){
+								if(ar[r][c]!=null){
+									ret.add(ar[r][c].length());
+								}
+								else{
+									ret.add(-1);
+								}
+							}
+
+							if(ar[r][c]!=null){
+								if(ret.get(c)==-1 || ar[r][c].length()<ret.get(c)){
+									ret.set(c, ar[r][c].length());
+								}
+							}
+						}
 					}
-					break;
 				}
 			}
 		}
@@ -202,6 +217,32 @@ public interface TA_Grid extends IsTextArt {
 	/**
 	 * Changes the input list by adding a grid.
 	 * 
+	 * The method does guarantee that all lines (member of the final collection) have the same length.
+	 * 
+	 * @param content the content to add a grid to
+	 * @param theme the grid theme
+	 * @return new list with grid
+	 */
+	default ArrayList<StrBuilder> addGrid(Collection<Object> content, TA_GridThemes theme){
+		return this.addGrid(content, theme.get());
+	}
+
+	/**
+	 * Changes the input list by adding a grid.
+	 * 
+	 * The method does guarantee that all lines (member of the final collection) have the same length.
+	 * 
+	 * @param content the content to add a grid to
+	 * @param theme the grid theme
+	 * @param options the grid theme options
+	 * @return new list with grid
+	 */
+	default ArrayList<StrBuilder> addGrid(Collection<Object> content, TA_GridThemes theme, TA_GridThemeOptions options){
+		return this.addGrid(content, theme.get() | options.get());
+	}
+
+	/**
+	 * Changes the input list by adding a grid.
 	 * 
 	 * The method does guarantee that all lines (member of the final collection) have the same length.
 	 * 
@@ -229,15 +270,15 @@ public interface TA_Grid extends IsTextArt {
 				this.testRuleType(ruletype);
 				if(i==0){
 					//we have a top rule, adding top as rule set
-					this.addTopRule(mode, ruletype | TA_GridConfig.RULESET_TOP_RULE, columns, frame);
+					TA_GridHelpers.addRule(TA_GridHelpers.topRule, mode, ruletype | TA_GridConfig.CHAR_TOP_RULE, columns, frame);
 				}
 				else if(i==(table.size()-1)){
 					//we have a bottom rule, adding bottom as rule set
-					this.addBottomRule(mode, ruletype | TA_GridConfig.RULESET_BOTTOM_RULE, columns, frame);
+					TA_GridHelpers.addRule(TA_GridHelpers.bottomRule, mode, ruletype | TA_GridConfig.CHAR_BOTTOM_RULE, columns, frame);
 				}
 				else{
 					//we have a mid rule, adding mid as rule set
-					this.addMidRule(mode, ruletype | TA_GridConfig.RULESET_MID_RULE, columns, frame);
+					TA_GridHelpers.addRule(TA_GridHelpers.midRule, mode, ruletype | TA_GridConfig.CHAR_MID_RULE, columns, frame);
 				}
 			}
 			else if(table.get(i) instanceof Pair){
@@ -245,7 +286,7 @@ public interface TA_Grid extends IsTextArt {
 					String[][] ar = (String[][])((Pair<?, ?>)table.get(i)).getValue();
 					int ruletype = (Integer)((Pair<?, ?>)table.get(i)).getKey();
 					this.testRuleType(ruletype);
-					this.addContentRow(ar, mode, ruletype | TA_GridConfig.RULESET_CONTENT_RULE, columns, frame);
+					TA_GridHelpers.addContentRow(ar, mode, ruletype | TA_GridConfig.CHAR_CONTENT_RULE, frame);
 				}
 			}
 			else{
@@ -261,16 +302,19 @@ public interface TA_Grid extends IsTextArt {
 			for(int k=0; k<frame.get(i).size(); k++){
 				Object o = frame.get(i).get(k);
 				if(o instanceof Integer){
-					int typepos = (Integer)frame.get(i).get(k);
-					typepos = this.adjustBorder(typepos, i, k, mode, frame);
-					Character c = cmap.get(typepos);
+					int postype = (Integer)o;
+					postype = TA_GridHelpers.adjustBorder(postype, i, k, mode, frame);
+					postype = TA_GridHelpers.convertBorders(postype, i, k, frame.size()-1, frame.get(i).size()-1, mode);
+					postype = TA_GridHelpers.convertConnectors(postype, i, k, frame.size()-1, frame.get(i).size()-1, mode);
+
+					Character c = cmap.get(postype);
 					if(c==null){
 						//remove added rulesets (top, middle, bottom, content) and try again
-						typepos = typepos & ~TA_GridConfig.RULESET_TOP_RULE;
-						typepos = typepos & ~TA_GridConfig.RULESET_MID_RULE;
-						typepos = typepos & ~TA_GridConfig.RULESET_BOTTOM_RULE;
-						typepos = typepos & ~TA_GridConfig.RULESET_CONTENT_RULE;
-						c = cmap.get(typepos);
+						postype = postype & ~TA_GridConfig.CHAR_TOP_RULE;
+						postype = postype & ~TA_GridConfig.CHAR_MID_RULE;
+						postype = postype & ~TA_GridConfig.CHAR_BOTTOM_RULE;
+						postype = postype & ~TA_GridConfig.CHAR_CONTENT_RULE;
+						c = cmap.get(postype);
 					}
 					Validate.validState(c!=null, "problem creating a border character, did not find character for <" + c + ">");
 					sb.append(c);
@@ -284,432 +328,25 @@ public interface TA_Grid extends IsTextArt {
 		return ret;
 	}
 
-	/**
-	 * Calculates a top rule and adds it to the frame (if not empty).
-	 * @param mode the grid mode (from addGrid)
-	 * @param rowtype the row type (determined by addGrid)
-	 * @param columns the columns of the text (determined by addGrid)
-	 * @param frame internal frame to add the rendered rule to
-	 */
-	default void addTopRule(int mode, int rowtype, ArrayList<Integer> columns, ArrayList<ArrayList<Object>> frame){
-		ArrayList<Object> al = new ArrayList<>();
-		if(TA_GridOptions.cornerTopLeft(mode)){
-			al.add(TA_GridConfig.TYPEPOS_TOP_LEFT | rowtype);
-		}
-		else if(TA_GridOptions.cornerTopLeftNeeded(mode)){
-			al.add(TA_GridConfig.TYPE_NONE);
-		}
-		for(int k=0; k<columns.size(); k++){
-			for(int l=0; l<columns.get(k); l++){
-				if(TA_GridOptions.lineTop(mode)){
-					al.add(TA_GridConfig.TYPEPOS_HORIZONTAL | rowtype);
-				}
-				else if(TA_GridOptions.lineTopNeeded(mode)){
-					al.add(TA_GridConfig.TYPE_NONE);
-				}
-			}
-			if(k<(columns.size()-1)){
-				if(TA_GridOptions.connectorTop(mode)){
-					al.add(TA_GridConfig.TYPEPOS_MID_DOWN | rowtype);
-				}
-				else if(TA_GridOptions.connectorTopNeeded(mode)){
-					al.add(TA_GridConfig.TYPE_NONE);
-				}
-			}
-		}
-		if(TA_GridOptions.cornerTopRight(mode)){
-			al.add(TA_GridConfig.TYPEPOS_TOP_RIGHT | rowtype);
-		}
-		else if(TA_GridOptions.cornerTopRightNeeded(mode)){
-			al.add(TA_GridConfig.TYPE_NONE);
-		}
-
-		if(al.size()>0){
-			frame.add(al);
-		}
-	}
-
-	/**
-	 * Calculates a bottom rule and adds it to the frame (if not empty).
-	 * @param mode the grid mode (from addGrid)
-	 * @param rowtype the row type (determined by addGrid)
-	 * @param columns the columns of the text (determined by addGrid)
-	 * @param frame internal frame to add the rendered rule to
-	 */
-	default void addBottomRule(int mode, int rowtype, ArrayList<Integer> columns, ArrayList<ArrayList<Object>> frame){
-		ArrayList<Object> al = new ArrayList<>();
-		if(TA_GridOptions.cornerBottomLeft(mode)){
-			al.add(TA_GridConfig.TYPEPOS_BOTTOM_LEFT | rowtype);
-		}
-		else if(TA_GridOptions.cornerBottomLeftNeeded(mode)){
-			al.add(TA_GridConfig.TYPE_NONE);
-		}
-		for(int k=0; k<columns.size(); k++){
-			for(int l=0; l<columns.get(k); l++){
-				if(TA_GridOptions.lineBottom(mode)){
-					al.add(TA_GridConfig.TYPEPOS_HORIZONTAL | rowtype);
-				}
-				else if(TA_GridOptions.lineBottomNeeded(mode)){
-					al.add(TA_GridConfig.TYPE_NONE);
-				}
-			}
-			if(k<(columns.size()-1)){
-				if(TA_GridOptions.connectorBottom(mode)){
-					al.add(TA_GridConfig.TYPEPOS_MID_UP | rowtype);
-				}
-				else if(TA_GridOptions.connectorBottomNeeded(mode)){
-					al.add(TA_GridConfig.TYPE_NONE);
-				}
-			}
-		}
-		if(TA_GridOptions.cornerBottomRight(mode)){
-			al.add(TA_GridConfig.TYPEPOS_BOTTOM_RIGHT | rowtype);
-		}
-		else if(TA_GridOptions.cornerBottomRightNeeded(mode)){
-			al.add(TA_GridConfig.TYPE_NONE);
-		}
-
-		if(al.size()>0){
-			frame.add(al);
-		}
-	}
-
-	/**
-	 * Calculates a mid rule and adds it to the frame (if not empty).
-	 * @param mode the grid mode (from addGrid)
-	 * @param rowtype the row type (determined by addGrid)
-	 * @param columns the columns of the text (determined by addGrid)
-	 * @param frame internal frame to add the rendered rule to
-	 */
-	default void addMidRule(int mode, int rowtype, ArrayList<Integer> columns, ArrayList<ArrayList<Object>> frame){
-		ArrayList<Object> al = new ArrayList<>();
-		if(TA_GridOptions.borderMidLeft(mode)){
-			al.add(TA_GridConfig.TYPEPOS_MID_LEFT | rowtype);
-		}
-		else if(TA_GridOptions.borderMidLeftNeeded(mode)){
-			al.add(TA_GridConfig.TYPE_NONE);
-		}
-		for(int k=0; k<columns.size(); k++){
-			for(int l=0; l<columns.get(k); l++){
-				if(TA_GridOptions.lineMid(mode)){
-					al.add(TA_GridConfig.TYPEPOS_HORIZONTAL | rowtype);
-				}
-				else if(TA_GridOptions.lineMidNeeded(mode)){
-					al.add(TA_GridConfig.TYPE_NONE);
-				}
-			}
-			if(k<(columns.size()-1)){
-				if(TA_GridOptions.connectorMid(mode)){
-					al.add(TA_GridConfig.TYPEPOS_MID_BOTH | rowtype);
-				}
-				else if(TA_GridOptions.connectorMidNeeded(mode)){
-					al.add(TA_GridConfig.TYPE_NONE);
-				}
-			}
-		}
-		if(TA_GridOptions.borderMidRight(mode)){
-			al.add(TA_GridConfig.TYPEPOS_MID_RIGHT | rowtype);
-		}
-		else if(TA_GridOptions.borderMidRightNeeded(mode)){
-			al.add(TA_GridConfig.TYPE_NONE);
-		}
-
-		if(al.size()>0){
-			frame.add(al);
-		}
-	}
-
-	/**
-	 * Calculates a content row and adds it to the frame (if not empty).
-	 * @param ar the content
-	 * @param mode the grid mode (from addGrid)
-	 * @param rowtype the row type (determined by addGrid)
-	 * @param columns the columns of the text (determined by addGrid)
-	 * @param frame internal frame to add the rendered row to
-	 */
-	default void addContentRow(String[][] ar, int mode, int rowtype, ArrayList<Integer> columns, ArrayList<ArrayList<Object>> frame){
-		for(int k=0; k<ar.length; k++){
-			ArrayList<Object> al = new ArrayList<>();
-			if(TA_GridOptions.contentLeftBorder(mode)){
-				al.add(TA_GridConfig.TYPEPOS_VERTICAL | rowtype);
-			}
-			else if(TA_GridOptions.contentLeftBorderNeeded(mode)){
-				al.add(TA_GridConfig.TYPE_NONE);
-			}
-			for(int l=0; l<ar[k].length; l++){
-				for(char c : ar[k][l].toCharArray()){
-					al.add(c);
-				}
-				if(l<(ar[k].length-1)){
-					if(TA_GridOptions.contentMidBorder(mode)){
-						al.add(TA_GridConfig.TYPEPOS_VERTICAL | rowtype);
-					}
-					else if(TA_GridOptions.contentMidBorderNeeded(mode)){
-						al.add(TA_GridConfig.TYPE_NONE);
-					}
-				}
-			}
-			if(TA_GridOptions.contentRightBorder(mode)){
-				al.add(TA_GridConfig.TYPEPOS_VERTICAL | rowtype);
-			}
-			else if(TA_GridOptions.contentRightBorderNeeded(mode)){
-				al.add(TA_GridConfig.TYPE_NONE);
-			}
-			if(al.size()>0){
-				frame.add(al);
-			}
-		}
-	}
-
-	/**
-	 * Adjusts borders, testing if a particular border character is connected uo, down, left, and right in the grid.
-	 * @param typepos the border character as type/position
-	 * @param v position of the character vertically in the frame
-	 * @param h position of the character horizontally in the frame
-	 * @param mode mode the grid mode (from addGrid)
-	 * @param frame the internal frame to find connected characters
-	 * @return the adjusted character to be used finally to find the actual border character
-	 */
-	default int adjustBorder(int typepos, int v, int h, int mode, ArrayList<ArrayList<Object>> frame){
-		//if null then add normal row
-		if(typepos==0){
-			typepos = TA_GridConfig.RULESET_NORMAL;
-		}
-
-		int vsize = frame.size()-1;
-		int hsize = frame.get(v).size()-1;
-
-		//we build a full frame first to realize column spans and deal with removing things later
-		//so remove any line if we find a character and add one if we find a border
-		if(v>0){
-			if(frame.get(v-1).get(h) instanceof Character){
-				typepos = typepos & ~TA_GridConfig.TYPE_UP;
-			}
-			else if(frame.get(v-1).get(h) instanceof Integer){
-				typepos = typepos | TA_GridConfig.TYPE_UP;
-			}
-		}
-		if(v<(vsize)){
-			if(frame.get(v+1).get(h) instanceof Character){
-				typepos = typepos & ~TA_GridConfig.TYPE_DOWN;
-			}
-			else if(frame.get(v+1).get(h) instanceof Integer){
-				typepos = typepos | TA_GridConfig.TYPE_DOWN;
-			}
-		}
-		if(h>0){
-			if(frame.get(v).get(h-1) instanceof Character){
-				typepos = typepos & ~TA_GridConfig.TYPE_LEFT;
-			}
-			else if(frame.get(v).get(h-1) instanceof Integer){
-				typepos = typepos | TA_GridConfig.TYPE_LEFT;
-			}
-		}
-		if(h<(hsize)){
-			if(frame.get(v).get(h+1) instanceof Character){
-				typepos = typepos & ~TA_GridConfig.TYPE_RIGHT;
-			}
-			else if(frame.get(v).get(h+1) instanceof Integer){
-				typepos = typepos | TA_GridConfig.TYPE_RIGHT;
-			}
-		}
-
-		typepos = this.correctExceptions(typepos);
-		if(v==0){
-			typepos = TA_GridConfig.convertTopline(typepos, h, hsize, mode);
-		}
-		else if(v==vsize){
-			typepos = TA_GridConfig.convertBottomline(typepos, h, hsize, mode);
-		}
-		else{
-			typepos = TA_GridConfig.convertMidline(typepos, v, h, vsize, hsize, mode);
-		}
-		typepos = TA_GridConfig.convertBorders(typepos, v, h, vsize, hsize, mode);
-		typepos = TA_GridConfig.convertConnectors(typepos, v, h, vsize, hsize, mode);
-		return typepos;
-	}
-
-	/**
-	 * Corrects some exceptions not yet covered by other methods.
-	 * @param typepos the type/pos to correct exceptions for
-	 * @return corrected typepos
-	 */
-	default int correctExceptions(int typepos){
-		int tp = typepos & ~TA_GridConfig.RULESET_NORMAL;
-		tp = tp & ~TA_GridConfig.RULESET_STRONG;
-		tp = tp & ~TA_GridConfig.RULESET_HEAVY;
-		tp = tp & ~TA_GridConfig.RULESET_LIGHT;
-
-		//
-		//some exceptions (special cases)
-		//- vertical mid-borders in content row if no top/bottom is generated only have up or down but need both
-		if(tp==TA_GridConfig.TYPE_UP){
-			typepos = typepos | TA_GridConfig.TYPE_DOWN;
-		}
-		if(tp==TA_GridConfig.TYPE_DOWN){
-			typepos = typepos | TA_GridConfig.TYPE_UP;
-		}
-
-		//- some where 0 but then only get left or right but nothing else (e.g. in inside_vertical mode), set them to 0 again
-		if(tp==TA_GridConfig.TYPE_LEFT){
-			typepos = typepos & ~TA_GridConfig.TYPE_LEFT;
-		}
-		if(tp==TA_GridConfig.TYPE_RIGHT){
-			typepos = typepos & ~TA_GridConfig.TYPE_RIGHT;
-		}
-		return typepos;
-	}
-
 	@Override
 	default StrBuilder toDoc() {
-		Collection<Object> content = new ArrayList<>();
-		ArrayList<StrBuilder> normalGrid = null;
-		ArrayList<StrBuilder> strongGrid = null;
-		ArrayList<StrBuilder> heavyGrid = null;
-		ArrayList<StrBuilder> lightGrid = null;
-		ArrayList<StrBuilder> exampleGrid = null;
+		ArrayList<StrBuilder> normalGrid = this.addGrid(TA_GridHelpers.todocEmptyContent(TA_GridConfig.RULESET_NORMAL), TA_GridThemes.FULL);
+		ArrayList<StrBuilder> strongGrid = (this.hasRuleSet(TA_GridConfig.RULESET_STRONG))?this.addGrid(TA_GridHelpers.todocEmptyContent(TA_GridConfig.RULESET_STRONG), TA_GridThemes.FULL):null;
+		ArrayList<StrBuilder> heavyGrid = (this.hasRuleSet(TA_GridConfig.RULESET_HEAVY))?this.addGrid(TA_GridHelpers.todocEmptyContent(TA_GridConfig.RULESET_HEAVY), TA_GridThemes.FULL):null;
+		ArrayList<StrBuilder> lightGrid = (this.hasRuleSet(TA_GridConfig.RULESET_LIGHT))?this.addGrid(TA_GridHelpers.todocEmptyContent(TA_GridConfig.RULESET_LIGHT), TA_GridThemes.FULL):null;
 
-		int lightRule  = this.hasRuleSet(TA_GridConfig.RULESET_LIGHT)?TA_GridConfig.RULESET_LIGHT:TA_GridConfig.RULESET_NORMAL;
 		int strongRule = this.hasRuleSet(TA_GridConfig.RULESET_STRONG)?TA_GridConfig.RULESET_STRONG:TA_GridConfig.RULESET_NORMAL;
 		int heavyRule  = this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)?TA_GridConfig.RULESET_HEAVY:strongRule;
 
-		content.add(TA_GridConfig.RULESET_NORMAL);
-		content.add(Pair.of(TA_GridConfig.RULESET_NORMAL, new String[][]{new String[]{" ", " ", " ", " "}}));
-		content.add(TA_GridConfig.RULESET_NORMAL);
-		content.add(Pair.of(TA_GridConfig.RULESET_NORMAL, new String[][]{new String[]{" ", " ", " ", " "}}));
-		content.add(TA_GridConfig.RULESET_NORMAL);
-		normalGrid = this.addGrid(content, TA_GridOptions.THEME_FULL_GRID);
-
-		if(this.hasRuleSet(TA_GridConfig.RULESET_STRONG)){
-			content.clear();
-			content.add(TA_GridConfig.RULESET_STRONG);
-			content.add(Pair.of(TA_GridConfig.RULESET_STRONG, new String[][]{new String[]{" ", " ", " ", " "}}));
-			content.add(TA_GridConfig.RULESET_STRONG);
-			content.add(Pair.of(TA_GridConfig.RULESET_STRONG, new String[][]{new String[]{" ", " ", " ", " "}}));
-			content.add(TA_GridConfig.RULESET_STRONG);
-			strongGrid = this.addGrid(content, TA_GridOptions.THEME_FULL_GRID);
-		}
-
-		if(this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)){
-			content.clear();
-			content.add(TA_GridConfig.RULESET_HEAVY);
-			content.add(Pair.of(TA_GridConfig.RULESET_HEAVY, new String[][]{new String[]{" ", " ", " ", " "}}));
-			content.add(TA_GridConfig.RULESET_HEAVY);
-			content.add(Pair.of(TA_GridConfig.RULESET_HEAVY, new String[][]{new String[]{" ", " ", " ", " "}}));
-			content.add(TA_GridConfig.RULESET_HEAVY);
-			heavyGrid = this.addGrid(content, TA_GridOptions.THEME_FULL_GRID);
-		}
-
-		if(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT)){
-			content.clear();
-			content.add(TA_GridConfig.RULESET_LIGHT);
-			content.add(Pair.of(TA_GridConfig.RULESET_LIGHT, new String[][]{new String[]{" ", " ", " ", " "}}));
-			content.add(TA_GridConfig.RULESET_LIGHT);
-			content.add(Pair.of(TA_GridConfig.RULESET_LIGHT, new String[][]{new String[]{" ", " ", " ", " "}}));
-			content.add(TA_GridConfig.RULESET_LIGHT);
-			lightGrid = this.addGrid(content, TA_GridOptions.THEME_FULL_GRID);
-		}
-
-		content.clear();
-		content.add(heavyRule);
-		content.add(
-				Pair.of(
+		ArrayList<StrBuilder> exampleGrid = this.addGrid(
+				TA_GridHelpers.todocExampleContent(
+						this.hasRuleSet(TA_GridConfig.RULESET_LIGHT)?TA_GridConfig.RULESET_LIGHT:TA_GridConfig.RULESET_NORMAL,
 						strongRule,
-						new String[][]{new String[]{" h1  ", " h2  ", " h3  ", " h4  "}}
-				)
-		);
-		content.add(strongRule);
-		content.add(
-				Pair.of(
-						strongRule,
-						new String[][]{new String[]{" c11 to c14 w/col-span "}}
-//						new String[][]{new String[]{" c11 ", " c12 ", " c13 ", " c14 "}}
-				)
-		);
-		content.add(TA_GridConfig.RULESET_NORMAL);
-		content.add(
-				Pair.of(
-						strongRule,
-//						new String[][]{new String[]{" c21 & c22 ", " c23 & c24 "}}
-						new String[][]{new String[]{" c21 ", " c22 ", " c23 ", " c24 "}}
-				)
-		);
-		content.add(lightRule);
-		content.add(
-				Pair.of(
-						strongRule,
-						new String[][]{new String[]{" c31 - c32 ", " c33 - c34 "}}
-//						new String[][]{new String[]{" c31 ", " c32 ", " c33 ", " c34 "}}
-				)
-		);
-		content.add(strongRule);
-		content.add(
-				Pair.of(
-						strongRule,
-						new String[][]{new String[]{" f1  ", " f2  ", " f3  ", " f4  "}}
-				)
-		);
-		content.add(heavyRule);
-		exampleGrid = this.addGrid(content, TA_GridOptions.THEME_FULL_GRID);
+						heavyRule
+				), TA_GridThemes.FULL)
+		;
 
-		String space = "      ";
-
-		if(this.hasRuleSet(TA_GridConfig.RULESET_STRONG)){
-			exampleGrid.add(0, new StrBuilder().append("Normal         Strong         Example"));
-		}
-		else if(this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)){
-			exampleGrid.add(0, new StrBuilder().append("Normal                        Example"));
-		}
-		else{
-			exampleGrid.add(0, new StrBuilder().append("Normal         Example"));
-		}
-		for(int i=0; i<normalGrid.size(); i++){
-			if(this.hasRuleSet(TA_GridConfig.RULESET_STRONG)){
-				exampleGrid.get(i+1).insert(0, new StrBuilder().append(normalGrid.get(i)).append(space).append(strongGrid.get(i)).append(space));
-			}
-			else{
-				exampleGrid.get(i+1).insert(0, new StrBuilder().append(normalGrid.get(i)));
-			}
-		}
-
-		exampleGrid.get(6).insert(0, new StrBuilder().append("                              "));
-		if(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT) && this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)){
-			exampleGrid.get(7).insert(0, new StrBuilder().append("Light          Heavy          "));
-		}
-		else if(this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)){
-			exampleGrid.get(7).insert(0, new StrBuilder().append("               Heavy          "));
-		}
-		else if(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT)){
-			exampleGrid.get(7).insert(0, new StrBuilder().append("Light                         "));
-		}
-		else{
-			exampleGrid.get(7).insert(0, new StrBuilder().append("                              "));
-		}
-		for(int i=8; i<exampleGrid.size(); i++){
-			if(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT) && this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)){
-				exampleGrid.get(i).insert(0, new StrBuilder().append(lightGrid.get(i-8)).append(space).append(heavyGrid.get(i-8)).append(space));
-			}
-			else if(this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)){
-				exampleGrid.get(i).insert(0, new StrBuilder().append(space).append(space).append("   ").append(heavyGrid.get(i-8)).append(space));
-			}
-			else if(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT)){
-				exampleGrid.get(i).insert(0, new StrBuilder().append(lightGrid.get(i-8)).append(space).append(space).append(space).append("   "));
-			}
-			else{
-				exampleGrid.get(i).insert(0, new StrBuilder().append("                              "));
-			}
-		}
-		if(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT) && this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)){
-			exampleGrid.add(new StrBuilder().append(lightGrid.get(lightGrid.size()-1)).append(space).append(heavyGrid.get(heavyGrid.size()-1)));
-		}
-		else if(this.hasRuleSet(TA_GridConfig.RULESET_HEAVY)){
-			exampleGrid.add(new StrBuilder().append(space).append(space).append("   ").append(heavyGrid.get(heavyGrid.size()-1)));
-		}
-		else if(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT)){
-			exampleGrid.add(new StrBuilder().append(lightGrid.get(lightGrid.size()-1)));
-		}
-
-		return new StrBuilder().appendWithSeparators(exampleGrid, "\n");
+		return new StrBuilder().appendWithSeparators(TA_GridHelpers.todocBuildAll(normalGrid, strongGrid, heavyGrid, lightGrid, exampleGrid), "\n");
 	}
 
 	/**

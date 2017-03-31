@@ -50,289 +50,66 @@ public interface TA_GridConfig {
 
 
 	/** A character in a top rule. */
-	static int RULESET_TOP_RULE		= 0b0000_0001_0000;
+	static int CHAR_TOP_RULE		= 0b0000_0001_0000;
 
 	/** A character in a mid rule. */
-	static int RULESET_MID_RULE		= 0b0000_0010_0000;
+	static int CHAR_MID_RULE		= 0b0000_0010_0000;
 
 	/** A character in a bottom rule. */
-	static int RULESET_BOTTOM_RULE	= 0b0000_0100_0000;
+	static int CHAR_BOTTOM_RULE		= 0b0000_0100_0000;
 
 	/** A character in a content rule. */
-	static int RULESET_CONTENT_RULE	= 0b0000_1000_0000;
+	static int CHAR_CONTENT_RULE	= 0b0000_1000_0000;
 
-	/** Row type for a normal characters, that is a normal border. */
+
+	/** Row type for a normal character, that is a normal border. */
 	static int RULESET_NORMAL		= 0b0001_0000_0000;
 
-	/** Row type for a strong characters, that is a strong border. */
+	/** Row type for a strong character, that is a strong border. */
 	static int RULESET_STRONG		= 0b0010_0000_0000;
 
-	/** Row type for a heavy characters, that is a heavy border. */
+	/** Row type for a heavy character, that is a heavy border. */
 	static int RULESET_HEAVY		= 0b0100_0000_0000;
 
-	/** Row type for a light characters, that is a light border. */
+	/** Row type for a light character, that is a light border. */
 	static int RULESET_LIGHT		= 0b1000_0000_0000;
 
 
-	/** Border type and position for a simple horizontal border item, for instance `═` . */
-	static int TYPEPOS_HORIZONTAL = TYPE_LEFT | TYPE_RIGHT;
+	/** Border position and type for a simple horizontal border item, for instance `═` . */
+	static int PT_HORIZONTAL = TYPE_LEFT | TYPE_RIGHT;
 
-	/** Border type and position for a simple horizontal border item, for instance `║` . */
-	static int TYPEPOS_VERTICAL   = TYPE_UP | TYPE_DOWN;
-
-
-	/** Border type and position for a top-left border item, for instance `╔` . */
-	static int TYPEPOS_TOP_LEFT  = TYPE_RIGHT | TYPE_DOWN;
-
-	/** Border type and position for a top-right border item, for instance `╗` . */
-	static int TYPEPOS_TOP_RIGHT = TYPE_LEFT | TYPE_DOWN;
+	/** Border position and type for a simple horizontal border item, for instance `║` . */
+	static int PT_VERTICAL   = TYPE_UP | TYPE_DOWN;
 
 
-	/** Border type and position for a bottom-left border item, for instance `╚` . */
-	static int TYPEPOS_BOTTOM_LEFT  = TYPE_RIGHT | TYPE_UP;
+	/** Border position and type for a top-left border item, for instance `╔` . */
+	static int PT_TOP_LEFT  = TYPE_RIGHT | TYPE_DOWN;
 
-	/** Border type and position for a bottom-right border item, for instance `╝` . */
-	static int TYPEPOS_BOTTOM_RIGHT = TYPE_LEFT | TYPE_UP;
-
-
-	/** Border type and position for a middle-left border item, for instance `╠` . */
-	static int TYPEPOS_MID_LEFT  = TYPE_RIGHT | TYPE_UP | TYPE_DOWN;
-
-	/** Border type and position for a middle-right border item, for instance `╣` . */
-	static int TYPEPOS_MID_RIGHT = TYPE_LEFT | TYPE_UP | TYPE_DOWN;
-
-	/** Border type and position for a middle-up-down border item, for instance `╬` . */
-	static int TYPEPOS_MID_BOTH  = TYPE_LEFT | TYPE_RIGHT | TYPE_UP | TYPE_DOWN;
+	/** Border position and type for a top-right border item, for instance `╗` . */
+	static int PT_TOP_RIGHT = TYPE_LEFT | TYPE_DOWN;
 
 
-	/** Border type and position for a middle-down border item, for instance `╦` . */
-	static int TYPEPOS_MID_DOWN = TYPE_LEFT | TYPE_RIGHT | TYPE_DOWN;
+	/** Border position and type for a bottom-left border item, for instance `╚` . */
+	static int PT_BOTTOM_LEFT  = TYPE_RIGHT | TYPE_UP;
 
-	/** Border type and position for a middle-up border item, for instance `╩` . */
-	static int TYPEPOS_MID_UP   = TYPE_LEFT | TYPE_RIGHT | TYPE_UP;
+	/** Border position and type for a bottom-right border item, for instance `╝` . */
+	static int PT_BOTTOM_RIGHT = TYPE_LEFT | TYPE_UP;
 
 
-	/**
-	 * Converts the typos is not set in the mode.
-	 * @param typepos the type position to test
-	 * @param h horizontal position of typos
-	 * @param hsize max horizontal index
-	 * @param mode the mode to test against
-	 * @return original typepos if in the mode, corrected otherwise
-	 */
-	static int convertTopline(int typepos, int h, int hsize, int mode){
-		//top line (rule or content)
-		if(h==0){
-			//rule
-			if(!TA_GridOptions.cornerTopLeft(mode) && (typepos & TYPEPOS_TOP_LEFT) == TYPEPOS_TOP_LEFT){ 
-				return typepos & ~TYPEPOS_TOP_LEFT;
-			}
-			//content
-			if(!TA_GridOptions.contentLeftBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
-		else if(h==hsize){
-			//rule
-			if(!TA_GridOptions.cornerTopRight(mode) && (typepos & TYPEPOS_TOP_RIGHT) == TYPEPOS_TOP_RIGHT){ 
-				return typepos & ~TYPEPOS_TOP_RIGHT;
-			}
-			//content
-			if(!TA_GridOptions.contentLeftBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
-		else{
-			//rule
-			if(!TA_GridOptions.lineTop(mode) && (typepos & TYPEPOS_HORIZONTAL) == TYPEPOS_HORIZONTAL && (typepos & TYPEPOS_MID_DOWN) != TYPEPOS_MID_DOWN){ 
-				return typepos & ~TYPEPOS_HORIZONTAL;
-			}
-			if(!TA_GridOptions.connectorTop(mode) && (typepos & TYPEPOS_MID_DOWN) == TYPEPOS_MID_DOWN){
-				return typepos & ~TYPEPOS_MID_DOWN;
-			}
-			//content
-			if(!TA_GridOptions.contentMidBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
+	/** Border position and type for a middle-left border item, for instance `╠` . */
+	static int PT_MID_LEFT  = TYPE_RIGHT | TYPE_UP | TYPE_DOWN;
 
-		return typepos;
-	}
+	/** Border position and type for a middle-right border item, for instance `╣` . */
+	static int PT_MID_RIGHT = TYPE_LEFT | TYPE_UP | TYPE_DOWN;
 
-	/**
-	 * Converts the typos is not set in the mode.
-	 * @param typepos the type position to test
-	 * @param h horizontal position of typos
-	 * @param hsize max horizontal index
-	 * @param mode the mode to test against
-	 * @return original typepos if in the mode, corrected otherwise
-	 */
-	static int convertBottomline(int typepos, int h, int hsize, int mode){
-		//bottom line (rule or content)
-		if(h==0){
-			//rule
-			if(!TA_GridOptions.cornerBottomLeft(mode) && (typepos & TYPEPOS_BOTTOM_LEFT) == TYPEPOS_BOTTOM_LEFT){ 
-				return typepos & ~TYPEPOS_BOTTOM_LEFT;
-			}
-			//content
-			if(!TA_GridOptions.contentLeftBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
-		else if(h==hsize){
-			//rule
-			if(!TA_GridOptions.cornerBottomRight(mode) && (typepos & TYPEPOS_BOTTOM_RIGHT) == TYPEPOS_BOTTOM_RIGHT){ 
-				return typepos & ~TYPEPOS_BOTTOM_RIGHT;
-			}
-			//content
-			if(!TA_GridOptions.contentLeftBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
-		else{
-			//rule
-			if(!TA_GridOptions.lineBottom(mode) && (typepos & TYPEPOS_HORIZONTAL) == TYPEPOS_HORIZONTAL && (typepos & TYPEPOS_MID_UP) != TYPEPOS_MID_UP){ 
-				return typepos & ~TYPEPOS_HORIZONTAL;
-			}
-			if(!TA_GridOptions.connectorBottom(mode) && (typepos & TYPEPOS_MID_UP) == TYPEPOS_MID_UP){
-				return typepos & ~TYPEPOS_MID_UP;
-			}
-			//content
-			if(!TA_GridOptions.contentMidBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL && (typepos & TYPEPOS_MID_UP) != TYPEPOS_MID_UP && (typepos & TYPEPOS_MID_DOWN) != TYPEPOS_MID_DOWN){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
+	/** Border position and type for a middle-up-down border item, for instance `╬` . */
+	static int PT_MID_BOTH  = TYPE_LEFT | TYPE_RIGHT | TYPE_UP | TYPE_DOWN;
 
-		return typepos;
-	}
 
-	/**
-	 * Converts the typos is not set in the mode.
-	 * @param typepos the type position to test
-	 * @param v vertical position of typos
-	 * @param h horizontal position of typos
-	 * @param vsize max vertical index
-	 * @param hsize max horizontal index
-	 * @param mode the mode to test against
-	 * @return original typepos if in the mode, corrected otherwise
-	 */
-	static int convertMidline(int typepos, int v, int h, int vsize, int hsize, int mode){
-		if(v==0 || v==(vsize)){
-			throw new IllegalArgumentException("converts mid lines ut got a top/bottom line");
-		}
+	/** Border position and type for a middle-down border item, for instance `╦` . */
+	static int PT_MID_DOWN = TYPE_LEFT | TYPE_RIGHT | TYPE_DOWN;
 
-		//mid
-		if(h==0){
-			//mid left side
-			//rule
-			if(!TA_GridOptions.borderMidLeft(mode) && (typepos & TYPEPOS_MID_LEFT) == TYPEPOS_MID_LEFT){ 
-				return typepos & ~TYPEPOS_MID_LEFT;
-			}
-			//content
-			if(!TA_GridOptions.contentLeftBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL && (typepos & TYPEPOS_MID_LEFT) != TYPEPOS_MID_LEFT){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
-		else if(h==(hsize)){
-			// mid right side
-				//rule
-			if(!TA_GridOptions.borderMidRight(mode) && (typepos & TYPEPOS_MID_RIGHT) == TYPEPOS_MID_RIGHT){ 
-				return typepos & ~TYPEPOS_MID_RIGHT;
-			}
-			//content
-			if(!TA_GridOptions.contentLeftBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL && (typepos & TYPEPOS_MID_RIGHT) != TYPEPOS_MID_RIGHT){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
-		else{
-			//mid middle
-			//rule
-			if(!TA_GridOptions.lineMid(mode) && (typepos & TYPEPOS_HORIZONTAL) == TYPEPOS_HORIZONTAL && (typepos & TYPEPOS_MID_UP) != TYPEPOS_MID_UP && (typepos & TYPEPOS_MID_DOWN) != TYPEPOS_MID_DOWN){ 
-				return typepos & ~TYPEPOS_HORIZONTAL;
-			}
-			if(!TA_GridOptions.connectorMid(mode) && (typepos & TYPEPOS_MID_BOTH) == TYPEPOS_MID_BOTH){ 
-				return typepos & ~TYPEPOS_MID_BOTH;
-			}
-			if(!TA_GridOptions.connectorMid(mode) && (typepos & TYPEPOS_MID_UP) == TYPEPOS_MID_UP){ 
-				return typepos & ~TYPEPOS_MID_UP;
-			}
-			if(!TA_GridOptions.connectorMid(mode) && (typepos & TYPEPOS_MID_DOWN) == TYPEPOS_MID_DOWN){ 
-				return typepos & ~TYPEPOS_MID_DOWN;
-			}
-			//content
-			if(!TA_GridOptions.contentMidBorder(mode) && (typepos & TYPEPOS_VERTICAL) == TYPEPOS_VERTICAL && (typepos & TYPEPOS_MID_UP) != TYPEPOS_MID_UP && (typepos & TYPEPOS_MID_DOWN) != TYPEPOS_MID_DOWN){ 
-				return typepos & ~TYPEPOS_VERTICAL;
-			}
-		}
+	/** Border position and type for a middle-up border item, for instance `╩` . */
+	static int PT_MID_UP   = TYPE_LEFT | TYPE_RIGHT | TYPE_UP;
 
-		return typepos;
-	}
-
-	/**
-	 * Removes left/right connections if the given mode requires and the typepos position is a border.
-	 * @param typepos the type position to test
-	 * @param v vertical position of typos
-	 * @param h horizontal position of typos
-	 * @param vsize max vertical index
-	 * @param hsize max horizontal index
-	 * @param mode the mode to test against
-	 * @return original typepos if no border conversion was needed, converted typepos otherwise
-	 */
-	static int convertBorders(int typepos, int v, int h, int vsize, int hsize, int mode){
-		if(v>0 && v<vsize){
-			if(h==0 || h==hsize){
-				if(TA_GridOptions.convertBorders(mode)){
-					typepos = typepos & ~TA_GridConfig.TYPE_LEFT;
-					typepos = typepos & ~TA_GridConfig.TYPE_RIGHT;
-					return typepos;
-				}
-			}
-		}
-		return typepos;
-	}
-
-	/**
-	 * Removes top/down connections if the given mode requires and the typepos position is a connector.
-	 * The method will process top/bottom/mid separately
-	 * @param typepos the type position to test
-	 * @param v vertical position of typos
-	 * @param h horizontal position of typos
-	 * @param vsize max vertical index
-	 * @param hsize max horizontal index
-	 * @param mode the mode to test against
-	 * @return original typepos if no connector conversion was needed, converted typepos otherwise
-	 */
-	static int convertConnectors(int typepos, int v, int h, int vsize, int hsize, int mode){
-		if(v==0){
-			//top
-			if(h>0 && h<hsize){
-				//in the middle
-				if(TA_GridOptions.convertConnectorsTop(mode)){
-					typepos = typepos & ~TA_GridConfig.TYPE_DOWN;
-					return typepos;
-				}
-			}
-		}
-		if(v==vsize){
-			//bottom
-			if(h>0 && h<hsize){
-				//in the middle
-				if(TA_GridOptions.convertConnectorsBottom(mode)){
-					typepos = typepos & ~TA_GridConfig.TYPE_UP;
-					return typepos;
-				}
-			}
-		}
-		else{
-			//mid
-			if(h>0 && h<hsize){
-				if(TA_GridOptions.convertConnectorsMid(mode)){
-					typepos = typepos & ~TA_GridConfig.TYPE_UP;
-					typepos = typepos & ~TA_GridConfig.TYPE_DOWN;
-					return typepos;
-				}
-			}
-		}
-		return typepos;
-	}
 }
