@@ -22,7 +22,7 @@ import de.vandermeer.asciithemes.TA_GridConfig;
  * Collection of {@link TA_Grid} for different extended ASCII characters.
  * 
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.1 build 160319 (19-Mar-16) for Java 1.8
+ * @version    v0.0.1 build 170331 (31-Mar-17) for Java 1.8
  * @since      v0.0.1
  */
 public abstract class A8_Grids {
@@ -31,18 +31,18 @@ public abstract class A8_Grids {
 	 * A grid using normal, strong, and heavy extended ASCII characters for lines only (LaTeX style table).
 	 * 
 	 * ----
-	 * Normal       Heavy        Strong       Example
-	 * ─────────    ≡≡≡≡≡≡≡≡≡    ═════════    ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-	 *                                          h1    h2    h3    h4   
-	 * ─────────    ≡≡≡≡≡≡≡≡≡    ═════════    ═════════════════════════
-	 *                                          c11 to c14 w/col-span  
-	 * ─────────    ≡≡≡≡≡≡≡≡≡    ═════════    ─────────────────────────
-	 *                                          c21   c22   c23   c24  
-	 *                                        ─────────────────────────
-	 *                                          c31 - c32   c33 - c34  
-	 *                                        ═════════════════════════
-	 *                                          f1    f2    f3    f4   
-	 *                                        ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	 * Normal         Strong         Heavy          Example
+	 * ─────────      ═════════      ≡≡≡≡≡≡≡≡≡      ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	 *                                                h1    h2    h3    h4   
+	 * ─────────      ═════════      ≡≡≡≡≡≡≡≡≡      ═════════════════════════
+	 *                                                c11 to c14 w/col-span  
+	 * ─────────      ═════════      ≡≡≡≡≡≡≡≡≡      ─────────────────────────
+	 *                                                c21   c22   c23   c24  
+	 *                                              ─────────────────────────
+	 *                                                c31 - c32   c33 - c34  
+	 *                                              ═════════════════════════
+	 *                                                f1    f2    f3    f4   
+	 *                                              ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 	 * ----
 	 * 
 	 * @return the grid
@@ -59,11 +59,23 @@ public abstract class A8_Grids {
 	 * A grid using normal, strong, and heavy extended ASCII characters for lines only (LaTeX style table).
 	 * 
 	 * ----
+	 * Normal         Strong         Light          Heavy          Example
+	 * ═════════      ▓▓▓▓▓▓▓▓▓      ─────────      ▀▀▀▀▀▀▀▀▀      ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+	 *                                                               h1    h2    h3    h4   
+	 * ═════════      ▓▓▓▓▓▓▓▓▓      ─────────      ▀▀▀▀▀▀▀▀▀      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+	 *                                                               c11 to c14 w/col-span  
+	 * ═════════      ▓▓▓▓▓▓▓▓▓      ─────────      ▀▀▀▀▀▀▀▀▀      ═════════════════════════
+	 *                                                               c21   c22   c23   c24  
+	 *                                                             ─────────────────────────
+	 *                                                               c31 - c32   c33 - c34  
+	 *                                                             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+	 *                                                               f1    f2    f3    f4   
+	 *                                                             ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 	 * ----
 	 * 
 	 * @return the grid
 	 */
-	public static TA_Grid lineDobuleBlocks(){
+	public static TA_Grid lineDoubleBlocks(){
 		return TA_Grid.create("grid using normal, strong, and heavy extended ASCII characters for lines only (LaTeX style table)")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '═', ' ', '═', '═', '═', '═', '═', '═', '═', '═', '═')
 				.addCharacterMap(TA_GridConfig.RULESET_STRONG, ' ', '▓', ' ', '▓', '▓', '▓', '▓', '▓', '▓', '▓', '▓', '▓')
@@ -72,23 +84,3 @@ public abstract class A8_Grids {
 		;
 	}
 }
-
-/*
-TA_GridConfig.RULETYPE_NORMAL, ' ', '═', '║', '╔', '╗', '╚', '╝', '╠', '╣', '╬', '╦', '╩'
-*/
-
-/*
-
-
-Normal           Strong           Example
-─────────        ▀▀▀▀▀▀▀▀▀        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-                                   h1   h2   h3   
-─────────        ═════════        ════════════════
-                                   c1   c2   c3   
-─────────        ▓▓▓▓▓▓▓▓▓        ────────────────
-                                   c1   c2   c3   
-                                  ────────────────
-                                   c1   c2   c3   
-                                  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-
-*/

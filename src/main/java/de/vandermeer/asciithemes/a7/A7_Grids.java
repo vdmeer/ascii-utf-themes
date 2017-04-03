@@ -22,7 +22,7 @@ import de.vandermeer.asciithemes.TA_GridConfig;
  * Collection of {@link TA_Grid} for different ASCII characters.
  * 
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.1 build 160319 (19-Mar-16) for Java 1.8
+ * @version    v0.0.1 build 170331 (31-Mar-17) for Java 1.8
  * @since      v0.0.1
  */
 public abstract class A7_Grids {
@@ -31,14 +31,18 @@ public abstract class A7_Grids {
 	 * A grid using `-` for lines, `|` for borders and `+` for corners.
 	 * 
 	 * ----
-	 * +--------------------------------+
-	 * |top row col-span 3, single line |
-	 * +---------------+----------------+
-	 * |second row col1|second row col2 |
-	 * +----------+----+-----+----------+
-	 * |r3, c1, l1|r3, c2, l1|r3, c3, l1|
-	 * |r3, c1, l2|r3, c2, l2|r3, c3, l2|
-	 * +----------+----------+----------+
+	 * Normal         Example
+	 * +-+-+-+-+      +-----+-----+-----+-----+
+	 * | | | | |      | h1  | h2  | h3  | h4  |
+	 * +-+-+-+-+      +-----+-----+-----+-----+
+	 * | | | | |      | c11 to c14 w/col-span |
+	 * +-+-+-+-+      +-----+-----+-----+-----+
+	 *                | c21 | c22 | c23 | c24 |
+	 *                +-----+-----+-----+-----+
+	 *                | c31 - c32 | c33 - c34 |
+	 *                +-----+-----+-----+-----+
+	 *                | f1  | f2  | f3  | f4  |
+	 *                +-----+-----+-----+-----+
 	 * ----
 	 * 
 	 * @return the grid
@@ -50,17 +54,21 @@ public abstract class A7_Grids {
 	}
 
 	/**
-	 * A grid using `-` for lines, `|` for borders and `+` for corners.
+	 * A grid using `-` for lines, `|` for borders and `+` for corners plus `=` for strong lines.
 	 * 
 	 * ----
-	 * +--------------------------------+
-	 * |top row col-span 3, single line |
-	 * +---------------+----------------+
-	 * |second row col1|second row col2 |
-	 * +----------+----+-----+----------+
-	 * |r3, c1, l1|r3, c2, l1|r3, c3, l1|
-	 * |r3, c1, l2|r3, c2, l2|r3, c3, l2|
-	 * +----------+----------+----------+
+	 * Normal         Strong         Example
+	 * +-+-+-+-+      =========      =========================
+	 * | | | | |      | | | | |      | h1  | h2  | h3  | h4  |
+	 * +-+-+-+-+      =========      =========================
+	 * | | | | |      | | | | |      | c11 to c14 w/col-span |
+	 * +-+-+-+-+      =========      +-----+-----+-----+-----+
+	 *                               | c21 | c22 | c23 | c24 |
+	 *                               +-----+-----+-----+-----+
+	 *                               | c31 - c32 | c33 - c34 |
+	 *                               =========================
+	 *                               | f1  | f2  | f3  | f4  |
+	 *                               =========================
 	 * ----
 	 * 
 	 * @return the grid
