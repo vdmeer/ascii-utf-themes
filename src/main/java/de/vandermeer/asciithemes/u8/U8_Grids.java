@@ -159,7 +159,7 @@ public abstract class U8_Grids {
 	}
 
 	/**
-	 * A grid using UTF-8 light border characters.
+	 * A grid using UTF-8 heavy border characters.
 	 * 
 	 * ----
 	 * Normal         Example
@@ -179,7 +179,7 @@ public abstract class U8_Grids {
 	 * @return the grid
 	 */
 	public static TA_Grid borderheavy(){
-		return TA_Grid.create("grid using UTF-8 light border characters")
+		return TA_Grid.create("grid using UTF-8 heavy border characters")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '━', '┃', '┏', '┓', '┗', '┛', '┣', '┫', '╋', '┳', '┻')
 		;
 	}
