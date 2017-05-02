@@ -1,7 +1,0 @@
-
-= ASCII Art
-:page-layout: base
-:toc: preamble
-
-:release-version: 0.0.1
-
