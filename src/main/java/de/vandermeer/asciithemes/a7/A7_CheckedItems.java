@@ -24,62 +24,20 @@ import de.vandermeer.asciithemes.TA_CheckedItem;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_CheckedItems {
+public interface A7_CheckedItems {
 
 	/**
-	 * A checked item using `[X]` and `[ ]`.
+	 * A checked item using `(x)` and `( )`.
 	 * 
 	 * ----
-	 * [X] checked item
-	 * [ ] unchecked item
+	 * (x) checked item
+	 * ( ) unchecked item
 	 * ----
 	 * 
 	 * @return the checked item
 	 */
-	public static TA_CheckedItem sbrX(){
-		return TA_CheckedItem.create("[X]", "[ ]", "checked item using \"[X]\" and \"[ ]\"");
-	}
-
-	/**
-	 * A checked item using `[x]` and `[ ]`.
-	 * 
-	 * ----
-	 * [x] checked item
-	 * [ ] unchecked item
-	 * ----
-	 * 
-	 * @return the checked item
-	 */
-	public static TA_CheckedItem sbrx(){
-		return TA_CheckedItem.create("[x]", "[ ]", "checked item using \"[x]\" and \"[ ]\"");
-	}
-
-	/**
-	 * A checked item using `{X}` and `{ }`.
-	 * 
-	 * ----
-	 * {X} checked item
-	 * { } unchecked item
-	 * ----
-	 * 
-	 * @return the checked item
-	 */
-	public static TA_CheckedItem cbrX(){
-		return TA_CheckedItem.create("{X}", "{ }", "checked item using \"{X}\" and \"{ }\"");
-	}
-
-	/**
-	 * A checked item using `{x}` and `{ }`.
-	 * 
-	 * ----
-	 * {x} checked item
-	 * { } unchecked item
-	 * ----
-	 * 
-	 * @return the checked item
-	 */
-	public static TA_CheckedItem cbrx(){
-		return TA_CheckedItem.create("{x}", "{ }", "checked item using \"{x}\" and \"{ }\"");
+	static TA_CheckedItem brx(){
+		return TA_CheckedItem.create("(x)", "( )", "checked item using \"(x)\" and \"( )\"");
 	}
 
 	/**
@@ -92,36 +50,36 @@ public abstract class A7_CheckedItems {
 	 * 
 	 * @return the checked item
 	 */
-	public static TA_CheckedItem brX(){
+	static TA_CheckedItem brX(){
 		return TA_CheckedItem.create("(X)", "( )", "checked item using \"(X)\" and \"( )\"");
 	}
 
 	/**
-	 * A checked item using `(x)` and `( )`.
+	 * A checked item using `{x}` and `{ }`.
 	 * 
 	 * ----
-	 * (x) checked item
-	 * ( ) unchecked item
+	 * {x} checked item
+	 * { } unchecked item
 	 * ----
 	 * 
 	 * @return the checked item
 	 */
-	public static TA_CheckedItem brx(){
-		return TA_CheckedItem.create("(x)", "( )", "checked item using \"(x)\" and \"( )\"");
+	static TA_CheckedItem cbrx(){
+		return TA_CheckedItem.create("{x}", "{ }", "checked item using \"{x}\" and \"{ }\"");
 	}
 
 	/**
-	 * A checked item using `&lt;X&gt;` and `&lt; &gt;`.
+	 * A checked item using `{X}` and `{ }`.
 	 * 
 	 * ----
-	 * &lt;X&gt; checked item
-	 * &lt; &gt; unchecked item
+	 * {X} checked item
+	 * { } unchecked item
 	 * ----
 	 * 
 	 * @return the checked item
 	 */
-	public static TA_CheckedItem gtltX(){
-		return TA_CheckedItem.create("<X>", "< >", "checked item using \"<X>\" and \"< >\"");
+	static TA_CheckedItem cbrX(){
+		return TA_CheckedItem.create("{X}", "{ }", "checked item using \"{X}\" and \"{ }\"");
 	}
 
 	/**
@@ -134,7 +92,49 @@ public abstract class A7_CheckedItems {
 	 * 
 	 * @return the checked item
 	 */
-	public static TA_CheckedItem gtltx(){
+	static TA_CheckedItem gtltx(){
 		return TA_CheckedItem.create("<x>", "< >", "checked item using \"<x>\" and \"< >\"");
+	}
+
+	/**
+	 * A checked item using `&lt;X&gt;` and `&lt; &gt;`.
+	 * 
+	 * ----
+	 * &lt;X&gt; checked item
+	 * &lt; &gt; unchecked item
+	 * ----
+	 * 
+	 * @return the checked item
+	 */
+	static TA_CheckedItem gtltX(){
+		return TA_CheckedItem.create("<X>", "< >", "checked item using \"<X>\" and \"< >\"");
+	}
+
+	/**
+	 * A checked item using `[x]` and `[ ]`.
+	 * 
+	 * ----
+	 * [x] checked item
+	 * [ ] unchecked item
+	 * ----
+	 * 
+	 * @return the checked item
+	 */
+	static TA_CheckedItem sbrx(){
+		return TA_CheckedItem.create("[x]", "[ ]", "checked item using \"[x]\" and \"[ ]\"");
+	}
+
+	/**
+	 * A checked item using `[X]` and `[ ]`.
+	 * 
+	 * ----
+	 * [X] checked item
+	 * [ ] unchecked item
+	 * ----
+	 * 
+	 * @return the checked item
+	 */
+	static TA_CheckedItem sbrX(){
+		return TA_CheckedItem.create("[X]", "[ ]", "checked item using \"[X]\" and \"[ ]\"");
 	}
 }

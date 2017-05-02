@@ -26,7 +26,7 @@ import de.vandermeer.asciithemes.TA_Frame;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A8_Frames_SameChar {
+public interface A8_Frames_SameChar {
 
 	/**
 	 * A frame using the acute accent character `´`.
@@ -40,7 +40,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame acuteAccent(){
+	static TA_Frame acuteAccent(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.acuteAccent(),
 				TA_Corner_Chars.create('´', '´', '´', '´', "corner tuple using acute accent character '´'"),
@@ -61,7 +61,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame almostEqual(){
+	static TA_Frame almostEqual(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.almostEqual(),
 				TA_Corner_Chars.create('≈', '≈', '≈', '≈', "corner tuple using almost equal character '≈'"),
@@ -82,7 +82,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame blackSquare(){
+	static TA_Frame blackSquare(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.blackSquare(),
 				TA_Corner_Chars.create('■', '■', '■', '■', "corner tuple using black square character '■'"),
@@ -103,7 +103,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame brokenPipe(){
+	static TA_Frame brokenPipe(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.brokenPipe(),
 				TA_Corner_Chars.create('¦', '¦', '¦', '¦', "corner tuple using broken pipe character '¦'"),
@@ -124,7 +124,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame bullet(){
+	static TA_Frame bullet(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.bullet(),
 				TA_Corner_Chars.create('•', '•', '•', '•', "corner tuple using bullet character '•'"),
@@ -145,7 +145,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame cedilla(){
+	static TA_Frame cedilla(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.cedilla(),
 				TA_Corner_Chars.create('¸', '¸', '¸', '¸', "corner tuple using cedilla character '¸'"),
@@ -166,7 +166,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame congruence(){
+	static TA_Frame congruence(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.congruence(),
 				TA_Corner_Chars.create('≡', '≡', '≡', '≡', "corner tuple using congruence character '≡'"),
@@ -187,7 +187,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame copyright(){
+	static TA_Frame copyright(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.copyright(),
 				TA_Corner_Chars.create('©', '©', '©', '©', "corner tuple using copyright character '©'"),
@@ -208,7 +208,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame currency(){
+	static TA_Frame currency(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.currency(),
 				TA_Corner_Chars.create('¤', '¤', '¤', '¤', "corner tuple using currency character '¤'"),
@@ -229,7 +229,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame dagger(){
+	static TA_Frame dagger(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.dagger(),
 				TA_Corner_Chars.create('†', '†', '†', '†', "corner tuple using dagger character '†'"),
@@ -250,7 +250,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame degree(){
+	static TA_Frame degree(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.degree(),
 				TA_Corner_Chars.create('°', '°', '°', '°', "corner tuple using degree character '°'"),
@@ -271,7 +271,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame diaeresis(){
+	static TA_Frame diaeresis(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.diaeresis(),
 				TA_Corner_Chars.create('¨', '¨', '¨', '¨', "corner tuple using diaeresis character '¨'"),
@@ -292,7 +292,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame division(){
+	static TA_Frame division(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.division(),
 				TA_Corner_Chars.create('÷', '÷', '÷', '÷', "corner tuple using division character '÷'"),
@@ -313,7 +313,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame doubleDagger(){
+	static TA_Frame doubleDagger(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.doubleDagger(),
 				TA_Corner_Chars.create('‡', '‡', '‡', '‡', "corner tuple using double dagger character '‡'"),
@@ -334,7 +334,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame emdash(){
+	static TA_Frame emdash(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.emdash(),
 				TA_Corner_Chars.create('—', '—', '—', '—', "corner tuple using em dash character '—'"),
@@ -355,7 +355,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame endash(){
+	static TA_Frame endash(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.endash(),
 				TA_Corner_Chars.create('–', '–', '–', '–', "corner tuple using en dash character '–'"),
@@ -376,7 +376,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame fullBlock(){
+	static TA_Frame fullBlock(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.fullBlock(),
 				TA_Corner_Chars.create('█', '█', '█', '█', "corner tuple using full block character '█'"),
@@ -397,7 +397,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame highDensityDotted(){
+	static TA_Frame highDensityDotted(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.highDensityDotted(),
 				TA_Corner_Chars.create('▓', '▓', '▓', '▓', "corner tuple using high density dotted character '▓'"),
@@ -418,7 +418,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame horizontalEllipsis(){
+	static TA_Frame horizontalEllipsis(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.horizontalEllipsis(),
 				TA_Corner_Chars.create('…', '…', '…', '…', "corner tuple using horizontal ellipsis character '…'"),
@@ -439,7 +439,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame infinity(){
+	static TA_Frame infinity(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.infinity(),
 				TA_Corner_Chars.create('∞', '∞', '∞', '∞', "corner tuple using infinity character '∞'"),
@@ -460,7 +460,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame invertedExclamationMark(){
+	static TA_Frame invertedExclamationMark(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.invertedExclamationMark(),
 				TA_Corner_Chars.create('¡', '¡', '¡', '¡', "corner tuple using inverted exclamation mark character '¡'"),
@@ -481,7 +481,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame invertedQuestionMark(){
+	static TA_Frame invertedQuestionMark(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.invertedQuestionMark(),
 				TA_Corner_Chars.create('¿', '¿', '¿', '¿', "corner tuple using inverted question mark character '¿'"),
@@ -502,7 +502,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame ldaq(){
+	static TA_Frame ldaq(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.ldaq(),
 				TA_Corner_Chars.create('«', '«', '«', '«', "corner tuple using left double angle quotes character '«'"),
@@ -523,7 +523,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame ldqm(){
+	static TA_Frame ldqm(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.ldqm(),
 				TA_Corner_Chars.create('“', '“', '“', '“', "corner tuple using left double quotation mark character '“'"),
@@ -544,7 +544,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame leftHalfBlock(){
+	static TA_Frame leftHalfBlock(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.leftHalfBlock(),
 				TA_Corner_Chars.create('▌', '▌', '▌', '▌', "corner tuple using left half block character '▌'"),
@@ -565,7 +565,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame lowDensityDotted(){
+	static TA_Frame lowDensityDotted(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.lowDensityDotted(),
 				TA_Corner_Chars.create('░', '░', '░', '░', "corner tuple using low density dotted character '░'"),
@@ -586,7 +586,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame lowerHalfBlock(){
+	static TA_Frame lowerHalfBlock(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.lowerHalfBlock(),
 				TA_Corner_Chars.create('▄', '▄', '▄', '▄', "corner tuple using lower half block character '▄'"),
@@ -607,7 +607,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame lsqm(){
+	static TA_Frame lsqm(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.lsqm(),
 				TA_Corner_Chars.create('‘', '‘', '‘', '‘', "corner tuple using left single quotation mark character '‘'"),
@@ -628,7 +628,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame macron(){
+	static TA_Frame macron(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.macron(),
 				TA_Corner_Chars.create('¯', '¯', '¯', '¯', "corner tuple using macron character '¯'"),
@@ -649,7 +649,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame masculineOrdinalIndicator(){
+	static TA_Frame masculineOrdinalIndicator(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.masculineOrdinalIndicator(),
 				TA_Corner_Chars.create('º', 'º', 'º', 'º', "corner tuple using masculine ordinal indicator character 'º'"),
@@ -670,7 +670,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame mediumDensityDotted(){
+	static TA_Frame mediumDensityDotted(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.mediumDensityDotted(),
 				TA_Corner_Chars.create('▒', '▒', '▒', '▒', "corner tuple using medium density dotted character '▒'"),
@@ -691,7 +691,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame middleDot(){
+	static TA_Frame middleDot(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.middleDot(),
 				TA_Corner_Chars.create('·', '·', '·', '·', "corner tuple using middle dot character '·'"),
@@ -712,7 +712,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame not(){
+	static TA_Frame not(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.not(),
 				TA_Corner_Chars.create('¬', '¬', '¬', '¬', "corner tuple using not character '¬'"),
@@ -733,7 +733,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame paragraph(){
+	static TA_Frame paragraph(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.paragraph(),
 				TA_Corner_Chars.create('¶', '¶', '¶', '¶', "corner tuple using paragraph character '¶'"),
@@ -754,7 +754,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame permille(){
+	static TA_Frame permille(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.permille(),
 				TA_Corner_Chars.create('‰', '‰', '‰', '‰', "corner tuple using permille character '‰'"),
@@ -775,7 +775,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame plusminus(){
+	static TA_Frame plusminus(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.plusminus(),
 				TA_Corner_Chars.create('±', '±', '±', '±', "corner tuple using plusminus character '±'"),
@@ -796,7 +796,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame rdaq(){
+	static TA_Frame rdaq(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.rdaq(),
 				TA_Corner_Chars.create('»', '»', '»', '»', "corner tuple using right double angle quotes character '»'"),
@@ -817,7 +817,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame rdqm(){
+	static TA_Frame rdqm(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.rdqm(),
 				TA_Corner_Chars.create('”', '”', '”', '”', "corner tuple using right double quotation mark character '”'"),
@@ -838,7 +838,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame registeredTradeMark(){
+	static TA_Frame registeredTradeMark(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.registeredTradeMark(),
 				TA_Corner_Chars.create('®', '®', '®', '®', "corner tuple using registered trade mark character '®'"),
@@ -859,7 +859,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame rightHalfBlock(){
+	static TA_Frame rightHalfBlock(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.rightHalfBlock(),
 				TA_Corner_Chars.create('▐', '▐', '▐', '▐', "corner tuple using right half block character '▐'"),
@@ -880,7 +880,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame rsqm(){
+	static TA_Frame rsqm(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.rsqm(),
 				TA_Corner_Chars.create('’', '’', '’', '’', "corner tuple using right single quotation mark character '’'"),
@@ -901,7 +901,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame section(){
+	static TA_Frame section(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.section(),
 				TA_Corner_Chars.create('§', '§', '§', '§', "corner tuple using section character '§'"),
@@ -922,7 +922,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame slpaqm(){
+	static TA_Frame slpaqm(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.slpaqm(),
 				TA_Corner_Chars.create('‹', '‹', '‹', '‹', "corner tuple using single left-pointing angle quotation mark character '‹'"),
@@ -943,7 +943,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame softHyphen(){
+	static TA_Frame softHyphen(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.softHyphen(),
 				TA_Corner_Chars.create('­', '­', '­', '­', "corner tuple using soft hyphen character '­'"),
@@ -964,7 +964,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame srpaqm(){
+	static TA_Frame srpaqm(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.srpaqm(),
 				TA_Corner_Chars.create('›', '›', '›', '›', "corner tuple using single right-pointing angle quotation mark character '›'"),
@@ -985,7 +985,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame times(){
+	static TA_Frame times(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.times(),
 				TA_Corner_Chars.create('×', '×', '×', '×', "corner tuple using times character '×'"),
@@ -1006,7 +1006,7 @@ public abstract class A8_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame upperHalfBlock(){
+	static TA_Frame upperHalfBlock(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.upperHalfBlock(),
 				TA_Corner_Chars.create('▀', '▀', '▀', '▀', "corner tuple using upper half block character '▀'"),

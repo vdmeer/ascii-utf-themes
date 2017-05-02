@@ -27,16 +27,16 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Numbering extends IsTextArt {
 
 	/**
-	 * Returns the minimum number supported by the scheme.
-	 * @return minimum number
-	 */
-	int getMinNumber();
-
-	/**
 	 * Returns the maximum number supported by the scheme.
 	 * @return maximum number
 	 */
 	int getMaxNumber();
+
+	/**
+	 * Returns the minimum number supported by the scheme.
+	 * @return minimum number
+	 */
+	int getMinNumber();
 
 	/**
 	 * Returns a string representation of the given number using the underlying numbering scheme

@@ -28,6 +28,83 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_EnumerateList extends TA_List {
 
 	/**
+	 * Creates a new enumerate list with levels provided by given numbering schemes.
+	 * @param description list description
+	 * @param numbering an array with numbering schemes
+	 * @return new list
+	 */
+	public static TA_EnumerateList create(final String description, final TA_Numbering ...numbering){
+		Validate.notNull(numbering);
+		Validate.noNullElements(numbering);
+		Validate.notBlank(description);
+
+		return new TA_EnumerateList() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLabel(int level) {
+				return numbering[0].getNumber(level);
+			}
+
+			@Override
+			public String getLabel(int[] levels, String separator, boolean useSepOnLast){
+				String simple = TA_EnumerateList.super.getLabel(levels, separator, useSepOnLast);
+				if(simple!=null){
+					return simple;
+				}
+
+				Validate.notNull(levels);
+				Validate.validState(numbering.length>=levels.length, "the required levels are going deeper than the provided numbering: levels <" + levels.length + "> provided <" + numbering.length + ">");
+				StrBuilder ret = new StrBuilder();
+				for(int i=0; i<levels.length; i++){
+					ret.appendSeparator(separator);
+					ret.append(numbering[i].getNumber(levels[i]));
+				}
+				if(useSepOnLast){
+					ret.append(separator);
+				}
+				return ret.toString();
+			}
+
+			@Override
+			public int getMaxLevel() {
+				return numbering.length;
+			}
+		};
+	}
+
+	/**
+	 * Creates a new enumerate list with unlimited levels for given numbering scheme.
+	 * @param numbering the numbering scheme to use
+	 * @param description list description
+	 * @return new list
+	 */
+	public static TA_EnumerateList create(final TA_Numbering numbering, final String description){
+		Validate.notNull(numbering);
+		Validate.notBlank(description);
+
+		return new TA_EnumerateList() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLabel(int level) {
+				return numbering.getNumber(level);
+			}
+
+			@Override
+			public int getMaxLevel() {
+				return -1;
+			}
+		};
+	}
+
+	/**
 	 * Returns the label for a given level.
 	 * If the list is implementing a nested style, this method will always use the top level style.
 	 * @param level the level for the requested style
@@ -102,83 +179,6 @@ public interface TA_EnumerateList extends TA_List {
 		ret.append(this.getLabel(new int[]{1, 2, 3, 4, 5}, ".", true)).append(" item 1/2/3/4/5");
 
 		return ret;
-	}
-
-	/**
-	 * Creates a new enumerate list with unlimited levels for given numbering scheme.
-	 * @param numbering the numbering scheme to use
-	 * @param description list description
-	 * @return new list
-	 */
-	public static TA_EnumerateList create(final TA_Numbering numbering, final String description){
-		Validate.notNull(numbering);
-		Validate.notBlank(description);
-
-		return new TA_EnumerateList() {
-			@Override
-			public int getMaxLevel() {
-				return -1;
-			}
-
-			@Override
-			public String getLabel(int level) {
-				return numbering.getNumber(level);
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
-	}
-
-	/**
-	 * Creates a new enumerate list with levels provided by given numbering schemes.
-	 * @param description list description
-	 * @param numbering an array with numbering schemes
-	 * @return new list
-	 */
-	public static TA_EnumerateList create(final String description, final TA_Numbering ...numbering){
-		Validate.notNull(numbering);
-		Validate.noNullElements(numbering);
-		Validate.notBlank(description);
-
-		return new TA_EnumerateList() {
-			@Override
-			public int getMaxLevel() {
-				return numbering.length;
-			}
-
-			@Override
-			public String getLabel(int level) {
-				return numbering[0].getNumber(level);
-			}
-
-			@Override
-			public String getLabel(int[] levels, String separator, boolean useSepOnLast){
-				String simple = TA_EnumerateList.super.getLabel(levels, separator, useSepOnLast);
-				if(simple!=null){
-					return simple;
-				}
-
-				Validate.notNull(levels);
-				Validate.validState(numbering.length>=levels.length, "the required levels are going deeper than the provided numbering: levels <" + levels.length + "> provided <" + numbering.length + ">");
-				StrBuilder ret = new StrBuilder();
-				for(int i=0; i<levels.length; i++){
-					ret.appendSeparator(separator);
-					ret.append(numbering[i].getNumber(levels[i]));
-				}
-				if(useSepOnLast){
-					ret.append(separator);
-				}
-				return ret.toString();
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 
 }

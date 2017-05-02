@@ -24,7 +24,7 @@ import de.vandermeer.asciithemes.TA_Line_String;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_Lines_String {
+public interface A7_Lines_String {
 
 	/**
 	 * A line using the string `+-`.
@@ -35,7 +35,7 @@ public abstract class A7_Lines_String {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_String plusminus(){
+	static TA_Line_String plusminus(){
 		return TA_Line_String.create("+-", "line using the string \"+-\"");
 	}
 

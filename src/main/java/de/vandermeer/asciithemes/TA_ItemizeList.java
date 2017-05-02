@@ -29,6 +29,97 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_ItemizeList extends TA_List {
 
 	/**
+	 * Creates a new itemize list with unlimited levels for given character.
+	 * @param label character as label
+	 * @param description list description
+	 * @return new list
+	 */
+	static TA_ItemizeList create(final Character label, final String description){
+		Validate.notNull(label);
+		Validate.notBlank(description);
+
+		return new TA_ItemizeList() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLabel(int level) {
+				return label.toString();
+			}
+
+			@Override
+			public int getMaxLevel() {
+				return -1;
+			}
+		};
+	}
+
+	/**
+	 * Creates a new itemize list for levels provided by the given characters.
+	 * @param description list description
+	 * @param characters characters in order of level they support (level 1 is first, level n is last)
+	 * @return new list
+	 */
+	static TA_ItemizeList create(final String description, final Character ... characters){
+		Validate.notBlank(description);
+		Validate.notNull(characters);
+		Validate.noNullElements(characters);
+
+		return new TA_ItemizeList() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLabel(int level) {
+				Validate.validState(level<=this.getMaxLevel(), "level larger than supported max level");
+				return characters[level-1].toString();
+			}
+
+			@Override
+			public int getMaxLevel() {
+				return characters.length;
+			}
+		};
+	}
+
+	/**
+	 * Creates a new itemize list with unlimited levels for given character.
+	 * Incremental means that level 1 has 1 character, level 2 has 2 characters, level 3 has 3 characters and so forth.
+	 * @param label character as label
+	 * @param description list description
+	 * @return new list
+	 */
+	static TA_ItemizeList createIncremental(final Character label, final String description){
+		Validate.notNull(label);
+		Validate.notBlank(description);
+
+		return new TA_ItemizeList() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLabel(int level) {
+				StrBuilder ret = new StrBuilder();
+				for(int i=0; i<level; i++){
+					ret.append(label);
+				}
+				return ret.toString();
+			}
+
+			@Override
+			public int getMaxLevel() {
+				return -1;
+			}
+		};
+	}
+
+	/**
 	 * Returns the label for a given level.
 	 * @param level the level for the requested style
 	 * @return label for a given level, null if not set or supported
@@ -90,96 +181,5 @@ public interface TA_ItemizeList extends TA_List {
 			ret.appendPadding(2*(n-1), ' ').append(this.getLabel(6)).append(" item 2");
 		}
 		return ret;
-	}
-
-	/**
-	 * Creates a new itemize list with unlimited levels for given character.
-	 * @param label character as label
-	 * @param description list description
-	 * @return new list
-	 */
-	public static TA_ItemizeList create(final Character label, final String description){
-		Validate.notNull(label);
-		Validate.notBlank(description);
-
-		return new TA_ItemizeList() {
-			@Override
-			public int getMaxLevel() {
-				return -1;
-			}
-
-			@Override
-			public String getLabel(int level) {
-				return label.toString();
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
-	}
-
-	/**
-	 * Creates a new itemize list with unlimited levels for given character.
-	 * Incremental means that level 1 has 1 character, level 2 has 2 characters, level 3 has 3 characters and so forth.
-	 * @param label character as label
-	 * @param description list description
-	 * @return new list
-	 */
-	public static TA_ItemizeList createIncremental(final Character label, final String description){
-		Validate.notNull(label);
-		Validate.notBlank(description);
-
-		return new TA_ItemizeList() {
-			@Override
-			public int getMaxLevel() {
-				return -1;
-			}
-
-			@Override
-			public String getLabel(int level) {
-				StrBuilder ret = new StrBuilder();
-				for(int i=0; i<level; i++){
-					ret.append(label);
-				}
-				return ret.toString();
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
-	}
-
-	/**
-	 * Creates a new itemize list for levels provided by the given characters.
-	 * @param description list description
-	 * @param characters characters in order of level they support (level 1 is first, level n is last)
-	 * @return new list
-	 */
-	public static TA_ItemizeList create(final String description, final Character ... characters){
-		Validate.notBlank(description);
-		Validate.notNull(characters);
-		Validate.noNullElements(characters);
-
-		return new TA_ItemizeList() {
-			@Override
-			public int getMaxLevel() {
-				return characters.length;
-			}
-
-			@Override
-			public String getLabel(int level) {
-				Validate.validState(level<=this.getMaxLevel(), "level larger than supported max level");
-				return characters[level-1].toString();
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 }

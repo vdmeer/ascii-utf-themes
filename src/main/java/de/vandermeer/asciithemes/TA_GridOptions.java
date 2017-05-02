@@ -40,65 +40,65 @@ public interface TA_GridOptions {
 
 	//Top row first
 	/** Option for using the top row, left corner. */
-	static int HAS_TOP_CORNER_LEFT               = 0b0001;
+	static final int HAS_TOP_CORNER_LEFT	= 0b0001;
 
 	/** Option for using the top row, line. */
-	static int HAS_TOP_LINE                      = 0b0010;
+	static final int HAS_TOP_LINE			= 0b0010;
 
 	/** Option for using the top row, connector. */
-	static int HAS_TOP_CONNECTOR                 = 0b0100;
+	static final int HAS_TOP_CONNECTOR		= 0b0100;
 
 	/** Option for using the top row, right corner. */
-	static int HAS_TOP_CORNER_RIGHT              = 0b1000;
+	static final int HAS_TOP_CORNER_RIGHT	= 0b1000;
 
 
 	//bottom row next
 	/** Option for using the bottom row, left corner. */
-	static int HAS_BOTTOM_CORNER_LEFT            = 0b0001_0000;
+	static final int HAS_BOTTOM_CORNER_LEFT		= 0b0001_0000;
 
 	/** Option for using the bottom row, line. */
-	static int HAS_BOTTOM_LINE                   = 0b0010_0000;
+	static final int HAS_BOTTOM_LINE			= 0b0010_0000;
 
 	/** Option for using the bottom row, connector. */
-	static int HAS_BOTTOM_CONNECTOR              = 0b0100_0000;
+	static final int HAS_BOTTOM_CONNECTOR		= 0b0100_0000;
 
 	/** Option for using the bottom row, right corner. */
-	static int HAS_BOTTOM_CORNER_RIGHT           = 0b1000_0000;
+	static final int HAS_BOTTOM_CORNER_RIGHT	= 0b1000_0000;
 
 
 	//mid row
 	/** Option for using the mid row, left corner. */
-	static int HAS_MID_BORDER_LEFT               = 0b0001_0000_0000;
+	static final int HAS_MID_BORDER_LEFT	= 0b0001_0000_0000;
 
 	/** Option for using the mid row, line. */
-	static int HAS_MID_LINE                      = 0b0010_0000_0000;
+	static final int HAS_MID_LINE			= 0b0010_0000_0000;
 
 	/** Option for using the mid row, connector. */
-	static int HAS_MID_CONNECTOR                 = 0b0100_0000_0000;
+	static final int HAS_MID_CONNECTOR		= 0b0100_0000_0000;
 
 	/** Option for using the mid row, right corner. */
-	static int HAS_MID_BORDER_RIGHT              = 0b1000_0000_0000;
+	static final int HAS_MID_BORDER_RIGHT	= 0b1000_0000_0000;
 
 
 	//content row, here we only have 3, the 4th is all 3 active
 	/** Option for using the content row, left border. */
-	static int HAS_CONTENT_LEFT                  = 0b001_0000_0000_0000;
+	static final int HAS_CONTENT_LEFT	= 0b001_0000_0000_0000;
 
 	/** Option for using the content row, middle border. */
-	static int HAS_CONTENT_MID                   = 0b010_0000_0000_0000;
+	static final int HAS_CONTENT_MID	= 0b010_0000_0000_0000;
 
 	/** Option for using the content row, right border. */
-	static int HAS_CONTENT_RIGHT                 = 0b100_0000_0000_0000;
+	static final int HAS_CONTENT_RIGHT	= 0b100_0000_0000_0000;
 
 
 	/** Option for converting all borders to line equivalent. */
-	static int OPT_CONVERT_BORDERS               = 0b00001_000_0000_0000_0000;
+	static final int OPT_CONVERT_BORDERS		= 0b00001_000_0000_0000_0000;
 
 	/** Option for converting all connectors to horizontal line equivalent. */
-	static int OPT_CONVERT_CONNECTORS_HOR        = 0b00010_000_0000_0000_0000;
+	static final int OPT_CONVERT_CONNECTORS_HOR	= 0b00010_000_0000_0000_0000;
 
 	/** Option for converting all connectors to vertical line equivalent. */
-	static int OPT_CONVERT_CONNECTORS_VER        = 0b00100_000_0000_0000_0000;
+	static final int OPT_CONVERT_CONNECTORS_VER	= 0b00100_000_0000_0000_0000;
 
 	/** Option for converting all corners to horizontal line equivalent. */
 //	static int OPT_CONVERT_CORNERS_HOR           = 0b01000_000_0000_0000_0000;
@@ -108,52 +108,23 @@ public interface TA_GridOptions {
 
 
 	/** Option for showing an empty horizontal top row. */
-	static int OPT_SHOW_EMPTY_ROW_TOP            = 0b000001_00000_000_0000_0000_0000;
+	static final int OPT_SHOW_EMPTY_ROW_TOP			= 0b000001_00000_000_0000_0000_0000;
 
 	/** Option for showing an empty horizontal middle row. */
-	static int OPT_SHOW_EMPTY_ROW_MID            = 0b000010_00000_000_0000_0000_0000;
+	static final int OPT_SHOW_EMPTY_ROW_MID			= 0b000010_00000_000_0000_0000_0000;
 
 	/** Option for showing an empty horizontal bottom row. */
-	static int OPT_SHOW_EMPTY_ROW_BOTTOM         = 0b000100_00000_000_0000_0000_0000;
+	static final int OPT_SHOW_EMPTY_ROW_BOTTOM		= 0b000100_00000_000_0000_0000_0000;
 
 	/** Option for showing an empty left border. */
-	static int OPT_SHOW_EMPTY_BORDER_LEFT        = 0b001000_00000_000_0000_0000_0000;
+	static final int OPT_SHOW_EMPTY_BORDER_LEFT		= 0b001000_00000_000_0000_0000_0000;
 
 	/** Option for showing an empty mid border. */
-	static int OPT_SHOW_EMPTY_BORDER_MID         = 0b010000_00000_000_0000_0000_0000;
+	static final int OPT_SHOW_EMPTY_BORDER_MID		= 0b010000_00000_000_0000_0000_0000;
 
 	/** Option for showing an empty right border. */
-	static int OPT_SHOW_EMPTY_BORDER_RIGHT       = 0b100000_00000_000_0000_0000_0000;
+	static final int OPT_SHOW_EMPTY_BORDER_RIGHT	= 0b100000_00000_000_0000_0000_0000;
 
-
-	/**
-	 * Simple helper testing the existing of an option in a given mode.
-	 * @param option the option to test
-	 * @param mode the mode to test against
-	 * @return true if option set in mode, false otherwise
-	 */
-	static boolean testOption(int option, int mode){
-		return ((mode & option) == option);
-	}
-
-	/**
-	 * Simple helper to test a set of options in a given mode.
-	 * The method tests if any of the given options is set in the mode
-	 * @param mode the mode to test against
-	 * @param options set of options to test for
-	 * @return true if any option is set in the mode, false otherwise
-	 */
-	static boolean testOptionsOr(int mode, int ... options){
-		if(options==null){
-			return false;
-		}
-		for(int opt : options){
-			if(((mode & opt) == opt) == true){
-				return true;
-			}
-		}
-		return false;
-	}
 
 	/**
 	 * Tests if an option is needed, that is if a particular position in the frame requires a character without being requested (set by the mode).
@@ -379,6 +350,35 @@ public interface TA_GridOptions {
 
 			default:
 				throw new IllegalArgumentException("unkown option: " + option + " for mode: " + mode);
+		}
+		return false;
+	}
+
+	/**
+	 * Simple helper testing the existing of an option in a given mode.
+	 * @param option the option to test
+	 * @param mode the mode to test against
+	 * @return true if option set in mode, false otherwise
+	 */
+	static boolean testOption(int option, int mode){
+		return ((mode & option) == option);
+	}
+
+	/**
+	 * Simple helper to test a set of options in a given mode.
+	 * The method tests if any of the given options is set in the mode
+	 * @param mode the mode to test against
+	 * @param options set of options to test for
+	 * @return true if any option is set in the mode, false otherwise
+	 */
+	static boolean testOptionsOr(int mode, int ... options){
+		if(options==null){
+			return false;
+		}
+		for(int opt : options){
+			if(((mode & opt) == opt) == true){
+				return true;
+			}
 		}
 		return false;
 	}

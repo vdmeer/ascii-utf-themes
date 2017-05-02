@@ -28,16 +28,47 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Corner_Chars extends TA_Corner {
 
 	/**
-	 * Returns the character for the top left corner.
-	 * @return left corner character
+	 * Creates a new corner pair.
+	 * @param topleft character of the top left corner
+	 * @param topright character of the top right border
+	 * @param bottomleft character of the bottom left corner
+	 * @param bottomright character of the bottom right border
+	 * @param description a description for the line, cannot be blank
+	 * @return new corner pair
 	 */
-	Character getTopLeftChar();
+	static TA_Corner_Chars create(final Character topleft, final Character topright, final Character bottomleft, final Character bottomright, final String description){
+		Validate.notNull(topleft);
+		Validate.notNull(topright);
+		Validate.notNull(bottomleft);
+		Validate.notNull(bottomright);
+		Validate.notBlank(description);
 
-	/**
-	 * Returns the character for the top right corner.
-	 * @return right corner character
-	 */
-	Character getTopRightChar();
+		return new TA_Corner_Chars() {
+			@Override
+			public Character getBottomLeftChar() {
+				return bottomleft;
+			}
+
+			public Character getBottomRightChar() {
+				return bottomright;
+			}
+
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public Character getTopLeftChar() {
+				return topleft;
+			}
+
+			@Override
+			public Character getTopRightChar() {
+				return topright;
+			}
+		};
+	}
 
 	/**
 	 * Returns the character for the bottom left corner.
@@ -68,6 +99,18 @@ public interface TA_Corner_Chars extends TA_Corner {
 		}
 	}
 
+	/**
+	 * Returns the character for the top left corner.
+	 * @return left corner character
+	 */
+	Character getTopLeftChar();
+
+	/**
+	 * Returns the character for the top right corner.
+	 * @return right corner character
+	 */
+	Character getTopRightChar();
+
 	@Override
 	default StrBuilder toDoc() {
 		StrBuilder ret = new StrBuilder(10)
@@ -78,48 +121,5 @@ public interface TA_Corner_Chars extends TA_Corner {
 			
 		;
 		return ret;
-	}
-
-	/**
-	 * Creates a new corner pair.
-	 * @param topleft character of the top left corner
-	 * @param topright character of the top right border
-	 * @param bottomleft character of the bottom left corner
-	 * @param bottomright character of the bottom right border
-	 * @param description a description for the line, cannot be blank
-	 * @return new corner pair
-	 */
-	static TA_Corner_Chars create(final Character topleft, final Character topright, final Character bottomleft, final Character bottomright, final String description){
-		Validate.notNull(topleft);
-		Validate.notNull(topright);
-		Validate.notNull(bottomleft);
-		Validate.notNull(bottomright);
-		Validate.notBlank(description);
-
-		return new TA_Corner_Chars() {
-			@Override
-			public Character getTopRightChar() {
-				return topright;
-			}
-
-			@Override
-			public Character getTopLeftChar() {
-				return topleft;
-			}
-
-			public Character getBottomRightChar() {
-				return bottomright;
-			}
-
-			@Override
-			public Character getBottomLeftChar() {
-				return bottomleft;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 }

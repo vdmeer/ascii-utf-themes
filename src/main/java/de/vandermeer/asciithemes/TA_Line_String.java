@@ -28,6 +28,29 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Line_String extends TA_Line {
 
 	/**
+	 * Creates a a new line.
+	 * @param str line string
+	 * @param description a description for the line, cannot be blank
+	 * @return new line
+	 */
+	static TA_Line_String create(final String str, final String description){
+		Validate.notNull(str);
+		Validate.notBlank(description);
+
+		return new TA_Line_String() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLineString() {
+				return str;
+			}
+		};
+	}
+
+	/**
 	 * Returns a line of given length.
 	 * @param length number of in the line
 	 * @return line of given length, empty if length was null or negative
@@ -68,28 +91,5 @@ public interface TA_Line_String extends TA_Line {
 	@Override
 	default StrBuilder toDoc() {
 		return this.getLine(10);
-	}
-
-	/**
-	 * Creates a a new line.
-	 * @param str line string
-	 * @param description a description for the line, cannot be blank
-	 * @return new line
-	 */
-	static TA_Line_String create(final String str, final String description){
-		Validate.notNull(str);
-		Validate.notBlank(description);
-
-		return new TA_Line_String() {
-			@Override
-			public String getLineString() {
-				return str;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 }

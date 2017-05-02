@@ -26,7 +26,67 @@ import de.vandermeer.asciithemes.TA_Frame;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class U8_Frames {
+public interface U8_Frames {
+
+	/**
+	 * A frame theme using double line characters.
+	 * ----
+	 * ╔═════════════════╗
+	 * ║Lorem ipsum dolor║
+	 * ║Lorem ipsum dolor║
+	 * ╚═════════════════╝
+	 * ----
+	 * 
+	 * @return the frame theme
+	 */
+	static TA_Frame borderDouble(){
+		return TA_Frame.create(
+				U8_Lines_SameChar.borderDoubleHorizontal(),
+				TA_Corner_Chars.create('╔', '╗', '╚', '╝', "corner tuple UTF-8 double corners '╔╗╚╝'"),
+				TA_Border_Chars.create('║', '║', "border pair UTF-8 double borders '║'"),
+				"frame theme using UTF-8 double line characters"
+		);
+	}
+
+	/**
+	 * A frame theme using double (vertical) and single (horizontal) line characters.
+	 * ----
+	 * ╓─────────────────╖
+	 * ║Lorem ipsum dolor║
+	 * ║Lorem ipsum dolor║
+	 * ╙─────────────────╜
+	 * ----
+	 * 
+	 * @return the frame theme
+	 */
+	static TA_Frame borderDoubleSingle(){
+		return TA_Frame.create(
+				U8_Lines_SameChar.borderLightHorizontal(),
+				TA_Corner_Chars.create('╓', '╖', '╙', '╜', "corner tuple UTF-8 double corners '╓╖╙╜'"),
+				TA_Border_Chars.create('║', '║', "border pair UTF-8 double borders '║'"),
+				"frame theme using double (vertical) and single (horizontal) line characters"
+		);
+	}
+
+	/**
+	 * A frame theme using heavy characters.
+	 * ----
+	 * ┏━━━━━━━━━━━━━━━━━┓
+	 * ┃Lorem ipsum dolor┃
+	 * ┃Lorem ipsum dolor┃
+	 * ┗━━━━━━━━━━━━━━━━━┛
+	 * ----
+	 * 
+	 * @return the frame theme
+	 */
+	static TA_Frame borderHeavy(){
+		return TA_Frame.create(
+				U8_Lines_SameChar.borderHeavyHorizontal(),
+				TA_Corner_Chars.create('┏', '┓', '┗', '┛', "corner tuple UTF-8 light corners '┏┓┗┛'"),
+				TA_Border_Chars.create('┃', '┃', "border pair UTF-8 light borders '┃'"),
+				"frame theme using UTF-8 heavy characters"
+		);
+	}
 
 	/**
 	 * A frame theme using light characters.
@@ -39,7 +99,7 @@ public abstract class U8_Frames {
 	 * 
 	 * @return the frame theme
 	 */
-	public static TA_Frame borderLight(){
+	static TA_Frame borderLight(){
 		return TA_Frame.create(
 				U8_Lines_SameChar.borderLightHorizontal(),
 				TA_Corner_Chars.create('┌', '┐', '└', '┘', "corner tuple UTF-8 light corners '┌┐└┘'"),
@@ -59,52 +119,12 @@ public abstract class U8_Frames {
 	 * 
 	 * @return the frame theme
 	 */
-	public static TA_Frame borderLightRounded(){
+	static TA_Frame borderLightRounded(){
 		return TA_Frame.create(
 				U8_Lines_SameChar.borderLightHorizontal(),
 				TA_Corner_Chars.create('╭', '╮', '╰', '╯', "corner tuple UTF-8 light corners '╭╮╰╯'"),
 				TA_Border_Chars.create('│', '│', "border pair UTF-8 light borders '│'"),
 				"frame theme using UTF-8 light (rounded corners) characters"
-		);
-	}
-
-	/**
-	 * A frame theme using heavy characters.
-	 * ----
-	 * ┏━━━━━━━━━━━━━━━━━┓
-	 * ┃Lorem ipsum dolor┃
-	 * ┃Lorem ipsum dolor┃
-	 * ┗━━━━━━━━━━━━━━━━━┛
-	 * ----
-	 * 
-	 * @return the frame theme
-	 */
-	public static TA_Frame borderHeavy(){
-		return TA_Frame.create(
-				U8_Lines_SameChar.borderHeavyHorizontal(),
-				TA_Corner_Chars.create('┏', '┓', '┗', '┛', "corner tuple UTF-8 light corners '┏┓┗┛'"),
-				TA_Border_Chars.create('┃', '┃', "border pair UTF-8 light borders '┃'"),
-				"frame theme using UTF-8 heavy characters"
-		);
-	}
-
-	/**
-	 * A frame theme using double line characters.
-	 * ----
-	 * ╔═════════════════╗
-	 * ║Lorem ipsum dolor║
-	 * ║Lorem ipsum dolor║
-	 * ╚═════════════════╝
-	 * ----
-	 * 
-	 * @return the frame theme
-	 */
-	public static TA_Frame borderDouble(){
-		return TA_Frame.create(
-				U8_Lines_SameChar.borderDoubleHorizontal(),
-				TA_Corner_Chars.create('╔', '╗', '╚', '╝', "corner tuple UTF-8 double corners '╔╗╚╝'"),
-				TA_Border_Chars.create('║', '║', "border pair UTF-8 double borders '║'"),
-				"frame theme using UTF-8 double line characters"
 		);
 	}
 
@@ -119,32 +139,12 @@ public abstract class U8_Frames {
 	 * 
 	 * @return the frame theme
 	 */
-	public static TA_Frame borderSingleDouble(){
+	static TA_Frame borderSingleDouble(){
 		return TA_Frame.create(
 				U8_Lines_SameChar.borderDoubleHorizontal(),
 				TA_Corner_Chars.create('╒', '╕', '╘', '╛', "corner tuple UTF-8 double corners '╒╕╘╛'"),
 				TA_Border_Chars.create('│', '│', "border pair UTF-8 double borders '│'"),
 				"frame theme using single (vertical) and double (horizontal) line characters"
-		);
-	}
-
-	/**
-	 * A frame theme using double (vertical) and single (horizontal) line characters.
-	 * ----
-	 * ╓─────────────────╖
-	 * ║Lorem ipsum dolor║
-	 * ║Lorem ipsum dolor║
-	 * ╙─────────────────╜
-	 * ----
-	 * 
-	 * @return the frame theme
-	 */
-	public static TA_Frame borderDoubleSingle(){
-		return TA_Frame.create(
-				U8_Lines_SameChar.borderLightHorizontal(),
-				TA_Corner_Chars.create('╓', '╖', '╙', '╜', "corner tuple UTF-8 double corners '╓╖╙╜'"),
-				TA_Border_Chars.create('║', '║', "border pair UTF-8 double borders '║'"),
-				"frame theme using double (vertical) and single (horizontal) line characters"
 		);
 	}
 }

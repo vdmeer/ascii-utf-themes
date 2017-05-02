@@ -24,31 +24,7 @@ import de.vandermeer.asciithemes.TA_Checklist;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_Checklists {
-
-	/**
-	 * A checklist using {@link A7_CheckedItems#brX()} for unlimited levels.
-	 * 
-	 * ----
-	 * (X) checked item
-	 * ( ) unchecked item
-	 *   (X) checked item
-	 *   ( ) unchecked item
-	 *     (X) checked item
-	 *     ( ) unchecked item
-	 *       (X) checked item
-	 *       ( ) unchecked item
-	 *         (X) checked item
-	 *         ( ) unchecked item
-	 *           (X) checked item
-	 *           ( ) unchecked item
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_Checklist brX(){
-		return TA_Checklist.create(A7_CheckedItems.brX(), "checklist using \"(X)\" and \"( )\" for unlimited levels");
-	}
+public interface A7_Checklists {
 
 	/**
 	 * A checklist using {@link A7_CheckedItems#brx()} for unlimited levels.
@@ -70,80 +46,32 @@ public abstract class A7_Checklists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist brx(){
+	static TA_Checklist brx(){
 		return TA_Checklist.create(A7_CheckedItems.brx(), "checklist using \"(x)\" and \"( )\" for unlimited levels");
 	}
 
 	/**
-	 * A checklist using {@link A7_CheckedItems#sbrX()} for unlimited levels.
+	 * A checklist using {@link A7_CheckedItems#brX()} for unlimited levels.
 	 * 
 	 * ----
-	 * [X] checked item
-	 * [ ] unchecked item
-	 *   [X] checked item
-	 *   [ ] unchecked item
-	 *     [X] checked item
-	 *     [ ] unchecked item
-	 *       [X] checked item
-	 *       [ ] unchecked item
-	 *         [X] checked item
-	 *         [ ] unchecked item
-	 *           [X] checked item
-	 *           [ ] unchecked item
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_Checklist sbrX(){
-		return TA_Checklist.create(A7_CheckedItems.sbrX(), "checklist using \"[X]\" and \"[ ]\" for unlimited levels");
-	}
-
-	/**
-	 * A checklist using {@link A7_CheckedItems#sbrx()} for unlimited levels.
-	 * 
-	 * ----
-	 * [x] checked item
-	 * [ ] unchecked item
-	 *   [x] checked item
-	 *   [ ] unchecked item
-	 *     [x] checked item
-	 *     [ ] unchecked item
-	 *       [x] checked item
-	 *       [ ] unchecked item
-	 *         [x] checked item
-	 *         [ ] unchecked item
-	 *           [x] checked item
-	 *           [ ] unchecked item
+	 * (X) checked item
+	 * ( ) unchecked item
+	 *   (X) checked item
+	 *   ( ) unchecked item
+	 *     (X) checked item
+	 *     ( ) unchecked item
+	 *       (X) checked item
+	 *       ( ) unchecked item
+	 *         (X) checked item
+	 *         ( ) unchecked item
+	 *           (X) checked item
+	 *           ( ) unchecked item
 	 * ----
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist sbrx(){
-		return TA_Checklist.create(A7_CheckedItems.sbrx(), "checklist using \"[x]\" and \"[ ]\" for unlimited levels");
-	}
-
-	/**
-	 * A checklist using {@link A7_CheckedItems#cbrX()} for unlimited levels.
-	 * 
-	 * ----
-	 * {X} checked item
-	 * { } unchecked item
-	 *   {X} checked item
-	 *   { } unchecked item
-	 *     {X} checked item
-	 *     { } unchecked item
-	 *       {X} checked item
-	 *       { } unchecked item
-	 *         {X} checked item
-	 *         { } unchecked item
-	 *           {X} checked item
-	 *           { } unchecked item
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_Checklist cbrX(){
-		return TA_Checklist.create(A7_CheckedItems.cbrX(), "checklist using \"{X}\" and \"{ }\" for unlimited levels");
+	static TA_Checklist brX(){
+		return TA_Checklist.create(A7_CheckedItems.brX(), "checklist using \"(X)\" and \"( )\" for unlimited levels");
 	}
 
 	/**
@@ -166,8 +94,51 @@ public abstract class A7_Checklists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist cbrx(){
+	static TA_Checklist cbrx(){
 		return TA_Checklist.create(A7_CheckedItems.cbrx(), "checklist using \"{x}\" and \"{ }\" for unlimited levels");
+	}
+
+	/**
+	 * A checklist using {@link A7_CheckedItems#cbrX()} for unlimited levels.
+	 * 
+	 * ----
+	 * {X} checked item
+	 * { } unchecked item
+	 *   {X} checked item
+	 *   { } unchecked item
+	 *     {X} checked item
+	 *     { } unchecked item
+	 *       {X} checked item
+	 *       { } unchecked item
+	 *         {X} checked item
+	 *         { } unchecked item
+	 *           {X} checked item
+	 *           { } unchecked item
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_Checklist cbrX(){
+		return TA_Checklist.create(A7_CheckedItems.cbrX(), "checklist using \"{X}\" and \"{ }\" for unlimited levels");
+	}
+
+	/**
+	 * A checklist using mixed styles for 4 levels.
+	 * 
+	 * ----
+	 * [X] checked item
+	 * [ ] unchecked item
+	 *   {X} checked item
+	 *   { } unchecked item
+	 *     (X) checked item
+	 *     ( ) unchecked item
+	 *       &lt;X&gt; checked item
+	 *       &lt; &gt; unchecked item
+	 * 
+	 * @return the list
+	 */
+	static TA_Checklist gtltx(){
+		return TA_Checklist.create(A7_CheckedItems.gtltx(), "checklist using \"<x>\" and \"< >\" for unlimited levels");
 	}
 
 	/**
@@ -190,30 +161,60 @@ public abstract class A7_Checklists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist gtltX(){
+	static TA_Checklist gtltX(){
 		return TA_Checklist.create(A7_CheckedItems.gtltX(), "checklist using \"<X>\" and \"< >\" for unlimited levels");
 	}
 
+	//TODO JDOC
+	static TA_Checklist mix(){
+		return TA_Checklist.create("checklist using mixed styles for 4 levels", A7_CheckedItems.sbrX(), A7_CheckedItems.cbrX(), A7_CheckedItems.brX(), A7_CheckedItems.gtltX());
+	}
+
 	/**
-	 * A checklist using mixed styles for 4 levels.
+	 * A checklist using {@link A7_CheckedItems#sbrx()} for unlimited levels.
+	 * 
+	 * ----
+	 * [x] checked item
+	 * [ ] unchecked item
+	 *   [x] checked item
+	 *   [ ] unchecked item
+	 *     [x] checked item
+	 *     [ ] unchecked item
+	 *       [x] checked item
+	 *       [ ] unchecked item
+	 *         [x] checked item
+	 *         [ ] unchecked item
+	 *           [x] checked item
+	 *           [ ] unchecked item
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_Checklist sbrx(){
+		return TA_Checklist.create(A7_CheckedItems.sbrx(), "checklist using \"[x]\" and \"[ ]\" for unlimited levels");
+	}
+
+	/**
+	 * A checklist using {@link A7_CheckedItems#sbrX()} for unlimited levels.
 	 * 
 	 * ----
 	 * [X] checked item
 	 * [ ] unchecked item
-	 *   {X} checked item
-	 *   { } unchecked item
-	 *     (X) checked item
-	 *     ( ) unchecked item
-	 *       &lt;X&gt; checked item
-	 *       &lt; &gt; unchecked item
+	 *   [X] checked item
+	 *   [ ] unchecked item
+	 *     [X] checked item
+	 *     [ ] unchecked item
+	 *       [X] checked item
+	 *       [ ] unchecked item
+	 *         [X] checked item
+	 *         [ ] unchecked item
+	 *           [X] checked item
+	 *           [ ] unchecked item
+	 * ----
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist gtltx(){
-		return TA_Checklist.create(A7_CheckedItems.gtltx(), "checklist using \"<x>\" and \"< >\" for unlimited levels");
-	}
-
-	public static TA_Checklist mix(){
-		return TA_Checklist.create("checklist using mixed styles for 4 levels", A7_CheckedItems.sbrX(), A7_CheckedItems.cbrX(), A7_CheckedItems.brX(), A7_CheckedItems.gtltX());
+	static TA_Checklist sbrX(){
+		return TA_Checklist.create(A7_CheckedItems.sbrX(), "checklist using \"[X]\" and \"[ ]\" for unlimited levels");
 	}
 }

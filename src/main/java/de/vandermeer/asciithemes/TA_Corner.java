@@ -26,6 +26,18 @@ import org.apache.commons.lang3.text.StrBuilder;
  */
 public interface TA_Corner extends IsTextArt {
 
+	/** Mode for processing the top left corner. */
+	static final int MODE_TOP_LEFT		= 1;
+
+	/** Mode for processing the top right corner. */
+	static final int MODE_TOP_RIGHT		= 2;
+
+	/** Mode for processing the bottom left corner. */
+	static final int MODE_BOTTOM_LEFT	= 3;
+
+	/** Mode for processing the bottom right corner. */
+	static final int MODE_BOTTOM_RIGHT	= 4;
+
 	/**
 	 * Returns the corner.
 	 * @param mode the mode for processing a corner (use one of {@link #MODE_TOP_LEFT}, {@link #MODE_TOP_RIGHT}, {@link #MODE_BOTTOM_LEFT}, {@link #MODE_BOTTOM_RIGHT})
@@ -61,16 +73,4 @@ public interface TA_Corner extends IsTextArt {
 	default String getCornerAsString(int mode, StrBuilder builder){
 		return this.getCorner(mode, builder).toString();
 	}
-
-	/** Mode for processing the top left corner. */
-	static int MODE_TOP_LEFT     = 1;
-
-	/** Mode for processing the top right corner. */
-	static int MODE_TOP_RIGHT    = 2;
-
-	/** Mode for processing the bottom left corner. */
-	static int MODE_BOTTOM_LEFT  = 3;
-
-	/** Mode for processing the bottom right corner. */
-	static int MODE_BOTTOM_RIGHT = 4;
 }

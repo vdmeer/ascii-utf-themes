@@ -28,16 +28,34 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Border_Chars extends TA_Border {
 
 	/**
-	 * Returns the character for the left border.
-	 * @return left border character
+	 * Creates a new border pair.
+	 * @param left border left character
+	 * @param right border right character
+	 * @param description a description for the line, cannot be blank
+	 * @return new border pair
 	 */
-	Character getLeftChar();
+	static TA_Border_Chars create(final Character left, final Character right, final String description){
+		Validate.notNull(left);
+		Validate.notNull(right);
+		Validate.notBlank(description);
 
-	/**
-	 * Returns the character for the right border.
-	 * @return right border character
-	 */
-	Character getRightChar();
+		return new TA_Border_Chars() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public Character getLeftChar() {
+				return left;
+			}
+
+			@Override
+			public Character getRightChar() {
+				return right;
+			}
+		};
+	}
 
 	@Override
 	default StrBuilder getBorder(int mode, StrBuilder builder){
@@ -52,6 +70,18 @@ public interface TA_Border_Chars extends TA_Border {
 		}
 	}
 
+	/**
+	 * Returns the character for the left border.
+	 * @return left border character
+	 */
+	Character getLeftChar();
+
+	/**
+	 * Returns the character for the right border.
+	 * @return right border character
+	 */
+	Character getRightChar();
+
 	@Override
 	default StrBuilder toDoc() {
 		StrBuilder ret = new StrBuilder(5)
@@ -60,35 +90,5 @@ public interface TA_Border_Chars extends TA_Border {
 			.append(this.getRightChar())
 		;
 		return ret;
-	}
-
-	/**
-	 * Creates a new border pair.
-	 * @param left border left character
-	 * @param right border right character
-	 * @param description a description for the line, cannot be blank
-	 * @return new border pair
-	 */
-	static TA_Border_Chars create(final Character left, final Character right, final String description){
-		Validate.notNull(left);
-		Validate.notNull(right);
-		Validate.notBlank(description);
-
-		return new TA_Border_Chars() {
-			@Override
-			public Character getRightChar() {
-				return right;
-			}
-
-			@Override
-			public Character getLeftChar() {
-				return left;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 }

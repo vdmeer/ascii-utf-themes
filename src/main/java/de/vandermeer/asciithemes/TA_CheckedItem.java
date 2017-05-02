@@ -28,12 +28,63 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_CheckedItem extends IsTextArt {
 
 	/**
-	 * Returns the label for a given level.
-	 * @param checked flag for a checked (true) or unchecked (false) label
-	 * @return the label
+	 * Creates a new checked item.
+	 * @param checked checked label character
+	 * @param unchecked unckecked label character
+	 * @param description item description
+	 * @return new checked item
 	 */
-	default String getLabel(boolean checked){
-		return (checked==true)?this.getCheckedLabel():this.getUncheckedLabel();
+	static TA_CheckedItem create(final Character checked, final Character unchecked, final String description){
+		Validate.notNull(checked);
+		Validate.notNull(unchecked);
+		Validate.notBlank(description);
+
+		return new TA_CheckedItem() {
+			@Override
+			public String getCheckedLabel() {
+				return checked.toString();
+			}
+			
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getUncheckedLabel() {
+				return unchecked.toString();
+			}
+		};
+	}
+
+	/**
+	 * Creates a new checked item.
+	 * @param checked checked label string
+	 * @param unchecked unckecked label string
+	 * @param description item description
+	 * @return new checked item
+	 */
+	static TA_CheckedItem create(final String checked, final String unchecked, final String description){
+		Validate.notNull(checked);
+		Validate.notNull(unchecked);
+		Validate.notBlank(description);
+
+		return new TA_CheckedItem() {
+			@Override
+			public String getCheckedLabel() {
+				return checked.toString();
+			}
+			
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getUncheckedLabel() {
+				return unchecked.toString();
+			}
+		};
 	}
 
 	/**
@@ -41,6 +92,15 @@ public interface TA_CheckedItem extends IsTextArt {
 	 * @return checked label
 	 */
 	String getCheckedLabel();
+
+	/**
+	 * Returns the label for a given level.
+	 * @param checked flag for a checked (true) or unchecked (false) label
+	 * @return the label
+	 */
+	default String getLabel(boolean checked){
+		return (checked==true)?this.getCheckedLabel():this.getUncheckedLabel();
+	}
 
 	/**
 	 * Returns the unchecked label
@@ -54,66 +114,6 @@ public interface TA_CheckedItem extends IsTextArt {
 		ret.append(this.getCheckedLabel()).append(" checked item").appendNewLine();
 		ret.append(this.getUncheckedLabel()).append(" unchecked item");
 		return ret;
-	}
-
-	/**
-	 * Creates a new checked item.
-	 * @param checked checked label character
-	 * @param unchecked unckecked label character
-	 * @param description item description
-	 * @return new checked item
-	 */
-	public static TA_CheckedItem create(final Character checked, final Character unchecked, final String description){
-		Validate.notNull(checked);
-		Validate.notNull(unchecked);
-		Validate.notBlank(description);
-
-		return new TA_CheckedItem() {
-			@Override
-			public String getUncheckedLabel() {
-				return unchecked.toString();
-			}
-			
-			@Override
-			public String getCheckedLabel() {
-				return checked.toString();
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
-	}
-
-	/**
-	 * Creates a new checked item.
-	 * @param checked checked label string
-	 * @param unchecked unckecked label string
-	 * @param description item description
-	 * @return new checked item
-	 */
-	public static TA_CheckedItem create(final String checked, final String unchecked, final String description){
-		Validate.notNull(checked);
-		Validate.notNull(unchecked);
-		Validate.notBlank(description);
-
-		return new TA_CheckedItem() {
-			@Override
-			public String getUncheckedLabel() {
-				return unchecked.toString();
-			}
-			
-			@Override
-			public String getCheckedLabel() {
-				return checked.toString();
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 
 }

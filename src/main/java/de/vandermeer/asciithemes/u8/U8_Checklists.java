@@ -24,150 +24,30 @@ import de.vandermeer.asciithemes.TA_Checklist;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class U8_Checklists {
+public interface U8_Checklists {
 
 	/**
-	 * A checklist using {@link U8_CheckedItems#spaqmX()} for unlimited levels.
+	 * A checklist using {@link U8_CheckedItems#ballotBox()} for unlimited levels.
 	 * 
 	 * ----
-	 * ‹X› checked item
-	 * ‹ › unchecked item
-	 *   ‹X› checked item
-	 *   ‹ › unchecked item
-	 *     ‹X› checked item
-	 *     ‹ › unchecked item
-	 *       ‹X› checked item
-	 *       ‹ › unchecked item
-	 *         ‹X› checked item
-	 *         ‹ › unchecked item
-	 *           ‹X› checked item
-	 *           ‹ › unchecked item
+	 * ☑ checked item
+	 * ☐ unchecked item
+	 *   ☑ checked item
+	 *   ☐ unchecked item
+	 *     ☑ checked item
+	 *     ☐ unchecked item
+	 *       ☑ checked item
+	 *       ☐ unchecked item
+	 *         ☑ checked item
+	 *         ☐ unchecked item
+	 *           ☑ checked item
+	 *           ☐ unchecked item
 	 * ----
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist spaqmX(){
-		return TA_Checklist.create(U8_CheckedItems.spaqmX(), "checklist using \"‹X›\" and \"‹ ›\" for unlimited levels");
-	}
-
-	/**
-	 * A checklist using {@link U8_CheckedItems#spaqmx()} for unlimited levels.
-	 * 
-	 * ----
-	 * ‹x› checked item
-	 * ‹ › unchecked item
-	 *   ‹x› checked item
-	 *   ‹ › unchecked item
-	 *     ‹x› checked item
-	 *     ‹ › unchecked item
-	 *       ‹x› checked item
-	 *       ‹ › unchecked item
-	 *         ‹x› checked item
-	 *         ‹ › unchecked item
-	 *           ‹x› checked item
-	 *           ‹ › unchecked item
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_Checklist spaqmx(){
-		return TA_Checklist.create(U8_CheckedItems.spaqmx(), "checklist using \"‹x›\" and \"‹ ›\" for unlimited levels");
-	}
-
-	/**
-	 * A checklist using {@link U8_CheckedItems#multiplication()} for unlimited levels.
-	 * 
-	 * ----
-	 * ✕ checked item
-	 *   unchecked item
-	 *   ✕ checked item
-	 *     unchecked item
-	 *     ✕ checked item
-	 *       unchecked item
-	 *       ✕ checked item
-	 *         unchecked item
-	 *         ✕ checked item
-	 *           unchecked item
-	 *           ✕ checked item
-	 *             unchecked item
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_Checklist multiplication(){
-		return TA_Checklist.create(U8_CheckedItems.multiplication(), "checklist using \"✕\" and \" \" for unlimited levels");
-	}
-
-	/**
-	 * A checklist using {@link U8_CheckedItems#checkmark()} for unlimited levels.
-	 * 
-	 * ----
-	 * ✓ checked item
-	 *   unchecked item
-	 *   ✓ checked item
-	 *     unchecked item
-	 *     ✓ checked item
-	 *       unchecked item
-	 *       ✓ checked item
-	 *         unchecked item
-	 *         ✓ checked item
-	 *           unchecked item
-	 *           ✓ checked item
-	 *             unchecked item
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_Checklist checkmark(){
-		return TA_Checklist.create(U8_CheckedItems.checkmark(), "checklist using \"✓\" and \" \" for unlimited levels");
-	}
-
-	/**
-	 * A checklist using {@link U8_CheckedItems#ballotX_Heavy()} for unlimited levels.
-	 * 
-	 * ----
-	 * ✘ checked item
-	 *   unchecked item
-	 *   ✘ checked item
-	 *     unchecked item
-	 *     ✘ checked item
-	 *       unchecked item
-	 *       ✘ checked item
-	 *         unchecked item
-	 *         ✘ checked item
-	 *           unchecked item
-	 *           ✘ checked item
-	 *             unchecked item
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_Checklist ballotX_Heavy(){
-		return TA_Checklist.create(U8_CheckedItems.ballotX_Heavy(), "checklist using \"✘\" and \" \" for unlimited levels");
-	}
-
-	/**
-	 * A checklist using {@link U8_CheckedItems#ballotX()} for unlimited levels.
-	 * 
-	 * ----
-	 * ✗ checked item
-	 *   unchecked item
-	 *   ✗ checked item
-	 *     unchecked item
-	 *     ✗ checked item
-	 *       unchecked item
-	 *       ✗ checked item
-	 *         unchecked item
-	 *         ✗ checked item
-	 *           unchecked item
-	 *           ✗ checked item
-	 *             unchecked item
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_Checklist ballotX(){
-		return TA_Checklist.create(U8_CheckedItems.ballotX(), "checklist using \"✗\" and \" \" for unlimited levels");
+	static TA_Checklist ballotBox(){
+		return TA_Checklist.create(U8_CheckedItems.ballotBox(), "checklist using \"☑\" and \"☐\" for unlimited levels");
 	}
 
 	/**
@@ -190,32 +70,80 @@ public abstract class U8_Checklists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist ballotBoxX(){
+	static TA_Checklist ballotBoxX(){
 		return TA_Checklist.create(U8_CheckedItems.ballotBoxX(), "checklist using \"☒\" and \"☐\" for unlimited levels");
 	}
 
 	/**
-	 * A checklist using {@link U8_CheckedItems#ballotBox()} for unlimited levels.
+	 * A checklist using {@link U8_CheckedItems#ballotX()} for unlimited levels.
 	 * 
 	 * ----
-	 * ☑ checked item
-	 * ☐ unchecked item
-	 *   ☑ checked item
-	 *   ☐ unchecked item
-	 *     ☑ checked item
-	 *     ☐ unchecked item
-	 *       ☑ checked item
-	 *       ☐ unchecked item
-	 *         ☑ checked item
-	 *         ☐ unchecked item
-	 *           ☑ checked item
-	 *           ☐ unchecked item
+	 * ✗ checked item
+	 *   unchecked item
+	 *   ✗ checked item
+	 *     unchecked item
+	 *     ✗ checked item
+	 *       unchecked item
+	 *       ✗ checked item
+	 *         unchecked item
+	 *         ✗ checked item
+	 *           unchecked item
+	 *           ✗ checked item
+	 *             unchecked item
 	 * ----
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist ballotBox(){
-		return TA_Checklist.create(U8_CheckedItems.ballotBox(), "checklist using \"☑\" and \"☐\" for unlimited levels");
+	static TA_Checklist ballotX(){
+		return TA_Checklist.create(U8_CheckedItems.ballotX(), "checklist using \"✗\" and \" \" for unlimited levels");
+	}
+
+	/**
+	 * A checklist using {@link U8_CheckedItems#ballotX_Heavy()} for unlimited levels.
+	 * 
+	 * ----
+	 * ✘ checked item
+	 *   unchecked item
+	 *   ✘ checked item
+	 *     unchecked item
+	 *     ✘ checked item
+	 *       unchecked item
+	 *       ✘ checked item
+	 *         unchecked item
+	 *         ✘ checked item
+	 *           unchecked item
+	 *           ✘ checked item
+	 *             unchecked item
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_Checklist ballotX_Heavy(){
+		return TA_Checklist.create(U8_CheckedItems.ballotX_Heavy(), "checklist using \"✘\" and \" \" for unlimited levels");
+	}
+
+	/**
+	 * A checklist using {@link U8_CheckedItems#checkmark()} for unlimited levels.
+	 * 
+	 * ----
+	 * ✓ checked item
+	 *   unchecked item
+	 *   ✓ checked item
+	 *     unchecked item
+	 *     ✓ checked item
+	 *       unchecked item
+	 *       ✓ checked item
+	 *         unchecked item
+	 *         ✓ checked item
+	 *           unchecked item
+	 *           ✓ checked item
+	 *             unchecked item
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_Checklist checkmark(){
+		return TA_Checklist.create(U8_CheckedItems.checkmark(), "checklist using \"✓\" and \" \" for unlimited levels");
 	}
 
 	/**
@@ -234,7 +162,79 @@ public abstract class U8_Checklists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_Checklist mix(){
+	static TA_Checklist mix(){
 		return TA_Checklist.create("checklist using mixed styles for 4 levels", U8_CheckedItems.ballotBox(), U8_CheckedItems.ballotBoxX(), U8_CheckedItems.spaqmX(), U8_CheckedItems.spaqmx());
+	}
+
+	/**
+	 * A checklist using {@link U8_CheckedItems#multiplication()} for unlimited levels.
+	 * 
+	 * ----
+	 * ✕ checked item
+	 *   unchecked item
+	 *   ✕ checked item
+	 *     unchecked item
+	 *     ✕ checked item
+	 *       unchecked item
+	 *       ✕ checked item
+	 *         unchecked item
+	 *         ✕ checked item
+	 *           unchecked item
+	 *           ✕ checked item
+	 *             unchecked item
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_Checklist multiplication(){
+		return TA_Checklist.create(U8_CheckedItems.multiplication(), "checklist using \"✕\" and \" \" for unlimited levels");
+	}
+
+	/**
+	 * A checklist using {@link U8_CheckedItems#spaqmx()} for unlimited levels.
+	 * 
+	 * ----
+	 * ‹x› checked item
+	 * ‹ › unchecked item
+	 *   ‹x› checked item
+	 *   ‹ › unchecked item
+	 *     ‹x› checked item
+	 *     ‹ › unchecked item
+	 *       ‹x› checked item
+	 *       ‹ › unchecked item
+	 *         ‹x› checked item
+	 *         ‹ › unchecked item
+	 *           ‹x› checked item
+	 *           ‹ › unchecked item
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_Checklist spaqmx(){
+		return TA_Checklist.create(U8_CheckedItems.spaqmx(), "checklist using \"‹x›\" and \"‹ ›\" for unlimited levels");
+	}
+
+	/**
+	 * A checklist using {@link U8_CheckedItems#spaqmX()} for unlimited levels.
+	 * 
+	 * ----
+	 * ‹X› checked item
+	 * ‹ › unchecked item
+	 *   ‹X› checked item
+	 *   ‹ › unchecked item
+	 *     ‹X› checked item
+	 *     ‹ › unchecked item
+	 *       ‹X› checked item
+	 *       ‹ › unchecked item
+	 *         ‹X› checked item
+	 *         ‹ › unchecked item
+	 *           ‹X› checked item
+	 *           ‹ › unchecked item
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_Checklist spaqmX(){
+		return TA_Checklist.create(U8_CheckedItems.spaqmX(), "checklist using \"‹X›\" and \"‹ ›\" for unlimited levels");
 	}
 }

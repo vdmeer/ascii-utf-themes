@@ -24,7 +24,7 @@ import de.vandermeer.asciithemes.TA_Line_Char;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A8_Lines_SameChar {
+public interface A8_Lines_SameChar {
 
 	/**
 	 * A line using the acute accent character `´`.
@@ -35,7 +35,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char acuteAccent(){
+	static TA_Line_Char acuteAccent(){
 		return TA_Line_Char.create('´', "line using acute accent character '´'");
 	}
 
@@ -48,7 +48,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char almostEqual(){
+	static TA_Line_Char almostEqual(){
 		return TA_Line_Char.create('≈', "line using almost equal character '≈'");
 	}
 
@@ -61,7 +61,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char blackSquare(){
+	static TA_Line_Char blackSquare(){
 		return TA_Line_Char.create('■', "line using black square character '■'");
 	}
 
@@ -74,7 +74,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char box1Line(){
+	static TA_Line_Char box1Line(){
 		return TA_Line_Char.create('─', "line using box 1-line character '─'");
 	}
 
@@ -87,7 +87,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char box2Lines(){
+	static TA_Line_Char box2Lines(){
 		return TA_Line_Char.create('═', "line using box 2-lines character '═'");
 	}
 
@@ -100,7 +100,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char brokenPipe(){
+	static TA_Line_Char brokenPipe(){
 		return TA_Line_Char.create('¦', "line using broken pipe character '¦'");
 	}
 
@@ -113,7 +113,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char bullet(){
+	static TA_Line_Char bullet(){
 		return TA_Line_Char.create('•', "line using bullet character '•'");
 	}
 
@@ -126,7 +126,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char cedilla(){
+	static TA_Line_Char cedilla(){
 		return TA_Line_Char.create('¸', "line using cedilla character '¸'");
 	}
 
@@ -139,7 +139,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char congruence(){
+	static TA_Line_Char congruence(){
 		return TA_Line_Char.create('≡', "line using congruence character '≡'");
 	}
 
@@ -152,7 +152,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char copyright(){
+	static TA_Line_Char copyright(){
 		return TA_Line_Char.create('©', "line using copyright character '©'");
 	}
 
@@ -165,7 +165,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char currency(){
+	static TA_Line_Char currency(){
 		return TA_Line_Char.create('¤', "line using currency character '¤'");
 	}
 
@@ -178,7 +178,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char dagger(){
+	static TA_Line_Char dagger(){
 		return TA_Line_Char.create('†', "line using dagger character '†'");
 	}
 
@@ -191,7 +191,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char degree(){
+	static TA_Line_Char degree(){
 		return TA_Line_Char.create('°', "line using degree character '°'");
 	}
 
@@ -204,7 +204,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char diaeresis(){
+	static TA_Line_Char diaeresis(){
 		return TA_Line_Char.create('¨', "line using diaeresis character '¨'");
 	}
 
@@ -217,7 +217,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char division(){
+	static TA_Line_Char division(){
 		return TA_Line_Char.create('÷', "line using division character '÷'");
 	}
 
@@ -230,7 +230,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char doubleDagger(){
+	static TA_Line_Char doubleDagger(){
 		return TA_Line_Char.create('‡', "line using double dagger character '‡'");
 	}
 
@@ -243,7 +243,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char emdash(){
+	static TA_Line_Char emdash(){
 		return TA_Line_Char.create('—', "line using em dash character '—'");
 	}
 
@@ -256,7 +256,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char endash(){
+	static TA_Line_Char endash(){
 		return TA_Line_Char.create('–', "line using en dash character '–'");
 	}
 
@@ -269,7 +269,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char fullBlock(){
+	static TA_Line_Char fullBlock(){
 		return TA_Line_Char.create('█', "line using full block character '█'");
 	}
 
@@ -282,7 +282,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char highDensityDotted(){
+	static TA_Line_Char highDensityDotted(){
 		return TA_Line_Char.create('▓', "line using high density dotted character '▓'");
 	}
 
@@ -295,7 +295,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char horizontalEllipsis(){
+	static TA_Line_Char horizontalEllipsis(){
 		return TA_Line_Char.create('…', "line using horizontal ellipsis character '…'");
 	}
 
@@ -308,7 +308,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char infinity(){
+	static TA_Line_Char infinity(){
 		return TA_Line_Char.create('∞', "line using infinity character '∞'");
 	}
 
@@ -321,7 +321,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char invertedExclamationMark(){
+	static TA_Line_Char invertedExclamationMark(){
 		return TA_Line_Char.create('¡', "line using inverted exclamation mark character '¡'");
 	}
 
@@ -334,7 +334,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char invertedQuestionMark(){
+	static TA_Line_Char invertedQuestionMark(){
 		return TA_Line_Char.create('¿', "line using inverted question mark character '¿'");
 	}
 
@@ -347,7 +347,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char ldaq(){
+	static TA_Line_Char ldaq(){
 		return TA_Line_Char.create('«', "line using left double angle quotes character '«'");
 	}
 
@@ -360,7 +360,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char ldqm(){
+	static TA_Line_Char ldqm(){
 		return TA_Line_Char.create('“', "line using left double quotation mark character '“'");
 	}
 
@@ -373,7 +373,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char leftHalfBlock(){
+	static TA_Line_Char leftHalfBlock(){
 		return TA_Line_Char.create('▌', "line using left half block character '▌'");
 	}
 
@@ -386,7 +386,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char lowDensityDotted(){
+	static TA_Line_Char lowDensityDotted(){
 		return TA_Line_Char.create('░', "line using low density dotted character '░'");
 	}
 
@@ -399,7 +399,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char lowerHalfBlock(){
+	static TA_Line_Char lowerHalfBlock(){
 		return TA_Line_Char.create('▄', "line using lower half block character '▄'");
 	}
 
@@ -412,7 +412,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char lsqm(){
+	static TA_Line_Char lsqm(){
 		return TA_Line_Char.create('‘', "line using left single quotation mark character '‘'");
 	}
 
@@ -425,7 +425,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char macron(){
+	static TA_Line_Char macron(){
 		return TA_Line_Char.create('¯', "line using macron character '¯'");
 	}
 
@@ -438,7 +438,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char masculineOrdinalIndicator(){
+	static TA_Line_Char masculineOrdinalIndicator(){
 		return TA_Line_Char.create('º', "line using masculine ordinal indicator character 'º'");
 	}
 
@@ -451,7 +451,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char mediumDensityDotted(){
+	static TA_Line_Char mediumDensityDotted(){
 		return TA_Line_Char.create('▒', "line using medium density dotted character '▒'");
 	}
 
@@ -464,7 +464,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char middleDot(){
+	static TA_Line_Char middleDot(){
 		return TA_Line_Char.create('·', "line using middle dot character '·'");
 	}
 
@@ -477,7 +477,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char not(){
+	static TA_Line_Char not(){
 		return TA_Line_Char.create('¬', "line using not character '¬'");
 	}
 
@@ -490,7 +490,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char paragraph(){
+	static TA_Line_Char paragraph(){
 		return TA_Line_Char.create('¶', "line using paragraph character '¶'");
 	}
 
@@ -503,7 +503,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char permille(){
+	static TA_Line_Char permille(){
 		return TA_Line_Char.create('‰', "line using permille character '‰'");
 	}
 
@@ -516,7 +516,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char plusminus(){
+	static TA_Line_Char plusminus(){
 		return TA_Line_Char.create('±', "line using plusminus character '±'");
 	}
 
@@ -529,7 +529,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char rdaq(){
+	static TA_Line_Char rdaq(){
 		return TA_Line_Char.create('»', "line using right double angle quotes character '»'");
 	}
 
@@ -542,7 +542,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char rdqm(){
+	static TA_Line_Char rdqm(){
 		return TA_Line_Char.create('”', "line using right double quotation mark character '”'");
 	}
 
@@ -555,7 +555,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char registeredTradeMark(){
+	static TA_Line_Char registeredTradeMark(){
 		return TA_Line_Char.create('®', "line using registered trade mark character '®'");
 	}
 
@@ -568,7 +568,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char rightHalfBlock(){
+	static TA_Line_Char rightHalfBlock(){
 		return TA_Line_Char.create('▐', "line using right half block character '▐'");
 	}
 
@@ -581,7 +581,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char rsqm(){
+	static TA_Line_Char rsqm(){
 		return TA_Line_Char.create('’', "line using right single quotation mark character '’'");
 	}
 
@@ -594,7 +594,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char section(){
+	static TA_Line_Char section(){
 		return TA_Line_Char.create('§', "line using section character '§'");
 	}
 
@@ -607,7 +607,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char slpaqm(){
+	static TA_Line_Char slpaqm(){
 		return TA_Line_Char.create('‹', "line using single left-pointing angle quotation mark character '‹'");
 	}
 
@@ -620,7 +620,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char softHyphen(){
+	static TA_Line_Char softHyphen(){
 		return TA_Line_Char.create('­', "line using soft hyphen character '­'");
 	}
 
@@ -633,7 +633,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char srpaqm(){
+	static TA_Line_Char srpaqm(){
 		return TA_Line_Char.create('›', "line using single right-pointing angle quotation mark character '›'");
 	}
 
@@ -646,7 +646,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char times(){
+	static TA_Line_Char times(){
 		return TA_Line_Char.create('×', "line using times character '×'");
 	}
 
@@ -659,7 +659,7 @@ public abstract class A8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char upperHalfBlock(){
+	static TA_Line_Char upperHalfBlock(){
 		return TA_Line_Char.create('▀', "line using upper half block character '▀'");
 	}
 

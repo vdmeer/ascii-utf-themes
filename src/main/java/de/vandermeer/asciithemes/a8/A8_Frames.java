@@ -26,7 +26,7 @@ import de.vandermeer.asciithemes.TA_Frame;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A8_Frames {
+public interface A8_Frames {
 
 	/**
 	 * A frame using the using box 1-line characters `+`.
@@ -40,7 +40,7 @@ public abstract class A8_Frames {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame box1Line(){
+	static TA_Frame box1Line(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.box1Line(),
 				TA_Corner_Chars.create('┌', '┐', '└', '┘', "corner tuple using box 1-line characters: '┌', '┐', '└', '┘'"),
@@ -61,7 +61,7 @@ public abstract class A8_Frames {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame box2Lines(){
+	static TA_Frame box2Lines(){
 		return TA_Frame.create(
 				A8_Lines_SameChar.box2Lines(),
 				TA_Corner_Chars.create('╔', '╗', '╚', '╝', "corner tuple using box 2-lines characters: '╔', '╗', '╚', '╝'"),

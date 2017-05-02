@@ -28,16 +28,34 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Border_Strings extends TA_Border {
 
 	/**
-	 * Returns the string for the left border.
-	 * @return left border string
+	 * Creates a new border pair.
+	 * @param left border left string
+	 * @param right border right string
+	 * @param description a description for the line, cannot be blank
+	 * @return new border pair
 	 */
-	String getLeftString();
+	static TA_Border_Strings create(final String left, final String right, final String description){
+		Validate.notNull(left);
+		Validate.notNull(right);
+		Validate.notBlank(description);
 
-	/**
-	 * Returns the string for the right border.
-	 * @return right border string
-	 */
-	String getRightString();
+		return new TA_Border_Strings() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLeftString() {
+				return left;
+			}
+
+			@Override
+			public String getRightString() {
+				return right;
+			}
+		};
+	}
 
 	@Override
 	default StrBuilder getBorder(int mode, StrBuilder builder){
@@ -52,6 +70,18 @@ public interface TA_Border_Strings extends TA_Border {
 		}
 	}
 
+	/**
+	 * Returns the string for the left border.
+	 * @return left border string
+	 */
+	String getLeftString();
+
+	/**
+	 * Returns the string for the right border.
+	 * @return right border string
+	 */
+	String getRightString();
+
 	@Override
 	default StrBuilder toDoc() {
 		StrBuilder ret = new StrBuilder(5)
@@ -60,35 +90,5 @@ public interface TA_Border_Strings extends TA_Border {
 			.append(this.getRightString())
 		;
 		return ret;
-	}
-
-	/**
-	 * Creates a new border pair.
-	 * @param left border left string
-	 * @param right border right string
-	 * @param description a description for the line, cannot be blank
-	 * @return new border pair
-	 */
-	static TA_Border_Strings create(final String left, final String right, final String description){
-		Validate.notNull(left);
-		Validate.notNull(right);
-		Validate.notBlank(description);
-
-		return new TA_Border_Strings() {
-			@Override
-			public String getRightString() {
-				return right;
-			}
-
-			@Override
-			public String getLeftString() {
-				return left;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 }

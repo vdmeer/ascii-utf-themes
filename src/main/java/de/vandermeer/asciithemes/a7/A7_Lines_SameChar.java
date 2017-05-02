@@ -24,7 +24,7 @@ import de.vandermeer.asciithemes.TA_Line_Char;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_Lines_SameChar {
+public interface A7_Lines_SameChar {
 
 	/**
 	 * A line using the ampersand character `&amp;`.
@@ -35,7 +35,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char ampersand(){
+	static TA_Line_Char ampersand(){
 		return TA_Line_Char.create('&', "line using ampersand character '&'");
 	}
 
@@ -48,7 +48,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char apostrophe(){
+	static TA_Line_Char apostrophe(){
 		return TA_Line_Char.create('\'', "line using apostrophe character '''");
 	}
 
@@ -61,7 +61,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char at(){
+	static TA_Line_Char at(){
 		return TA_Line_Char.create('@', "line using at character '@'");
 	}
 
@@ -74,7 +74,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char backslash(){
+	static TA_Line_Char backslash(){
 		return TA_Line_Char.create('\\', "line using backslash character '\\'");
 	}
 
@@ -87,7 +87,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char bar(){
+	static TA_Line_Char bar(){
 		return TA_Line_Char.create('|', "line using bar character '|'");
 	}
 
@@ -100,7 +100,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char bl(){
+	static TA_Line_Char bl(){
 		return TA_Line_Char.create('(', "line using (round) bracket left character '('");
 	}
 
@@ -113,7 +113,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char blank(){
+	static TA_Line_Char blank(){
 		return TA_Line_Char.create(' ', "line using blank character ' '");
 	}
 
@@ -126,7 +126,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char br(){
+	static TA_Line_Char br(){
 		return TA_Line_Char.create(')', "line using (round) bracket right character ')'");
 	}
 
@@ -139,7 +139,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char cbl(){
+	static TA_Line_Char cbl(){
 		return TA_Line_Char.create('{', "line using curly bracket left character '{'");
 	}
 
@@ -152,7 +152,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char cbr(){
+	static TA_Line_Char cbr(){
 		return TA_Line_Char.create('}', "line using curly bracket right character '}'");
 	}
 
@@ -165,7 +165,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char circumflex(){
+	static TA_Line_Char circumflex(){
 		return TA_Line_Char.create('^', "line using circumflex character '^'");
 	}
 
@@ -178,7 +178,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char colon(){
+	static TA_Line_Char colon(){
 		return TA_Line_Char.create(':', "line using colon character ':'");
 	}
 
@@ -191,7 +191,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char comma(){
+	static TA_Line_Char comma(){
 		return TA_Line_Char.create(',', "line using comma character ','");
 	}
 
@@ -204,7 +204,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char dollar(){
+	static TA_Line_Char dollar(){
 		return TA_Line_Char.create('$', "line using dollar character '$'");
 	}
 
@@ -217,7 +217,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char dot(){
+	static TA_Line_Char dot(){
 		return TA_Line_Char.create('.', "line using dot character '.'");
 	}
 
@@ -230,7 +230,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char equals(){
+	static TA_Line_Char equals(){
 		return TA_Line_Char.create('=', "line using equals character '='");
 	}
 
@@ -243,7 +243,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char exclamationMark(){
+	static TA_Line_Char exclamationMark(){
 		return TA_Line_Char.create('!', "line using exclamation mark character '!'");
 	}
 
@@ -256,7 +256,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char graveAccent(){
+	static TA_Line_Char graveAccent(){
 		return TA_Line_Char.create('`', "line using grave accent character '`'");
 	}
 
@@ -269,7 +269,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char greaterThan(){
+	static TA_Line_Char greaterThan(){
 		return TA_Line_Char.create('>', "line using greater than character '>'");
 	}
 
@@ -282,7 +282,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char hashmark(){
+	static TA_Line_Char hashmark(){
 		return TA_Line_Char.create('#', "line using hashmark character '#'");
 	}
 
@@ -295,7 +295,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char lessThan(){
+	static TA_Line_Char lessThan(){
 		return TA_Line_Char.create('<', "line using less than character '<'");
 	}
 
@@ -308,7 +308,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char minus(){
+	static TA_Line_Char minus(){
 		return TA_Line_Char.create('-', "line using minus character '-'");
 	}
 
@@ -321,7 +321,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char percent(){
+	static TA_Line_Char percent(){
 		return TA_Line_Char.create('%', "line using percent character '%'");
 	}
 
@@ -334,7 +334,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char plus(){
+	static TA_Line_Char plus(){
 		return TA_Line_Char.create('+', "line using plus character '+'");
 	}
 
@@ -347,7 +347,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char questionMark(){
+	static TA_Line_Char questionMark(){
 		return TA_Line_Char.create('?', "line using question mark character '?'");
 	}
 
@@ -360,7 +360,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char quotationMark(){
+	static TA_Line_Char quotationMark(){
 		return TA_Line_Char.create('"', "line using quotation mark character '\"'");
 	}
 
@@ -373,7 +373,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char sbl(){
+	static TA_Line_Char sbl(){
 		return TA_Line_Char.create('[', "line using square bracket left character '['");
 	}
 
@@ -387,7 +387,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char sbr(){
+	static TA_Line_Char sbr(){
 		return TA_Line_Char.create(']', "line using square bracket right character ']'");
 	}
 
@@ -401,7 +401,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char semicolon(){
+	static TA_Line_Char semicolon(){
 		return TA_Line_Char.create(';', "line using semicolon character ';'");
 	}
 
@@ -415,7 +415,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char slash(){
+	static TA_Line_Char slash(){
 		return TA_Line_Char.create('/', "line using slash character '/'");
 	}
 
@@ -429,7 +429,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char star(){
+	static TA_Line_Char star(){
 		return TA_Line_Char.create('*', "line using star character '*'");
 	}
 
@@ -443,7 +443,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char tilde(){
+	static TA_Line_Char tilde(){
 		return TA_Line_Char.create('~', "line using tilde character '~'");
 	}
 
@@ -457,7 +457,7 @@ public abstract class A7_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char underscore(){
+	static TA_Line_Char underscore(){
 		return TA_Line_Char.create('_', "line using underscore character '_'");
 	}
 

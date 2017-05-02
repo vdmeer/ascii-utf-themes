@@ -24,90 +24,20 @@ import de.vandermeer.asciithemes.TA_CheckedItem;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class U8_CheckedItems {
+public interface U8_CheckedItems {
 
 	/**
-	 * A checked item using `‹X›` and `‹ ›`.
+	 * A checked item using `☑` and `☐`.
 	 * 
 	 * ----
-	 * ‹X› checked item
-	 * ‹ › unchecked item
+	 * ☑ checked item
+	 * ☐ unchecked item
 	 * ----
 	 * 
 	 * @return the checked item
 	 */
-	public static TA_CheckedItem spaqmX(){
-		return TA_CheckedItem.create("‹X›", "‹ ›", "checked item using \"‹X›\" and \"‹ ›\"");
-	}
-
-	/**
-	 * A checked item using `‹x›` and `‹ ›`.
-	 * 
-	 * ----
-	 * ‹x› checked item
-	 * ‹ › unchecked item
-	 * ----
-	 * 
-	 * @return the checked item
-	 */
-	public static TA_CheckedItem spaqmx(){
-		return TA_CheckedItem.create("‹x›", "‹ ›", "checked item using \"‹x›\" and \"‹ ›\"");
-	}
-
-	/**
-	 * A checked item using `✕` and ` `.
-	 * 
-	 * ----
-	 * ✕ checked item
-	 *   unchecked item
-	 * ----
-	 * 
-	 * @return the checked item
-	 */
-	public static TA_CheckedItem multiplication(){
-		return TA_CheckedItem.create("✕", " ", "checked item using \"✕\" and \" \"");
-	}
-
-	/**
-	 * A checked item using `✓` and ` `.
-	 * 
-	 * ----
-	 * ✓ checked item
-	 *   unchecked item
-	 * ----
-	 * 
-	 * @return the checked item
-	 */
-	public static TA_CheckedItem checkmark(){
-		return TA_CheckedItem.create("✓", " ", "checked item using \"✓\" and \" \"");
-	}
-
-	/**
-	 * A checked item using `✘` and ` `.
-	 * 
-	 * ----
-	 * ✘ checked item
-	 *   unchecked item
-	 * ----
-	 * 
-	 * @return the checked item
-	 */
-	public static TA_CheckedItem ballotX_Heavy(){
-		return TA_CheckedItem.create("✘", " ", "checked item using \"✘\" and \" \"");
-	}
-
-	/**
-	 * A checked item using `✗` and ` `.
-	 * 
-	 * ----
-	 * ✗ checked item
-	 *   unchecked item
-	 * ----
-	 * 
-	 * @return the checked item
-	 */
-	public static TA_CheckedItem ballotX(){
-		return TA_CheckedItem.create("✗", " ", "checked item using \"✗\" and \" \"");
+	static TA_CheckedItem ballotBox(){
+		return TA_CheckedItem.create("☑", "☐", "checked item using \"☑\" and \"☐\"");
 	}
 
 	/**
@@ -120,21 +50,91 @@ public abstract class U8_CheckedItems {
 	 * 
 	 * @return the checked item
 	 */
-	public static TA_CheckedItem ballotBoxX(){
+	static TA_CheckedItem ballotBoxX(){
 		return TA_CheckedItem.create("☒", "☐", "checked item using \"☒\" and \"☐\"");
 	}
 
 	/**
-	 * A checked item using `☑` and `☐`.
+	 * A checked item using `✗` and ` `.
 	 * 
 	 * ----
-	 * ☑ checked item
-	 * ☐ unchecked item
+	 * ✗ checked item
+	 *   unchecked item
 	 * ----
 	 * 
 	 * @return the checked item
 	 */
-	public static TA_CheckedItem ballotBox(){
-		return TA_CheckedItem.create("☑", "☐", "checked item using \"☑\" and \"☐\"");
+	static TA_CheckedItem ballotX(){
+		return TA_CheckedItem.create("✗", " ", "checked item using \"✗\" and \" \"");
+	}
+
+	/**
+	 * A checked item using `✘` and ` `.
+	 * 
+	 * ----
+	 * ✘ checked item
+	 *   unchecked item
+	 * ----
+	 * 
+	 * @return the checked item
+	 */
+	static TA_CheckedItem ballotX_Heavy(){
+		return TA_CheckedItem.create("✘", " ", "checked item using \"✘\" and \" \"");
+	}
+
+	/**
+	 * A checked item using `✓` and ` `.
+	 * 
+	 * ----
+	 * ✓ checked item
+	 *   unchecked item
+	 * ----
+	 * 
+	 * @return the checked item
+	 */
+	static TA_CheckedItem checkmark(){
+		return TA_CheckedItem.create("✓", " ", "checked item using \"✓\" and \" \"");
+	}
+
+	/**
+	 * A checked item using `✕` and ` `.
+	 * 
+	 * ----
+	 * ✕ checked item
+	 *   unchecked item
+	 * ----
+	 * 
+	 * @return the checked item
+	 */
+	static TA_CheckedItem multiplication(){
+		return TA_CheckedItem.create("✕", " ", "checked item using \"✕\" and \" \"");
+	}
+
+	/**
+	 * A checked item using `‹x›` and `‹ ›`.
+	 * 
+	 * ----
+	 * ‹x› checked item
+	 * ‹ › unchecked item
+	 * ----
+	 * 
+	 * @return the checked item
+	 */
+	static TA_CheckedItem spaqmx(){
+		return TA_CheckedItem.create("‹x›", "‹ ›", "checked item using \"‹x›\" and \"‹ ›\"");
+	}
+
+	/**
+	 * A checked item using `‹X›` and `‹ ›`.
+	 * 
+	 * ----
+	 * ‹X› checked item
+	 * ‹ › unchecked item
+	 * ----
+	 * 
+	 * @return the checked item
+	 */
+	static TA_CheckedItem spaqmX(){
+		return TA_CheckedItem.create("‹X›", "‹ ›", "checked item using \"‹X›\" and \"‹ ›\"");
 	}
 }

@@ -48,10 +48,10 @@ import org.apache.commons.lang3.tuple.Pair;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public final class TA_GridHelpers {
+public interface TA_GridHelpers {
 
 	/** Options for adding a top rule. */
-	static int[][] topRule = new int[][]{
+	static final int[][] TOP_RULE = new int[][]{
 			{HAS_TOP_CORNER_LEFT, TA_GridConfig.PT_TOP_LEFT},
 			{HAS_TOP_LINE, TA_GridConfig.PT_HORIZONTAL},
 			{HAS_TOP_CONNECTOR, TA_GridConfig.PT_MID_DOWN},
@@ -59,7 +59,7 @@ public final class TA_GridHelpers {
 	};
 
 	/** Options for adding a mid rule. */
-	static int[][] midRule = new int[][]{
+	static final int[][] MID_RULE = new int[][]{
 			{HAS_MID_BORDER_LEFT, TA_GridConfig.PT_MID_LEFT},
 			{HAS_MID_LINE, TA_GridConfig.PT_HORIZONTAL},
 			{HAS_MID_CONNECTOR, TA_GridConfig.PT_MID_BOTH},
@@ -67,7 +67,7 @@ public final class TA_GridHelpers {
 	};
 
 	/** Options for adding a bottom rule. */
-	static int[][] bottomRule = new int[][]{
+	static final int[][] BOTTOM_RULE = new int[][]{
 			{HAS_BOTTOM_CORNER_LEFT, TA_GridConfig.PT_BOTTOM_LEFT},
 			{HAS_BOTTOM_LINE, TA_GridConfig.PT_HORIZONTAL},
 			{HAS_BOTTOM_CONNECTOR, TA_GridConfig.PT_MID_UP},
@@ -75,14 +75,59 @@ public final class TA_GridHelpers {
 	};
 
 	/**
+	 * Calculates a content row and adds it to the frame (if not empty).
+	 * @param ar the content
+	 * @param mode the grid mode (from addGrid)
+	 * @param rowtype the row type (determined by addGrid)
+	 * @param frame internal frame to add the rendered row to
+	 */
+	static void addContentRow(String[][] ar, int mode, int rowtype, ArrayList<ArrayList<Object>> frame){
+		for(int k=0; k<ar.length; k++){
+			ArrayList<Object> al = new ArrayList<>();
+			if(testOption(HAS_CONTENT_LEFT, mode)){
+				al.add(TA_GridConfig.PT_VERTICAL | rowtype);
+			}
+			else if(optionNeeded(HAS_CONTENT_LEFT, mode)){
+				al.add(TA_GridConfig.TYPE_NONE | rowtype);
+			}
+
+			for(int l=0; l<ar[k].length; l++){
+				if(ar[k][l]!=null){
+					for(char c : ar[k][l].toCharArray()){
+						al.add(c);
+					}
+					if(l<(ar[k].length-1)){
+						if(testOption(HAS_CONTENT_MID, mode)){
+							al.add(TA_GridConfig.PT_VERTICAL | rowtype);
+						}
+						else if(optionNeeded(HAS_CONTENT_MID, mode)){
+							al.add(TA_GridConfig.TYPE_NONE | rowtype);
+						}
+					}
+				}
+			}
+			if(testOption(HAS_CONTENT_RIGHT, mode)){
+				al.add(TA_GridConfig.PT_VERTICAL | rowtype);
+			}
+			else if(optionNeeded(HAS_CONTENT_RIGHT, mode)){
+				al.add(TA_GridConfig.TYPE_NONE | rowtype);
+			}
+			if(al.size()>0){
+				frame.add(al);
+			}
+//System.err.println(al + " ==> " + al.size());
+		}
+	}
+
+	/**
 	 * Calculates a rule and adds it to the frame (if not empty).
-	 * @param type rule type and options, use one of {@link #topRule}, {@link #midRule}, or {@link #bottomRule}
+	 * @param type rule type and options, use one of {@link #TOP_RULE}, {@link #MID_RULE}, or {@link #BOTTOM_RULE}
 	 * @param mode the grid mode (from addGrid)
 	 * @param rowtype the row type (determined by addGrid)
 	 * @param columns the columns of the text (determined by addGrid)
 	 * @param frame internal frame to add the rendered rule to
 	 */
-	public static void addRule(int[][] type, int mode, int rowtype, ArrayList<Integer> columns, ArrayList<ArrayList<Object>> frame){
+	static void addRule(int[][] type, int mode, int rowtype, ArrayList<Integer> columns, ArrayList<ArrayList<Object>> frame){
 		ArrayList<Object> al = new ArrayList<>();
 		if(testOption(type[0][0], mode)){
 			al.add(type[0][1] | rowtype);
@@ -122,51 +167,6 @@ public final class TA_GridHelpers {
 	}
 
 	/**
-	 * Calculates a content row and adds it to the frame (if not empty).
-	 * @param ar the content
-	 * @param mode the grid mode (from addGrid)
-	 * @param rowtype the row type (determined by addGrid)
-	 * @param frame internal frame to add the rendered row to
-	 */
-	public static void addContentRow(String[][] ar, int mode, int rowtype, ArrayList<ArrayList<Object>> frame){
-		for(int k=0; k<ar.length; k++){
-			ArrayList<Object> al = new ArrayList<>();
-			if(testOption(HAS_CONTENT_LEFT, mode)){
-				al.add(TA_GridConfig.PT_VERTICAL | rowtype);
-			}
-			else if(optionNeeded(HAS_CONTENT_LEFT, mode)){
-				al.add(TA_GridConfig.TYPE_NONE | rowtype);
-			}
-
-			for(int l=0; l<ar[k].length; l++){
-				if(ar[k][l]!=null){
-					for(char c : ar[k][l].toCharArray()){
-						al.add(c);
-					}
-					if(l<(ar[k].length-1)){
-						if(testOption(HAS_CONTENT_MID, mode)){
-							al.add(TA_GridConfig.PT_VERTICAL | rowtype);
-						}
-						else if(optionNeeded(HAS_CONTENT_MID, mode)){
-							al.add(TA_GridConfig.TYPE_NONE | rowtype);
-						}
-					}
-				}
-			}
-			if(testOption(HAS_CONTENT_RIGHT, mode)){
-				al.add(TA_GridConfig.PT_VERTICAL | rowtype);
-			}
-			else if(optionNeeded(HAS_CONTENT_RIGHT, mode)){
-				al.add(TA_GridConfig.TYPE_NONE | rowtype);
-			}
-			if(al.size()>0){
-				frame.add(al);
-			}
-//System.err.println(al + " ==> " + al.size());
-		}
-	}
-
-	/**
 	 * Adjusts borders, testing if a particular border character is connected uo, down, left, and right in the grid.
 	 * @param postype the border character as position/type
 	 * @param v position of the character vertically in the frame
@@ -175,7 +175,7 @@ public final class TA_GridHelpers {
 	 * @param frame the internal frame to find connected characters
 	 * @return the adjusted character to be used finally to find the actual border character
 	 */
-	public static int adjustBorder(int postype, int v, int h, int mode, ArrayList<ArrayList<Object>> frame){
+	static int adjustBorder(int postype, int v, int h, int mode, ArrayList<ArrayList<Object>> frame){
 		int vsize = frame.size()-1;
 		int hsize = frame.get(v).size()-1;
 
@@ -224,20 +224,6 @@ public final class TA_GridHelpers {
 	}
 
 	/**
-	 * Tests if the given position/type has a type, that is an up, down, left, or right.
-	 * @param postype position/type to test
-	 * @return true if the given position/type already has a type, false otherwise
-	 */
-	public static boolean hasType(int postype){
-		return
-			((postype & TA_GridConfig.TYPE_UP) == TA_GridConfig.TYPE_UP) ||
-			((postype & TA_GridConfig.TYPE_DOWN) == TA_GridConfig.TYPE_DOWN) ||
-			((postype & TA_GridConfig.TYPE_LEFT) == TA_GridConfig.TYPE_LEFT) ||
-			((postype & TA_GridConfig.TYPE_RIGHT) == TA_GridConfig.TYPE_RIGHT)
-		;
-	}
-
-	/**
 	 * Removes left/right connections if the given mode requires it and the position/type is a border.
 	 * @param postype the type position to test
 	 * @param v vertical position of position/type
@@ -247,7 +233,7 @@ public final class TA_GridHelpers {
 	 * @param mode the mode to test against
 	 * @return original position/type if no border conversion was needed, converted position/type otherwise
 	 */
-	public static int convertBorders(int postype, int v, int h, int vsize, int hsize, int mode){
+	static int convertBorders(int postype, int v, int h, int vsize, int hsize, int mode){
 		if(v>0 && v<vsize){
 			if(h==0 || h==hsize){
 				if(testOption(OPT_CONVERT_BORDERS, mode)){
@@ -271,7 +257,7 @@ public final class TA_GridHelpers {
 	 * @param mode the mode to test against
 	 * @return original position/type if no connector conversion was needed, converted position/type otherwise
 	 */
-	public static int convertConnectors(int postype, int v, int h, int vsize, int hsize, int mode){
+	static int convertConnectors(int postype, int v, int h, int vsize, int hsize, int mode){
 		if(v==0){
 			//top
 			if(h>0 && h<hsize){
@@ -308,6 +294,93 @@ public final class TA_GridHelpers {
 			}
 		}
 		return postype;
+	}
+
+	/**
+	 * Tests if the given position/type has a type, that is an up, down, left, or right.
+	 * @param postype position/type to test
+	 * @return true if the given position/type already has a type, false otherwise
+	 */
+	static boolean hasType(int postype){
+		return
+			((postype & TA_GridConfig.TYPE_UP) == TA_GridConfig.TYPE_UP) ||
+			((postype & TA_GridConfig.TYPE_DOWN) == TA_GridConfig.TYPE_DOWN) ||
+			((postype & TA_GridConfig.TYPE_LEFT) == TA_GridConfig.TYPE_LEFT) ||
+			((postype & TA_GridConfig.TYPE_RIGHT) == TA_GridConfig.TYPE_RIGHT)
+		;
+	}
+
+	/**
+	 * Builds a set of lines based on several input grids, combining them all.
+	 * @param normalGrid a given normal grid, can be null or empty
+	 * @param strongGrid a given strong grid, can be null or empty
+	 * @param heavyGrid a given heavy grid, can be null or empty
+	 * @param lightGrid a given light grid, can be null or empty
+	 * @param exampleGrid a given example grid, can be null or empty
+	 * @return set of rendered lines combing all input grids as array of string builders
+	 */
+	static ArrayList<StrBuilder> todocBuildAll(ArrayList<StrBuilder> normalGrid, ArrayList<StrBuilder> strongGrid, ArrayList<StrBuilder> heavyGrid, ArrayList<StrBuilder> lightGrid, ArrayList<StrBuilder> exampleGrid){
+		ArrayList<StrBuilder> ret = new ArrayList<>();
+
+		StrBuilder top =  new StrBuilder();
+		if(normalGrid!=null){
+			top.append("Normal         ");
+		}
+		if(strongGrid!=null){
+			top.append("Strong         ");
+		}
+		if(lightGrid!=null){
+			top.append("Light          ");
+		}
+		if(heavyGrid!=null){
+			top.append("Heavy          ");
+		}
+		if(exampleGrid!=null){
+			top.append("Example");
+		}
+		ret.add(top);
+
+		int max = 0;
+		max = (normalGrid!=null&&normalGrid.size()>max)?normalGrid.size():max;
+		max = (strongGrid!=null&&strongGrid.size()>max)?strongGrid.size():max;
+		max = (lightGrid!=null&&lightGrid.size()>max)?lightGrid.size():max;
+		max = (heavyGrid!=null&&heavyGrid.size()>max)?heavyGrid.size():max;
+		max = (exampleGrid!=null&&exampleGrid.size()>max)?exampleGrid.size():max;
+
+		String space = "      ";
+		String empty = "               ";
+		for(int i=0; i<max; i++){
+			StrBuilder line = new StrBuilder();
+			if(normalGrid!=null && i<normalGrid.size()){
+				line.append(normalGrid.get(i)).append(space);
+			}
+			if(strongGrid!=null && i<strongGrid.size()){
+				line.append(strongGrid.get(i)).append(space);
+			}
+			if(lightGrid!=null && i<lightGrid.size()){
+				line.append(lightGrid.get(i)).append(space);
+			}
+			if(heavyGrid!=null && i<heavyGrid.size()){
+				line.append(heavyGrid.get(i)).append(space);
+			}
+			if(exampleGrid!=null && i<exampleGrid.size()){
+				if(normalGrid!=null && i>=normalGrid.size()){
+					line.append(empty);
+				}
+				if(strongGrid!=null && i>=strongGrid.size()){
+					line.append(empty);
+				}
+				if(lightGrid!=null && i>=lightGrid.size()){
+					line.append(empty);
+				}
+				if(heavyGrid!=null && i>=heavyGrid.size()){
+					line.append(empty);
+				}
+				line.append(exampleGrid.get(i));
+			}
+			ret.add(line);
+		}
+		return ret;
 	}
 
 	/**
@@ -373,79 +446,6 @@ public final class TA_GridHelpers {
 				)
 		);
 		ret.add(heavyRule);
-		return ret;
-	}
-
-	/**
-	 * Builds a set of lines based on several input grids, combining them all.
-	 * @param normalGrid a given normal grid, can be null or empty
-	 * @param strongGrid a given strong grid, can be null or empty
-	 * @param heavyGrid a given heavy grid, can be null or empty
-	 * @param lightGrid a given light grid, can be null or empty
-	 * @param exampleGrid a given example grid, can be null or empty
-	 * @return set of rendered lines combing all input grids as array of string builders
-	 */
-	static ArrayList<StrBuilder> todocBuildAll(ArrayList<StrBuilder> normalGrid, ArrayList<StrBuilder> strongGrid, ArrayList<StrBuilder> heavyGrid, ArrayList<StrBuilder> lightGrid, ArrayList<StrBuilder> exampleGrid){
-		ArrayList<StrBuilder> ret = new ArrayList<>();
-
-		StrBuilder top =  new StrBuilder();
-		if(normalGrid!=null){
-			top.append("Normal         ");
-		}
-		if(strongGrid!=null){
-			top.append("Strong         ");
-		}
-		if(lightGrid!=null){
-			top.append("Light          ");
-		}
-		if(heavyGrid!=null){
-			top.append("Heavy          ");
-		}
-		if(exampleGrid!=null){
-			top.append("Example");
-		}
-		ret.add(top);
-
-		int max = 0;
-		max = (normalGrid!=null&&normalGrid.size()>max)?normalGrid.size():max;
-		max = (strongGrid!=null&&strongGrid.size()>max)?strongGrid.size():max;
-		max = (lightGrid!=null&&lightGrid.size()>max)?lightGrid.size():max;
-		max = (heavyGrid!=null&&heavyGrid.size()>max)?heavyGrid.size():max;
-		max = (exampleGrid!=null&&exampleGrid.size()>max)?exampleGrid.size():max;
-
-		String space = "      ";
-		String empty = "               ";
-		for(int i=0; i<max; i++){
-			StrBuilder line = new StrBuilder();
-			if(normalGrid!=null && i<normalGrid.size()){
-				line.append(normalGrid.get(i)).append(space);
-			}
-			if(strongGrid!=null && i<strongGrid.size()){
-				line.append(strongGrid.get(i)).append(space);
-			}
-			if(lightGrid!=null && i<lightGrid.size()){
-				line.append(lightGrid.get(i)).append(space);
-			}
-			if(heavyGrid!=null && i<heavyGrid.size()){
-				line.append(heavyGrid.get(i)).append(space);
-			}
-			if(exampleGrid!=null && i<exampleGrid.size()){
-				if(normalGrid!=null && i>=normalGrid.size()){
-					line.append(empty);
-				}
-				if(strongGrid!=null && strongGrid!=null && i>=strongGrid.size()){
-					line.append(empty);
-				}
-				if(lightGrid!=null && lightGrid!=null && i>=lightGrid.size()){
-					line.append(empty);
-				}
-				if(heavyGrid!=null && heavyGrid!=null && i>=heavyGrid.size()){
-					line.append(empty);
-				}
-				line.append(exampleGrid.get(i));
-			}
-			ret.add(line);
-		}
 		return ret;
 	}
 }

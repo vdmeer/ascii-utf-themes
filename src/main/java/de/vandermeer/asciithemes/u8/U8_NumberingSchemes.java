@@ -31,44 +31,6 @@ import de.vandermeer.skb.interfaces.transformers.Integer_To_RomanLiteral;
 public interface U8_NumberingSchemes {
 
 	/**
-	 * Numbering scheme using UTF Circled Latin Capital (upper case) characters `Ⓐ-Ⓩ`.
-	 * 
-	 * ----
-	 * Ⓐ item 1
-	 * Ⓑ item 2
-	 * Ⓒ item 3
-	 * ...
-	 * Ⓩ item 26
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Numbering AlphaCircledLatin(){
-		return new TA_Numbering() {
-			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
-				return new String(Character.toChars(number+9397));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
-			}
-
-			@Override
-			public int getMaxNumber() {
-				return 26;
-			}
-
-			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Circled Latin Capital (upper case) characters 'Ⓐ-Ⓩ'";
-			}
-		};
-	}
-
-	/**
 	 * Numbering scheme using UTF Circled Latin Capital (lower case) characters `ⓐ-ⓩ`.
 	 * 
 	 * ----
@@ -81,55 +43,49 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering alphaCircledLatin(){
+	static TA_Numbering alphaCircledLatin(){
 		return new TA_Numbering() {
+			@Override
+			public String getDescription(){
+				return "numbering scheme using UTF Circled Latin Capital (lower case) characters 'ⓐ-ⓩ'";
+			}
+
+			@Override
+			public int getMaxNumber() {
+				return 26;
+			}
+
+			@Override
+			public int getMinNumber() {
+				return 1;
+			}
+
 			@Override
 			public String getNumber(int number) {
 				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
 				return new String(Character.toChars(number+9423));
 			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
-			}
-
-			@Override
-			public int getMaxNumber() {
-				return 26;
-			}
-
-			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Circled Latin Capital (lower case) characters 'ⓐ-ⓩ'";
-			}
 		};
 	}
 
 	/**
-	 * Numbering scheme using UTF Parenthesized Latin Small Letter (lower case) characters `⒜-⒵`.
+	 * Numbering scheme using UTF Circled Latin Capital (upper case) characters `Ⓐ-Ⓩ`.
 	 * 
 	 * ----
-	 * ⒜ item 1
-	 * ⒝ item 2
-	 * ⒞ item 3
+	 * Ⓐ item 1
+	 * Ⓑ item 2
+	 * Ⓒ item 3
 	 * ...
-	 * ⒵ item 26
+	 * Ⓩ item 26
 	 * ----
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering alphaParenthesizedLatinSmallLetter(){
+	static TA_Numbering AlphaCircledLatin(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
-				return new String(Character.toChars(number+9371));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "numbering scheme using UTF Circled Latin Capital (upper case) characters 'Ⓐ-Ⓩ'";
 			}
 
 			@Override
@@ -138,8 +94,14 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Parenthesized Latin Small Letter (lower case) characters '⒜-⒵'";
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
+				return new String(Character.toChars(number+9397));
 			}
 		};
 	}
@@ -157,17 +119,11 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering AlphaFullwidthLatinCapitalLetter(){
+	static TA_Numbering AlphaFullwidthLatinCapitalLetter(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
-				return new String(Character.toChars(number+65312));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "numbering scheme using UTF Fullwidth Latin Capital Letter (upper case) characters 'Ａ-Ｚ'";
 			}
 
 			@Override
@@ -176,8 +132,14 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Fullwidth Latin Capital Letter (upper case) characters 'Ａ-Ｚ'";
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
+				return new String(Character.toChars(number+65312));
 			}
 		};
 	}
@@ -195,17 +157,11 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering alphaFullwidthLatinSmallLetter(){
+	static TA_Numbering alphaFullwidthLatinSmallLetter(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
-				return new String(Character.toChars(number+65344));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "numbering scheme using UTF Fullwidth Latin Small Letter (lower case) characters 'ａ-ｚ'";
 			}
 
 			@Override
@@ -214,8 +170,52 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
+				return new String(Character.toChars(number+65344));
+			}
+		};
+	}
+
+	/**
+	 * Numbering scheme using UTF Parenthesized Latin Small Letter (lower case) characters `⒜-⒵`.
+	 * 
+	 * ----
+	 * ⒜ item 1
+	 * ⒝ item 2
+	 * ⒞ item 3
+	 * ...
+	 * ⒵ item 26
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Numbering alphaParenthesizedLatinSmallLetter(){
+		return new TA_Numbering() {
+			@Override
 			public String getDescription(){
-				return "numbering scheme using UTF Fullwidth Latin Small Letter (lower case) characters 'ａ-ｚ'";
+				return "numbering scheme using UTF Parenthesized Latin Small Letter (lower case) characters '⒜-⒵'";
+			}
+
+			@Override
+			public int getMaxNumber() {
+				return 26;
+			}
+
+			@Override
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<27, "numbering supported 0<number<27 - number was: " + number);
+				return new String(Character.toChars(number+9371));
 			}
 		};
 	}
@@ -233,17 +233,11 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering numberCircledDigit(){
+	static TA_Numbering numberCircledDigit(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<21, "numbering supported 0<number<21 - number was: " + number);
-				return new String(Character.toChars(number+9311));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "numbering scheme using UTF Circled Digit/Number characters '①-⑳'";
 			}
 
 			@Override
@@ -252,46 +246,14 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Circled Digit/Number characters '①-⑳'";
-			}
-		};
-	}
-
-	/**
-	 * Numbering scheme using UTF Double Circled Digit/Number characters `⓵-⓾`.
-	 * 
-	 * ----
-	 * ⓵ item 1
-	 * ⓶ item 2
-	 * ⓷ item 3
-	 * ...
-	 * ⓾ item 10
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Numbering numberDoubleCircledDigit(){
-		return new TA_Numbering() {
-			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<11, "numbering supported 0<number<11 - number was: " + number);
-				return new String(Character.toChars(number+9460));
-			}
-
-			@Override
 			public int getMinNumber() {
 				return 1;
 			}
 
 			@Override
-			public int getMaxNumber() {
-				return 10;
-			}
-
-			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Double Circled Digit/Number characters '⓵-⓾'";
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<21, "numbering supported 0<number<21 - number was: " + number);
+				return new String(Character.toChars(number+9311));
 			}
 		};
 	}
@@ -309,17 +271,11 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering numberDingbatNegativeCircledDigit(){
+	static TA_Numbering numberDingbatNegativeCircledDigit(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<11, "numbering supported 0<number<11 - number was: " + number);
-				return new String(Character.toChars(number+10101));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "numbering scheme using UTF Dingbat Negative Circled Digit characters '❶-❿'";
 			}
 
 			@Override
@@ -328,8 +284,14 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Dingbat Negative Circled Digit characters '❶-❿'";
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<11, "numbering supported 0<number<11 - number was: " + number);
+				return new String(Character.toChars(number+10101));
 			}
 		};
 	}
@@ -347,17 +309,11 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering numberDingbatNegativeSanserifCircledDigit(){
+	static TA_Numbering numberDingbatNegativeSanserifCircledDigit(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<11, "numbering supported 0<number<11 - number was: " + number);
-				return new String(Character.toChars(number+10121));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "numbering scheme using UTF Dingbat Negative Sanserif Circled Digit characters '➊-➓'";
 			}
 
 			@Override
@@ -366,8 +322,14 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Dingbat Negative Sanserif Circled Digit characters '➊-➓'";
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<11, "numbering supported 0<number<11 - number was: " + number);
+				return new String(Character.toChars(number+10121));
 			}
 		};
 	}
@@ -385,17 +347,11 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering numberDingbatSanserifCircledDigit(){
+	static TA_Numbering numberDingbatSanserifCircledDigit(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<11, "numbering supported 0<number<11 - number was: " + number);
-				return new String(Character.toChars(number+10111));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "numbering scheme using UTF Dingbat Sanserif Circled Digit characters '➀-➉'";
 			}
 
 			@Override
@@ -404,41 +360,41 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Dingbat Sanserif Circled Digit characters '➀-➉'";
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<11, "numbering supported 0<number<11 - number was: " + number);
+				return new String(Character.toChars(number+10111));
 			}
 		};
 	}
 
 	/**
-	 * Numbering scheme using UTF Superscript characters `¹-⁹`.
+	 * Numbering scheme using UTF Double Circled Digit/Number characters `⓵-⓾`.
 	 * 
 	 * ----
-	 * ¹ item 1
-	 * ² item 2
-	 * ³ item 3
+	 * ⓵ item 1
+	 * ⓶ item 2
+	 * ⓷ item 3
 	 * ...
-	 * ⁹ item 9
+	 * ⓾ item 10
 	 * ----
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering numberSuperscript(){
+	static TA_Numbering numberDoubleCircledDigit(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<10, "numbering supported 0<number<10 - number was: " + number);
-				if(number==1){
-					return new String(Character.toChars(number+184));
-				}
-				else if(number>3){
-					//4-10
-					return new String(Character.toChars(number+8304));
-				}
-				else{
-					//2, 3
-					return new String(Character.toChars(number+176));
-				}
+			public String getDescription(){
+				return "numbering scheme using UTF Double Circled Digit/Number characters '⓵-⓾'";
+			}
+
+			@Override
+			public int getMaxNumber() {
+				return 10;
 			}
 
 			@Override
@@ -447,51 +403,9 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public int getMaxNumber() {
-				return 9;
-			}
-
-			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Superscript characters '¹-⁹'";
-			}
-		};
-	}
-
-	/**
-	 * Numbering scheme case UTF Subscript characters `₁-₉`.
-	 * 
-	 * ----
-	 * ₁ item 1
-	 * ₂ item 2
-	 * ₃ item 3
-	 * ...
-	 * ₉ item 9
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Numbering numberSubscript(){
-		return new TA_Numbering() {
-			@Override
 			public String getNumber(int number) {
-				Validate.validState(0<number && number<10, "numbering supported 0<number<10 - number was: " + number);
-				return new String(Character.toChars(number+8320));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
-			}
-
-			@Override
-			public int getMaxNumber() {
-				return 9;
-			}
-
-			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Subscript characters '₁-₉'";
+				Validate.validState(0<number && number<11, "numbering supported 0<number<11 - number was: " + number);
+				return new String(Character.toChars(number+9460));
 			}
 		};
 	}
@@ -509,50 +423,16 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering numberFullStop(){
+	static TA_Numbering numberFullStop(){
 		return new TA_Numbering() {
-			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<21, "numbering supported 0<number<21 - number was: " + number);
-				return new String(Character.toChars(number+9351));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
-			}
-
-			@Override
-			public int getMaxNumber() {
-				return 20;
-			}
-
 			@Override
 			public String getDescription(){
 				return "numbering scheme using UTF Full Stop characters '⒈-⒛'";
 			}
-		};
-	}
 
-	/**
-	 * Numbering scheme using UTF Parenthesized Digit/Number characters `⑴-⒇`.
-	 * 
-	 * ----
-	 * ⑴ item 1
-	 * ⑵ item 2
-	 * ⑶ item 3
-	 * ...
-	 * ⒇ item 20
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Numbering numberParenthesized(){
-		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<21, "numbering supported 0<number<21 - number was: " + number);
-				return new String(Character.toChars(number+9331));
+			public int getMaxNumber() {
+				return 20;
 			}
 
 			@Override
@@ -561,13 +441,9 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public int getMaxNumber() {
-				return 20;
-			}
-
-			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Parenthesized Digit/Number characters '⑴-⒇'";
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<21, "numbering supported 0<number<21 - number was: " + number);
+				return new String(Character.toChars(number+9351));
 			}
 		};
 	}
@@ -585,17 +461,11 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering numberFullwidth(){
+	static TA_Numbering numberFullwidth(){
 		return new TA_Numbering() {
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<10, "numbering supported 0<number<10 - number was: " + number);
-				return new String(Character.toChars(number+65296));
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "numbering scheme using UTF Fullwidth characters '１-９'";
 			}
 
 			@Override
@@ -604,40 +474,41 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public String getDescription(){
-				return "numbering scheme using UTF Fullwidth characters '１-９'";
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<10, "numbering supported 0<number<10 - number was: " + number);
+				return new String(Character.toChars(number+65296));
 			}
 		};
 	}
 
 	/**
-	 * Numbering scheme for Roman number literals using upper case UTF-8 Number Forms upper case characters.
+	 * Numbering scheme using UTF Parenthesized Digit/Number characters `⑴-⒇`.
 	 * 
 	 * ----
-	 * Ⅰ item 1
-	 * Ⅱ item 2
-	 * Ⅲ item 3
+	 * ⑴ item 1
+	 * ⑵ item 2
+	 * ⑶ item 3
 	 * ...
-	 * ⅯⅯⅯⅯ item 4000
+	 * ⒇ item 20
 	 * ----
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering RomanNumberForms(){
+	static TA_Numbering numberParenthesized(){
 		return new TA_Numbering() {
-			/** Standard Roman literals. */
-			String[] from = new String[]{"M", "D", "C", "L", "XII", "XI", "X", "VIII", "VII", "VI", "V", "III", "II", "I"};
-
-			/** UTF character replacements. */
-			String[] to = new String[]{"Ⅿ", "Ⅾ", "Ⅽ", "Ⅼ", "Ⅻ", "Ⅺ", "Ⅹ", "Ⅷ", "Ⅶ", "Ⅵ", "Ⅴ", "Ⅲ", "Ⅱ", "Ⅰ"};
+			@Override
+			public String getDescription(){
+				return "numbering scheme using UTF Parenthesized Digit/Number characters '⑴-⒇'";
+			}
 
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<4001, "numbering supported 0<number<4001 - number was: " + number);
-				String literal = Integer_To_RomanLiteral.convert(number);
-				literal = literal.replace("IV", "Ⅳ");
-				literal = literal.replace("IX", "Ⅸ");
-				return StringUtils.replaceEach(literal, from, to);
+			public int getMaxNumber() {
+				return 20;
 			}
 
 			@Override
@@ -646,45 +517,36 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public int getMaxNumber() {
-				return 4000;
-			}
-
-			@Override
-			public String getDescription(){
-				return "Numbering scheme for Roman number literals using upper case UTF-8 Number Forms upper case characters.";
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<21, "numbering supported 0<number<21 - number was: " + number);
+				return new String(Character.toChars(number+9331));
 			}
 		};
 	}
 
 	/**
-	 * Numbering scheme for Roman number literals using lower case UTF-8 Number Forms lower case characters.
+	 * Numbering scheme case UTF Subscript characters `₁-₉`.
 	 * 
 	 * ----
-	 * ⅰ item 1
-	 * ⅱ item 2
-	 * ⅲ item 3
+	 * ₁ item 1
+	 * ₂ item 2
+	 * ₃ item 3
 	 * ...
-	 * ⅿⅿⅿⅿ item 4000
+	 * ₉ item 9
 	 * ----
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering romanNumberForms(){
+	static TA_Numbering numberSubscript(){
 		return new TA_Numbering() {
-			/** Standard Roman literals. */
-			String[] from = new String[]{"M", "D", "C", "L", "XIII", "XII", "XI", "X", "VIII", "VII", "VI", "V", "III", "II", "I"};
-
-			/** UTF character replacements. */
-			String[] to = new String[]{"ⅿ", "ⅾ", "ⅽ", "ⅼ", "ⅹⅲ", "ⅻ", "ⅺ", "ⅹ", "ⅷ", "ⅶ", "ⅵ", "ⅴ", "ⅲ", "ⅱ", "ⅰ"};
+			@Override
+			public String getDescription(){
+				return "numbering scheme using UTF Subscript characters '₁-₉'";
+			}
 
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<4001, "numbering supported 0<number<4001 - number was: " + number);
-				String literal = Integer_To_RomanLiteral.convert(number);
-				literal = literal.replace("IV", "ⅳ");
-				literal = literal.replace("IX", "ⅸ");
-				return StringUtils.replaceEach(literal, from, to);
+			public int getMaxNumber() {
+				return 9;
 			}
 
 			@Override
@@ -693,13 +555,57 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public int getMaxNumber() {
-				return 4000;
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<10, "numbering supported 0<number<10 - number was: " + number);
+				return new String(Character.toChars(number+8320));
+			}
+		};
+	}
+
+	/**
+	 * Numbering scheme using UTF Superscript characters `¹-⁹`.
+	 * 
+	 * ----
+	 * ¹ item 1
+	 * ² item 2
+	 * ³ item 3
+	 * ...
+	 * ⁹ item 9
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Numbering numberSuperscript(){
+		return new TA_Numbering() {
+			@Override
+			public String getDescription(){
+				return "numbering scheme using UTF Superscript characters '¹-⁹'";
 			}
 
 			@Override
-			public String getDescription(){
-				return "Numbering scheme for Roman number literals using lower case UTF-8 Number Forms lower case characters.";
+			public int getMaxNumber() {
+				return 9;
+			}
+
+			@Override
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<10, "numbering supported 0<number<10 - number was: " + number);
+				if(number==1){
+					return new String(Character.toChars(number+184));
+				}
+				else if(number>3){
+					//4-10
+					return new String(Character.toChars(number+8304));
+				}
+				else{
+					//2, 3
+					return new String(Character.toChars(number+176));
+				}
 			}
 		};
 	}
@@ -717,7 +623,7 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering RomanCircledLatinCapital(){
+	static TA_Numbering RomanCircledLatinCapital(){
 		return new TA_Numbering() {
 			/** Standard Roman literals. */
 			String[] from = new String[]{"M", "D", "C", "L", "X", "V", "I"};
@@ -726,14 +632,8 @@ public interface U8_NumberingSchemes {
 			String[] to = new String[]{"Ⓜ", "Ⓓ", "Ⓒ", "Ⓛ", "Ⓧ", "Ⓥ", "Ⓘ"};
 
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<4001, "numbering supported 0<number<4001 - number was: " + number);
-				return StringUtils.replaceEach(Integer_To_RomanLiteral.convert(number), from, to);
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "Numbering scheme for Roman number literals using upper case UTF-8 Circled Latin Capital (upper case) characters.";
 			}
 
 			@Override
@@ -742,8 +642,14 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
-			public String getDescription(){
-				return "Numbering scheme for Roman number literals using upper case UTF-8 Circled Latin Capital (upper case) characters.";
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<4001, "numbering supported 0<number<4001 - number was: " + number);
+				return StringUtils.replaceEach(Integer_To_RomanLiteral.convert(number), from, to);
 			}
 		};
 	}
@@ -761,7 +667,7 @@ public interface U8_NumberingSchemes {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Numbering romanCircledLatinSmall(){
+	static TA_Numbering romanCircledLatinSmall(){
 		return new TA_Numbering() {
 			/** Standard Roman literals. */
 			String[] from = new String[]{"M", "D", "C", "L", "X", "V", "I"};
@@ -770,14 +676,8 @@ public interface U8_NumberingSchemes {
 			String[] to = new String[]{"ⓜ", "ⓓ", "ⓒ", "ⓛ", "ⓧ", "ⓥ", "ⓘ"};
 
 			@Override
-			public String getNumber(int number) {
-				Validate.validState(0<number && number<4001, "numbering supported 0<number<4001 - number was: " + number);
-				return StringUtils.replaceEach(Integer_To_RomanLiteral.convert(number), from, to);
-			}
-
-			@Override
-			public int getMinNumber() {
-				return 1;
+			public String getDescription(){
+				return "Numbering scheme for Roman number literals using lower case UTF-8 Circled Latin Small (lower case) characters.";
 			}
 
 			@Override
@@ -786,8 +686,108 @@ public interface U8_NumberingSchemes {
 			}
 
 			@Override
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<4001, "numbering supported 0<number<4001 - number was: " + number);
+				return StringUtils.replaceEach(Integer_To_RomanLiteral.convert(number), from, to);
+			}
+		};
+	}
+
+	/**
+	 * Numbering scheme for Roman number literals using lower case UTF-8 Number Forms lower case characters.
+	 * 
+	 * ----
+	 * ⅰ item 1
+	 * ⅱ item 2
+	 * ⅲ item 3
+	 * ...
+	 * ⅿⅿⅿⅿ item 4000
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Numbering romanNumberForms(){
+		return new TA_Numbering() {
+			/** Standard Roman literals. */
+			String[] from = new String[]{"M", "D", "C", "L", "XIII", "XII", "XI", "X", "VIII", "VII", "VI", "V", "III", "II", "I"};
+
+			/** UTF character replacements. */
+			String[] to = new String[]{"ⅿ", "ⅾ", "ⅽ", "ⅼ", "ⅹⅲ", "ⅻ", "ⅺ", "ⅹ", "ⅷ", "ⅶ", "ⅵ", "ⅴ", "ⅲ", "ⅱ", "ⅰ"};
+
+			@Override
 			public String getDescription(){
-				return "Numbering scheme for Roman number literals using lower case UTF-8 Circled Latin Small (lower case) characters.";
+				return "Numbering scheme for Roman number literals using lower case UTF-8 Number Forms lower case characters.";
+			}
+
+			@Override
+			public int getMaxNumber() {
+				return 4000;
+			}
+
+			@Override
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<4001, "numbering supported 0<number<4001 - number was: " + number);
+				String literal = Integer_To_RomanLiteral.convert(number);
+				literal = literal.replace("IV", "ⅳ");
+				literal = literal.replace("IX", "ⅸ");
+				return StringUtils.replaceEach(literal, from, to);
+			}
+		};
+	}
+
+	/**
+	 * Numbering scheme for Roman number literals using upper case UTF-8 Number Forms upper case characters.
+	 * 
+	 * ----
+	 * Ⅰ item 1
+	 * Ⅱ item 2
+	 * Ⅲ item 3
+	 * ...
+	 * ⅯⅯⅯⅯ item 4000
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Numbering RomanNumberForms(){
+		return new TA_Numbering() {
+			/** Standard Roman literals. */
+			String[] from = new String[]{"M", "D", "C", "L", "XII", "XI", "X", "VIII", "VII", "VI", "V", "III", "II", "I"};
+
+			/** UTF character replacements. */
+			String[] to = new String[]{"Ⅿ", "Ⅾ", "Ⅽ", "Ⅼ", "Ⅻ", "Ⅺ", "Ⅹ", "Ⅷ", "Ⅶ", "Ⅵ", "Ⅴ", "Ⅲ", "Ⅱ", "Ⅰ"};
+
+			@Override
+			public String getDescription(){
+				return "Numbering scheme for Roman number literals using upper case UTF-8 Number Forms upper case characters.";
+			}
+
+			@Override
+			public int getMaxNumber() {
+				return 4000;
+			}
+
+			@Override
+			public int getMinNumber() {
+				return 1;
+			}
+
+			@Override
+			public String getNumber(int number) {
+				Validate.validState(0<number && number<4001, "numbering supported 0<number<4001 - number was: " + number);
+				String literal = Integer_To_RomanLiteral.convert(number);
+				literal = literal.replace("IV", "Ⅳ");
+				literal = literal.replace("IX", "Ⅸ");
+				return StringUtils.replaceEach(literal, from, to);
 			}
 		};
 	}

@@ -28,16 +28,47 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Corner_Strings extends TA_Corner {
 
 	/**
-	 * Returns the string for the top left corner.
-	 * @return left corner string
+	 * Creates a new corner pair.
+	 * @param topleft string of the top left corner
+	 * @param topright string of the top right border
+	 * @param bottomleft string of the bottom left corner
+	 * @param bottomright string of the bottom right border
+	 * @param description a description for the line, cannot be blank
+	 * @return new corner pair
 	 */
-	String getTopLeftString();
+	static TA_Corner_Strings create(final String topleft, final String topright, final String bottomleft, final String bottomright, final String description){
+		Validate.notNull(topleft);
+		Validate.notNull(topright);
+		Validate.notNull(bottomleft);
+		Validate.notNull(bottomright);
+		Validate.notBlank(description);
 
-	/**
-	 * Returns the string for the top right corner.
-	 * @return right corner string
-	 */
-	String getTopRightString();
+		return new TA_Corner_Strings() {
+			@Override
+			public String getBottomLeftString() {
+				return bottomleft;
+			}
+
+			public String getBottomRightString() {
+				return bottomright;
+			}
+
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getTopLeftString() {
+				return topleft;
+			}
+
+			@Override
+			public String getTopRightString() {
+				return topright;
+			}
+		};
+	}
 
 	/**
 	 * Returns the string for the bottom left corner.
@@ -68,6 +99,18 @@ public interface TA_Corner_Strings extends TA_Corner {
 		}
 	}
 
+	/**
+	 * Returns the string for the top left corner.
+	 * @return left corner string
+	 */
+	String getTopLeftString();
+
+	/**
+	 * Returns the string for the top right corner.
+	 * @return right corner string
+	 */
+	String getTopRightString();
+
 	@Override
 	default StrBuilder toDoc() {
 		StrBuilder ret = new StrBuilder(10)
@@ -78,48 +121,5 @@ public interface TA_Corner_Strings extends TA_Corner {
 			
 		;
 		return ret;
-	}
-
-	/**
-	 * Creates a new corner pair.
-	 * @param topleft string of the top left corner
-	 * @param topright string of the top right border
-	 * @param bottomleft string of the bottom left corner
-	 * @param bottomright string of the bottom right border
-	 * @param description a description for the line, cannot be blank
-	 * @return new corner pair
-	 */
-	static TA_Corner_Strings create(final String topleft, final String topright, final String bottomleft, final String bottomright, final String description){
-		Validate.notNull(topleft);
-		Validate.notNull(topright);
-		Validate.notNull(bottomleft);
-		Validate.notNull(bottomright);
-		Validate.notBlank(description);
-
-		return new TA_Corner_Strings() {
-			@Override
-			public String getTopRightString() {
-				return topright;
-			}
-
-			@Override
-			public String getTopLeftString() {
-				return topleft;
-			}
-
-			public String getBottomRightString() {
-				return bottomright;
-			}
-
-			@Override
-			public String getBottomLeftString() {
-				return bottomleft;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 }

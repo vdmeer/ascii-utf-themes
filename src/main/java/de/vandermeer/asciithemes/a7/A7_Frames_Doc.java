@@ -27,84 +27,14 @@ import de.vandermeer.asciithemes.TA_Line_String;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_Frames_Doc {
-
-	/**
-	 * A frame for multi-line Java/C++ style comments using `/` and `*`.
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame multiLine(){
-		return TA_Frame.create(
-				TA_Line_String.create("", "empty line"),
-				TA_Corner_Strings.create("/*", "", " */", "", "corner tuple for a multi-line comment"),
-				TA_Border_Strings.create(" * ", "", "border pair for a multi-line comment"),
-				"a frame for multi-line Java/C++ style comments using `/` and `*`"
-		);
-	}
-
-	/**
-	 * A frame for Javadoc style multi-line comments using `/` and `*`.
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame multiLineJavaDoc(){
-		return TA_Frame.create(
-				TA_Line_String.create("", "empty line"),
-				TA_Corner_Strings.create("/**", "", " */", "", "corner tuple for a multi-line comment"),
-				TA_Border_Strings.create(" * ", "", "border pair for a multi-line comment"),
-				"a frame for Javadoc style multi-line comments using `/` and `*`"
-		);
-	}
-
-	/**
-	 * A frame for single-line Java/C++ style comments using `//`.
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame singleLine(){
-		return TA_Frame.create(
-				TA_Line_String.create("", "empty line"),
-				TA_Corner_Strings.create("//", "", "//", "", "corner tuple for a multi-line comment"),
-				TA_Border_Strings.create("// ", "", "border pair for a multi-line comment"),
-				"a frame for single-line Java/C++ style comments using `//`"
-		);
-	}
-
-	/**
-	 * A frame for HTML style comments.
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame html(){
-		return TA_Frame.create(
-				TA_Line_String.create("", "empty line"),
-				TA_Corner_Strings.create("", "", "", "", "corner tuple for an HTML comment"),
-				TA_Border_Strings.create("<!-- ", " -->", "border pair for an HTML comment"),
-				"a frame for HTML style comments"
-		);
-	}
-
-	/**
-	 * A frame for HTML style comments with top/bottom line.
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame htmlTB(){
-		return TA_Frame.create(
-				TA_Line_String.create(" ", "blank line"),
-				TA_Corner_Strings.create("<!-- ", " -->", "<!-- ", " -->", "corner tuple for an HTML comment"),
-				TA_Border_Strings.create("<!-- ", " -->", "border pair for an HTML comment"),
-				"a frame for HTML style comments with top/bottom line"
-		);
-	}
+public interface A7_Frames_Doc {
 
 	/**
 	 * A frame for bash style comments.
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame bash(){
+	static TA_Frame bash(){
 		return TA_Frame.create(
 				TA_Line_String.create("", "empty line"),
 				TA_Corner_Strings.create("", "", "", "", "corner tuple for a bash comment"),
@@ -114,25 +44,11 @@ public abstract class A7_Frames_Doc {
 	}
 
 	/**
-	 * A frame for bash style comments with top/bottom lines.
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame bashTB(){
-		return TA_Frame.create(
-				TA_Line_String.create("", "empty line"),
-				TA_Corner_Strings.create("# ", "", "# ", "", "corner tuple for a bash comment"),
-				TA_Border_Strings.create("# ", "", "border pair for a bash comment"),
-				"a frame for bash style comments with top/bottom lines"
-		);
-	}
-
-	/**
 	 * A frame for bash style comments with a double hashmark start.
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame bashStart2Hash(){
+	static TA_Frame bashStart2Hash(){
 		return TA_Frame.create(
 				TA_Line_String.create("", "empty line"),
 				TA_Corner_Strings.create("", "", "", "", "corner tuple for a bash comment"),
@@ -146,7 +62,7 @@ public abstract class A7_Frames_Doc {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame bashStart2HashTB(){
+	static TA_Frame bashStart2HashTB(){
 		return TA_Frame.create(
 				TA_Line_String.create("", "empty line"),
 				TA_Corner_Strings.create("##", "", "##", "", "corner tuple for a bash comment"),
@@ -156,11 +72,53 @@ public abstract class A7_Frames_Doc {
 	}
 
 	/**
+	 * A frame for bash style comments with top/bottom lines.
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame bashTB(){
+		return TA_Frame.create(
+				TA_Line_String.create("", "empty line"),
+				TA_Corner_Strings.create("# ", "", "# ", "", "corner tuple for a bash comment"),
+				TA_Border_Strings.create("# ", "", "border pair for a bash comment"),
+				"a frame for bash style comments with top/bottom lines"
+		);
+	}
+
+	/**
+	 * A frame for HTML style comments.
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame html(){
+		return TA_Frame.create(
+				TA_Line_String.create("", "empty line"),
+				TA_Corner_Strings.create("", "", "", "", "corner tuple for an HTML comment"),
+				TA_Border_Strings.create("<!-- ", " -->", "border pair for an HTML comment"),
+				"a frame for HTML style comments"
+		);
+	}
+
+	/**
+	 * A frame for HTML style comments with top/bottom line.
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame htmlTB(){
+		return TA_Frame.create(
+				TA_Line_String.create(" ", "blank line"),
+				TA_Corner_Strings.create("<!-- ", " -->", "<!-- ", " -->", "corner tuple for an HTML comment"),
+				TA_Border_Strings.create("<!-- ", " -->", "border pair for an HTML comment"),
+				"a frame for HTML style comments with top/bottom line"
+		);
+	}
+
+	/**
 	 * A frame for LaTeX style comments.
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame latex(){
+	static TA_Frame latex(){
 		return TA_Frame.create(
 				TA_Line_String.create("", "empty line"),
 				TA_Corner_Strings.create("", "", "", "", "corner tuple for a LaTeX comment"),
@@ -170,25 +128,11 @@ public abstract class A7_Frames_Doc {
 	}
 
 	/**
-	 * A frame for LaTeX style comments with top/bottom lines.
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame latexTB(){
-		return TA_Frame.create(
-				TA_Line_String.create("", "empty line"),
-				TA_Corner_Strings.create("% ", "", "% ", "", "corner tuple for a LaTeX comment"),
-				TA_Border_Strings.create("% ", "", "border pair for a LaTeX comment"),
-				"a frame for LaTeX style comments with top/bottom lines"
-		);
-	}
-
-	/**
 	 * A frame for LaTeX style comments with a double percent start.
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame latexStart2Percent(){
+	static TA_Frame latexStart2Percent(){
 		return TA_Frame.create(
 				TA_Line_String.create("", "empty line"),
 				TA_Corner_Strings.create("", "", "", "", "corner tuple for a LaTeX comment"),
@@ -202,12 +146,68 @@ public abstract class A7_Frames_Doc {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame latexStart2PercentTB(){
+	static TA_Frame latexStart2PercentTB(){
 		return TA_Frame.create(
 				TA_Line_String.create("", "empty line"),
 				TA_Corner_Strings.create("%%", "", "%%", "", "corner tuple for a LaTeX comment"),
 				TA_Border_Strings.create("%% ", "", "border pair for a LaTeX comment"),
 				"a frame for LaTeX style comments with a double percent start and top/bottom line"
+		);
+	}
+
+	/**
+	 * A frame for LaTeX style comments with top/bottom lines.
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame latexTB(){
+		return TA_Frame.create(
+				TA_Line_String.create("", "empty line"),
+				TA_Corner_Strings.create("% ", "", "% ", "", "corner tuple for a LaTeX comment"),
+				TA_Border_Strings.create("% ", "", "border pair for a LaTeX comment"),
+				"a frame for LaTeX style comments with top/bottom lines"
+		);
+	}
+
+	/**
+	 * A frame for multi-line Java/C++ style comments using `/` and `*`.
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame multiLine(){
+		return TA_Frame.create(
+				TA_Line_String.create("", "empty line"),
+				TA_Corner_Strings.create("/*", "", " */", "", "corner tuple for a multi-line comment"),
+				TA_Border_Strings.create(" * ", "", "border pair for a multi-line comment"),
+				"a frame for multi-line Java/C++ style comments using `/` and `*`"
+		);
+	}
+
+	/**
+	 * A frame for Javadoc style multi-line comments using `/` and `*`.
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame multiLineJavaDoc(){
+		return TA_Frame.create(
+				TA_Line_String.create("", "empty line"),
+				TA_Corner_Strings.create("/**", "", " */", "", "corner tuple for a multi-line comment"),
+				TA_Border_Strings.create(" * ", "", "border pair for a multi-line comment"),
+				"a frame for Javadoc style multi-line comments using `/` and `*`"
+		);
+	}
+
+	/**
+	 * A frame for single-line Java/C++ style comments using `//`.
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame singleLine(){
+		return TA_Frame.create(
+				TA_Line_String.create("", "empty line"),
+				TA_Corner_Strings.create("//", "", "//", "", "corner tuple for a multi-line comment"),
+				TA_Border_Strings.create("// ", "", "border pair for a multi-line comment"),
+				"a frame for single-line Java/C++ style comments using `//`"
 		);
 	}
 }

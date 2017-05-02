@@ -26,7 +26,7 @@ import de.vandermeer.asciithemes.TA_Frame;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_Frames_SameChar {
+public interface A7_Frames_SameChar {
 
 	/**
 	 * A frame using the ampersand character `&amp;`.
@@ -40,7 +40,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame ampersand(){
+	static TA_Frame ampersand(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.ampersand(),
 				TA_Corner_Chars.create('&', '&', '&', '&', "corner tuple using ampersand character '&'"),
@@ -61,7 +61,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame apostrophe(){
+	static TA_Frame apostrophe(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.apostrophe(),
 				TA_Corner_Chars.create('\'', '\'', '\'', '\'', "corner tuple using apostrophe character '''"),
@@ -82,7 +82,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame at(){
+	static TA_Frame at(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.at(),
 				TA_Corner_Chars.create('@', '@', '@', '@', "corner tuple using at character '@'"),
@@ -103,7 +103,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame backslash(){
+	static TA_Frame backslash(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.backslash(),
 				TA_Corner_Chars.create('\\', '\\', '\\', '\\', "corner tuple using backslash character '\\'"),
@@ -124,7 +124,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame bar(){
+	static TA_Frame bar(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.bar(),
 				TA_Corner_Chars.create('|', '|', '|', '|', "corner tuple using bar character '|'"),
@@ -146,7 +146,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame bl(){
+	static TA_Frame bl(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.bl(),
 				TA_Corner_Chars.create('(', '(', '(', '(', "corner tuple using (round) bracket left character '('"),
@@ -167,7 +167,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame blank(){
+	static TA_Frame blank(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.blank(),
 				TA_Corner_Chars.create(' ', ' ', ' ', ' ', "corner tuple using blank character ' '"),
@@ -188,7 +188,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame br(){
+	static TA_Frame br(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.br(),
 				TA_Corner_Chars.create(')', ')', ')', ')', "corner tuple using (round) bracket right character ')'"),
@@ -209,7 +209,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame cbl(){
+	static TA_Frame cbl(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.cbl(),
 				TA_Corner_Chars.create('{', '{', '{', '{', "corner tuple using curly bracket left character '{'"),
@@ -230,7 +230,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame cbr(){
+	static TA_Frame cbr(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.cbr(),
 				TA_Corner_Chars.create('}', '}', '}', '}', "corner tuple using curly bracket right character '}'"),
@@ -251,7 +251,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame circumflex(){
+	static TA_Frame circumflex(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.circumflex(),
 				TA_Corner_Chars.create('^', '^', '^', '^', "corner tuple using circumflex character '^'"),
@@ -272,7 +272,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame colon(){
+	static TA_Frame colon(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.colon(),
 				TA_Corner_Chars.create(':', ':', ':', ':', "corner tuple using colon character ':'"),
@@ -293,7 +293,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame comma(){
+	static TA_Frame comma(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.comma(),
 				TA_Corner_Chars.create(',', ',', ',', ',', "corner tuple using comma character ','"),
@@ -314,7 +314,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame dollar(){
+	static TA_Frame dollar(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.dollar(),
 				TA_Corner_Chars.create('$', '$', '$', '$', "corner tuple using dollar character '$'"),
@@ -335,7 +335,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame dot(){
+	static TA_Frame dot(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.dot(),
 				TA_Corner_Chars.create('.', '.', '.', '.', "corner tuple using dot character '.'"),
@@ -356,7 +356,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame equals(){
+	static TA_Frame equals(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.equals(),
 				TA_Corner_Chars.create('=', '=', '=', '=', "corner tuple using equals character '='"),
@@ -377,7 +377,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame exclamationMark(){
+	static TA_Frame exclamationMark(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.exclamationMark(),
 				TA_Corner_Chars.create('!', '!', '!', '!', "corner tuple using exclamation mark character '!'"),
@@ -398,7 +398,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame graveAccent(){
+	static TA_Frame graveAccent(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.graveAccent(),
 				TA_Corner_Chars.create('`', '`', '`', '`', "corner tuple using grave accent character '`'"),
@@ -419,7 +419,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame greaterThan(){
+	static TA_Frame greaterThan(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.greaterThan(),
 				TA_Corner_Chars.create('>', '>', '>', '>', "corner tuple using greater than character '>'"),
@@ -440,7 +440,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame hashmark(){
+	static TA_Frame hashmark(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.hashmark(),
 				TA_Corner_Chars.create('#', '#', '#', '#', "corner tuple using hashmark character '#'"),
@@ -461,7 +461,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame lessThan(){
+	static TA_Frame lessThan(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.lessThan(),
 				TA_Corner_Chars.create('<', '<', '<', '<', "corner tuple using less than character '<'"),
@@ -482,7 +482,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame minus(){
+	static TA_Frame minus(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.minus(),
 				TA_Corner_Chars.create('-', '-', '-', '-', "corner tuple using minus character '-'"),
@@ -503,7 +503,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame percent(){
+	static TA_Frame percent(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.percent(),
 				TA_Corner_Chars.create('%', '%', '%', '%', "corner tuple using percent character '%'"),
@@ -524,7 +524,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame plus(){
+	static TA_Frame plus(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.plus(),
 				TA_Corner_Chars.create('+', '+', '+', '+', "corner tuple using plus character '+'"),
@@ -545,7 +545,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame questionMark(){
+	static TA_Frame questionMark(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.questionMark(),
 				TA_Corner_Chars.create('?', '?', '?', '?', "corner tuple using question mark character '?'"),
@@ -566,7 +566,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame quotationMark(){
+	static TA_Frame quotationMark(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.quotationMark(),
 				TA_Corner_Chars.create('"', '"', '"', '"', "corner tuple using quotation mark character '\"'"),
@@ -587,7 +587,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame sbl(){
+	static TA_Frame sbl(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.sbl(),
 				TA_Corner_Chars.create('[', '[', '[', '[', "corner tuple using square bracket left character '['"),
@@ -608,7 +608,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame sbr(){
+	static TA_Frame sbr(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.sbr(),
 				TA_Corner_Chars.create(']', ']', ']', ']', "corner tuple using square bracket right character ']'"),
@@ -629,7 +629,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame semicolon(){
+	static TA_Frame semicolon(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.semicolon(),
 				TA_Corner_Chars.create(';', ';', ';', ';', "corner tuple using semicolon character ';'"),
@@ -650,7 +650,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame slash(){
+	static TA_Frame slash(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.slash(),
 				TA_Corner_Chars.create('/', '/', '/', '/', "corner tuple using slash character '/'"),
@@ -671,7 +671,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame star(){
+	static TA_Frame star(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.star(),
 				TA_Corner_Chars.create('*', '*', '*', '*', "corner tuple using star character '*'"),
@@ -692,7 +692,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame tilde(){
+	static TA_Frame tilde(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.tilde(),
 				TA_Corner_Chars.create('~', '~', '~', '~', "corner tuple using tilde character '~'"),
@@ -713,7 +713,7 @@ public abstract class A7_Frames_SameChar {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame underscore(){
+	static TA_Frame underscore(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.underscore(),
 				TA_Corner_Chars.create('_', '_', '_', '_', "corner tuple using underscore character '_'"),

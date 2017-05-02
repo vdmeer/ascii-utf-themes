@@ -28,6 +28,42 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Line_SplitChar extends TA_Line {
 
 	/**
+	 * Creates a a new line.
+	 * @param left left line character
+	 * @param right right line character
+	 * @param description a description for the line, cannot be blank
+	 * @return new line
+	 */
+	static TA_Line_SplitChar create(final Character left, final Character right, final String description){
+		Validate.notNull(left);
+		Validate.notNull(right);
+		Validate.notBlank(description);
+
+		return new TA_Line_SplitChar() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public Character getLeftLineChar() {
+				return left;
+			}
+
+			@Override
+			public Character getRightLineChar() {
+				return right;
+			}
+		};
+	}
+
+	/**
+	 * Returns the left character used for the line.
+	 * @return line left character
+	 */
+	Character getLeftLineChar();
+
+	/**
 	 * Returns a line of given length.
 	 * @param length number of characters in the line
 	 * @return line of given length, empty if length was null or negative
@@ -55,11 +91,6 @@ public interface TA_Line_SplitChar extends TA_Line {
 		return (builder==null)?ret:builder.append(ret);
 	}
 
-	/**
-	 * Returns the left character used for the line.
-	 * @return line left character
-	 */
-	Character getLeftLineChar();
 
 	/**
 	 * Returns the right character used for the line.
@@ -67,39 +98,8 @@ public interface TA_Line_SplitChar extends TA_Line {
 	 */
 	Character getRightLineChar();
 
-
 	@Override
 	default StrBuilder toDoc() {
 		return this.getLine(10);
-	}
-
-	/**
-	 * Creates a a new line.
-	 * @param left left line character
-	 * @param right right line character
-	 * @param description a description for the line, cannot be blank
-	 * @return new line
-	 */
-	static TA_Line_SplitChar create(final Character left, final Character right, final String description){
-		Validate.notNull(left);
-		Validate.notNull(right);
-		Validate.notBlank(description);
-
-		return new TA_Line_SplitChar() {
-			@Override
-			public Character getLeftLineChar() {
-				return left;
-			}
-
-			@Override
-			public Character getRightLineChar() {
-				return right;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 }

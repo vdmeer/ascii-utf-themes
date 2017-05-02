@@ -34,10 +34,67 @@ import org.apache.commons.lang3.tuple.Pair;
 public interface TA_Grid extends IsTextArt {
 
 	/**
-	 * Returns the character map.
-	 * @return character map
+	 * Creates a new empty (no character map loaded) grid object.
+	 * @param description a description for the line, cannot be blank
+	 * @return new grid object
 	 */
-	Map<Integer, Character> getCharacterMap();
+	static TA_Grid create(String description){
+		Validate.notBlank(description);
+
+		return new TA_Grid() {
+			Map<Integer, Character> map = new HashMap<>();
+			protected int supportedRuleSet = TA_GridConfig.RULESET_NORMAL;
+
+			@Override
+			public void addSupportedRuleSet(int set) {
+				supportedRuleSet = supportedRuleSet | set;
+			}
+
+			@Override
+			public Map<Integer, Character> getCharacterMap() {
+				return map;
+			}
+
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public int supportedRulesets() {
+				return supportedRuleSet;
+			}
+		};
+	}
+
+	/**
+	 * Adds a new character map for a bottom rule using the given rule set indicator for normal, light, etc.
+	 * @param ruleset required rule type (e.g. normal or light)
+	 * @param none the none character (usually blank)
+	 * @param horizontal the horizontal border character
+	 * @param bottomleft the bottom-left corner character
+	 * @param bottomright the bottom-right corner character
+	 * @param midup the mid-up connector character
+	 * @return this to allow chaining
+	 */
+	default TA_Grid addBottomRuleCharacterMap(int ruleset, char none, char horizontal, char bottomleft, char bottomright, char midup){
+		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_BOTTOM_RULE, none, horizontal, ' ', ' ', ' ', bottomleft, bottomright, ' ', ' ', ' ', ' ', midup);
+		return this;
+	}
+
+	/**
+	 * Adds a new character map for a content row using the given rule set indicator for normal, light, etc.
+	 * @param ruleset required rule type (e.g. normal or light)
+	 * @param none the none character (usually blank)
+	 * @param vertical the vertical border character
+	 * @param midleft the mid-left corner character
+	 * @param midright the mid-right corner character
+	 * @return this to allow chaining
+	 */
+	default TA_Grid addCharacterMap(int ruleset, char none, char vertical, char midleft, char midright){
+		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_CONTENT_RULE, none, ' ', vertical, ' ', ' ', ' ', ' ', midleft, midright, ' ', ' ', ' ');
+		return this;
+	}
 
 	/**
 	 * Adds a new character map for a given rule set.
@@ -80,168 +137,6 @@ public interface TA_Grid extends IsTextArt {
 	}
 
 	/**
-	 * Adds a new character map for a top rule using the given rule set indicator for normal, light, etc.
-	 * @param ruleset required rule type (e.g. normal or light)
-	 * @param none the none character (usually blank)
-	 * @param horizontal the horizontal border character
-	 * @param topleft the top-left corner character
-	 * @param topright the top-right corner character
-	 * @param middown the mid-down connector character
-	 * @return this to allow chaining
-	 */
-	default TA_Grid addTopruleCharacterMap(int ruleset, char none, char horizontal, char topleft, char topright, char middown){
-		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_TOP_RULE, none, horizontal, ' ', topleft, topright, ' ', ' ', ' ', ' ', ' ', middown, ' ');
-		return this;
-	}
-
-	/**
-	 * Adds a new character map for a bottom rule using the given rule set indicator for normal, light, etc.
-	 * @param ruleset required rule type (e.g. normal or light)
-	 * @param none the none character (usually blank)
-	 * @param horizontal the horizontal border character
-	 * @param bottomleft the bottom-left corner character
-	 * @param bottomright the bottom-right corner character
-	 * @param midup the mid-up connector character
-	 * @return this to allow chaining
-	 */
-	default TA_Grid addBottomRuleCharacterMap(int ruleset, char none, char horizontal, char bottomleft, char bottomright, char midup){
-		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_BOTTOM_RULE, none, horizontal, ' ', ' ', ' ', bottomleft, bottomright, ' ', ' ', ' ', ' ', midup);
-		return this;
-	}
-
-	/**
-	 * Adds a new character map for a mid rule using the given rule set indicator for normal, light, etc.
-	 * @param ruleset required rule type (e.g. normal or light)
-	 * @param none the none character (usually blank)
-	 * @param vertical the vertical border character
-	 * @param midleft the mid-left corner character
-	 * @param midright the mid-right corner character
-	 * @param midboth the mid-both connector character
-	 * @param middown the mid-down connector character
-	 * @param midup the mid-up connector character
-	 * @return this to allow chaining
-	 */
-	default TA_Grid addMidruleCharacterMap(int ruleset, char none, char vertical, char midleft, char midright, char midboth, char middown, char midup){
-		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_MID_RULE, none, ' ', vertical, ' ', ' ', ' ', ' ', midleft, midright, midboth, middown, midup);
-		return this;
-	}
-
-	/**
-	 * Adds a new character map for a content row using the given rule set indicator for normal, light, etc.
-	 * @param ruleset required rule type (e.g. normal or light)
-	 * @param none the none character (usually blank)
-	 * @param vertical the vertical border character
-	 * @param midleft the mid-left corner character
-	 * @param midright the mid-right corner character
-	 * @return this to allow chaining
-	 */
-	default TA_Grid addCharacterMap(int ruleset, char none, char vertical, char midleft, char midright){
-		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_CONTENT_RULE, none, ' ', vertical, ' ', ' ', ' ', ' ', midleft, midright, ' ', ' ', ' ');
-		return this;
-	}
-
-	/**
-	 * Returns a flag with supported rule sets (effectively a list of supported rule sets).
-	 * @return supported rule sets
-	 */
-	int supportedRulesets();
-
-	/**
-	 * Adds a new rule set to the list supported rule sets.
-	 * @param set new rule set
-	 */
-	void addSupportedRuleSet(int set);
-
-	/**
-	 * Tests if a particular rule set is supported by the grid.
-	 * @param set the rule set to test for
-	 * @return true if the rule set is supported, false otherwise
-	 */
-	default boolean hasRuleSet(int set){
-		return (this.supportedRulesets() & set) == set;
-	}
-
-	/**
-	 * Calculates column width across the table, using columns with content to calculate width.
-	 * @param table a table with rules and content
-	 * @return calculated columns
-	 */
-	default ArrayList<Integer> calculateColumns(ArrayList<Object> table){
-		ArrayList<Integer> ret = new ArrayList<Integer>();
-		for(Object o : table){
-			if(o instanceof Pair){
-				if(((Pair<?, ?>)o).getValue().getClass().isInstance(new String[][]{})){
-					String[][]ar = (String[][])((Pair<?, ?>)o).getValue();
-					for(int r=0; r<ar.length; r++){
-						for(int c=0;c<ar[r].length; c++){
-							//add to array if not set
-							if(c>=ret.size()){
-								if(ar[r][c]!=null){
-									ret.add(ar[r][c].length());
-								}
-								else{
-									ret.add(-1);
-								}
-							}
-
-							if(ar[r][c]!=null){
-								if(ret.get(c)==-1 || ar[r][c].length()<ret.get(c)){
-									ret.set(c, ar[r][c].length());
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		return ret;
-	}
-
-	/**
-	 * Tests if the requested row type can be used, that is there is a corresponding character map available.
-	 * The test is a validation of state, throwing an exception if no corresponding character map is provided by the grid.
-	 * @param type row type to test
-	 */
-	default void testRuleType(int type){
-		if((type & TA_GridConfig.RULESET_STRONG) == TA_GridConfig.RULESET_STRONG){
-			Validate.validState(this.hasRuleSet(TA_GridConfig.RULESET_STRONG), "strong rule required but no strong character map in grid");
-		}
-		if((type & TA_GridConfig.RULESET_HEAVY) == TA_GridConfig.RULESET_HEAVY){
-			Validate.validState(this.hasRuleSet(TA_GridConfig.RULESET_HEAVY), "heavy rule required but no heavy character map in grid");
-		}
-		if((type & TA_GridConfig.RULESET_LIGHT) == TA_GridConfig.RULESET_LIGHT){
-			Validate.validState(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT), "light rule required but no light character map in grid");
-		}
-	}
-
-	/**
-	 * Changes the input list by adding a grid.
-	 * 
-	 * The method does guarantee that all lines (member of the final collection) have the same length.
-	 * 
-	 * @param content the content to add a grid to
-	 * @param theme the grid theme
-	 * @return new list with grid
-	 */
-	default ArrayList<StrBuilder> addGrid(Collection<Object> content, TA_GridThemes theme){
-		return this.addGrid(content, theme.get());
-	}
-
-	/**
-	 * Changes the input list by adding a grid.
-	 * 
-	 * The method does guarantee that all lines (member of the final collection) have the same length.
-	 * 
-	 * @param content the content to add a grid to
-	 * @param theme the grid theme
-	 * @param options the grid theme options
-	 * @return new list with grid
-	 */
-	default ArrayList<StrBuilder> addGrid(Collection<Object> content, TA_GridThemes theme, TA_GridThemeOptions options){
-		return this.addGrid(content, theme.get() | options.get());
-	}
-
-	/**
 	 * Changes the input list by adding a grid.
 	 * 
 	 * The method does guarantee that all lines (member of the final collection) have the same length.
@@ -270,15 +165,15 @@ public interface TA_Grid extends IsTextArt {
 				this.testRuleType(ruletype);
 				if(i==0){
 					//we have a top rule, adding top as rule set
-					TA_GridHelpers.addRule(TA_GridHelpers.topRule, mode, ruletype | TA_GridConfig.CHAR_TOP_RULE, columns, frame);
+					TA_GridHelpers.addRule(TA_GridHelpers.TOP_RULE, mode, ruletype | TA_GridConfig.CHAR_TOP_RULE, columns, frame);
 				}
 				else if(i==(table.size()-1)){
 					//we have a bottom rule, adding bottom as rule set
-					TA_GridHelpers.addRule(TA_GridHelpers.bottomRule, mode, ruletype | TA_GridConfig.CHAR_BOTTOM_RULE, columns, frame);
+					TA_GridHelpers.addRule(TA_GridHelpers.BOTTOM_RULE, mode, ruletype | TA_GridConfig.CHAR_BOTTOM_RULE, columns, frame);
 				}
 				else{
 					//we have a mid rule, adding mid as rule set
-					TA_GridHelpers.addRule(TA_GridHelpers.midRule, mode, ruletype | TA_GridConfig.CHAR_MID_RULE, columns, frame);
+					TA_GridHelpers.addRule(TA_GridHelpers.MID_RULE, mode, ruletype | TA_GridConfig.CHAR_MID_RULE, columns, frame);
 				}
 			}
 			else if(table.get(i) instanceof Pair){
@@ -328,6 +223,145 @@ public interface TA_Grid extends IsTextArt {
 		return ret;
 	}
 
+	/**
+	 * Changes the input list by adding a grid.
+	 * 
+	 * The method does guarantee that all lines (member of the final collection) have the same length.
+	 * 
+	 * @param content the content to add a grid to
+	 * @param theme the grid theme
+	 * @return new list with grid
+	 */
+	default ArrayList<StrBuilder> addGrid(Collection<Object> content, TA_GridThemes theme){
+		return this.addGrid(content, theme.get());
+	}
+
+	/**
+	 * Changes the input list by adding a grid.
+	 * 
+	 * The method does guarantee that all lines (member of the final collection) have the same length.
+	 * 
+	 * @param content the content to add a grid to
+	 * @param theme the grid theme
+	 * @param options the grid theme options
+	 * @return new list with grid
+	 */
+	default ArrayList<StrBuilder> addGrid(Collection<Object> content, TA_GridThemes theme, TA_GridThemeOptions options){
+		return this.addGrid(content, theme.get() | options.get());
+	}
+
+	/**
+	 * Adds a new character map for a mid rule using the given rule set indicator for normal, light, etc.
+	 * @param ruleset required rule type (e.g. normal or light)
+	 * @param none the none character (usually blank)
+	 * @param vertical the vertical border character
+	 * @param midleft the mid-left corner character
+	 * @param midright the mid-right corner character
+	 * @param midboth the mid-both connector character
+	 * @param middown the mid-down connector character
+	 * @param midup the mid-up connector character
+	 * @return this to allow chaining
+	 */
+	default TA_Grid addMidruleCharacterMap(int ruleset, char none, char vertical, char midleft, char midright, char midboth, char middown, char midup){
+		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_MID_RULE, none, ' ', vertical, ' ', ' ', ' ', ' ', midleft, midright, midboth, middown, midup);
+		return this;
+	}
+
+	/**
+	 * Adds a new rule set to the list supported rule sets.
+	 * @param set new rule set
+	 */
+	void addSupportedRuleSet(int set);
+
+	/**
+	 * Adds a new character map for a top rule using the given rule set indicator for normal, light, etc.
+	 * @param ruleset required rule type (e.g. normal or light)
+	 * @param none the none character (usually blank)
+	 * @param horizontal the horizontal border character
+	 * @param topleft the top-left corner character
+	 * @param topright the top-right corner character
+	 * @param middown the mid-down connector character
+	 * @return this to allow chaining
+	 */
+	default TA_Grid addTopruleCharacterMap(int ruleset, char none, char horizontal, char topleft, char topright, char middown){
+		this.addCharacterMap(ruleset | TA_GridConfig.CHAR_TOP_RULE, none, horizontal, ' ', topleft, topright, ' ', ' ', ' ', ' ', ' ', middown, ' ');
+		return this;
+	}
+
+	/**
+	 * Calculates column width across the table, using columns with content to calculate width.
+	 * @param table a table with rules and content
+	 * @return calculated columns
+	 */
+	default ArrayList<Integer> calculateColumns(ArrayList<Object> table){
+		ArrayList<Integer> ret = new ArrayList<Integer>();
+		for(Object o : table){
+			if(o instanceof Pair){
+				if(((Pair<?, ?>)o).getValue().getClass().isInstance(new String[][]{})){
+					String[][]ar = (String[][])((Pair<?, ?>)o).getValue();
+					for(int r=0; r<ar.length; r++){
+						for(int c=0;c<ar[r].length; c++){
+							//add to array if not set
+							if(c>=ret.size()){
+								if(ar[r][c]!=null){
+									ret.add(ar[r][c].length());
+								}
+								else{
+									ret.add(-1);
+								}
+							}
+
+							if(ar[r][c]!=null){
+								if(ret.get(c)==-1 || ar[r][c].length()<ret.get(c)){
+									ret.set(c, ar[r][c].length());
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return ret;
+	}
+
+	/**
+	 * Returns the character map.
+	 * @return character map
+	 */
+	Map<Integer, Character> getCharacterMap();
+
+	/**
+	 * Tests if a particular rule set is supported by the grid.
+	 * @param set the rule set to test for
+	 * @return true if the rule set is supported, false otherwise
+	 */
+	default boolean hasRuleSet(int set){
+		return (this.supportedRulesets() & set) == set;
+	}
+
+	/**
+	 * Returns a flag with supported rule sets (effectively a list of supported rule sets).
+	 * @return supported rule sets
+	 */
+	int supportedRulesets();
+
+	/**
+	 * Tests if the requested row type can be used, that is there is a corresponding character map available.
+	 * The test is a validation of state, throwing an exception if no corresponding character map is provided by the grid.
+	 * @param type row type to test
+	 */
+	default void testRuleType(int type){
+		if((type & TA_GridConfig.RULESET_STRONG) == TA_GridConfig.RULESET_STRONG){
+			Validate.validState(this.hasRuleSet(TA_GridConfig.RULESET_STRONG), "strong rule required but no strong character map in grid");
+		}
+		if((type & TA_GridConfig.RULESET_HEAVY) == TA_GridConfig.RULESET_HEAVY){
+			Validate.validState(this.hasRuleSet(TA_GridConfig.RULESET_HEAVY), "heavy rule required but no heavy character map in grid");
+		}
+		if((type & TA_GridConfig.RULESET_LIGHT) == TA_GridConfig.RULESET_LIGHT){
+			Validate.validState(this.hasRuleSet(TA_GridConfig.RULESET_LIGHT), "light rule required but no light character map in grid");
+		}
+	}
+
 	@Override
 	default StrBuilder toDoc() {
 		ArrayList<StrBuilder> normalGrid = this.addGrid(TA_GridHelpers.todocEmptyContent(TA_GridConfig.RULESET_NORMAL), TA_GridThemes.FULL);
@@ -347,40 +381,6 @@ public interface TA_Grid extends IsTextArt {
 		;
 
 		return new StrBuilder().appendWithSeparators(TA_GridHelpers.todocBuildAll(normalGrid, strongGrid, heavyGrid, lightGrid, exampleGrid), "\n");
-	}
-
-	/**
-	 * Creates a new empty (no character map loaded) grid object.
-	 * @param description a description for the line, cannot be blank
-	 * @return new grid object
-	 */
-	static TA_Grid create(String description){
-		Validate.notBlank(description);
-
-		return new TA_Grid() {
-			Map<Integer, Character> map = new HashMap<>();
-			protected int supportedRuleSet = TA_GridConfig.RULESET_NORMAL;
-
-			@Override
-			public Map<Integer, Character> getCharacterMap() {
-				return map;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-
-			@Override
-			public int supportedRulesets() {
-				return supportedRuleSet;
-			}
-
-			@Override
-			public void addSupportedRuleSet(int set) {
-				supportedRuleSet = supportedRuleSet | set;
-			}
-		};
 	}
 
 }

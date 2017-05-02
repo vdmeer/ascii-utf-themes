@@ -24,7 +24,33 @@ import de.vandermeer.asciithemes.TA_Line_Char;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class U8_Lines_SameChar {
+public interface U8_Lines_SameChar {
+
+	/**
+	 * A line using UTF-8 double horizontal character `═`.
+	 * 
+	 * ----
+	 * ══════════
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Line_Char borderDoubleHorizontal(){
+		return TA_Line_Char.create('═', "line UTF-8 double horizontal character '═'");
+	}
+
+	/**
+	 * A line using UTF-8 heavy double dash character `╌`.
+	 * 
+	 * ----
+	 * ╌╌╌╌╌╌╌╌╌╌
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Line_Char borderHeavyDoubleDash(){
+		return TA_Line_Char.create('╌', "line UTF-8 heavy double dash character '╌'");
+	}
 
 	/**
 	 * A line using UTF-8 heavy line horizontal character `━`.
@@ -35,7 +61,7 @@ public abstract class U8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char borderHeavyHorizontal(){
+	static TA_Line_Char borderHeavyHorizontal(){
 		return TA_Line_Char.create('━', "line UTF-8 heavy line horizontal character '━'");
 	}
 
@@ -48,7 +74,7 @@ public abstract class U8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char borderHeavyQuadrupleDash(){
+	static TA_Line_Char borderHeavyQuadrupleDash(){
 		return TA_Line_Char.create('┉', "line UTF-8 heavy quadruple dash character '┉'");
 	}
 
@@ -61,60 +87,8 @@ public abstract class U8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char borderHeavyTripleDash(){
+	static TA_Line_Char borderHeavyTripleDash(){
 		return TA_Line_Char.create('┅', "line UTF-8 heavy triple dash character '┅'");
-	}
-
-	/**
-	 * A line using UTF-8 heavy double dash character `╌`.
-	 * 
-	 * ----
-	 * ╌╌╌╌╌╌╌╌╌╌
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Line_Char borderHeavyDoubleDash(){
-		return TA_Line_Char.create('╌', "line UTF-8 heavy double dash character '╌'");
-	}
-
-	/**
-	 * A line using UTF-8 double horizontal character `═`.
-	 * 
-	 * ----
-	 * ══════════
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Line_Char borderDoubleHorizontal(){
-		return TA_Line_Char.create('═', "line UTF-8 double horizontal character '═'");
-	}
-
-	/**
-	 * A line using UTF-8 light quadruple dash character `┈`.
-	 * 
-	 * ----
-	 * ┈┈┈┈┈┈┈┈┈┈
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Line_Char borderLightQuadrupleDash(){
-		return TA_Line_Char.create('┈', "line UTF-8 light quadruple dash character '┈'");
-	}
-
-	/**
-	 * A line using UTF-8 light line horizontal character `─`.
-	 * 
-	 * ----
-	 * ──────────
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Line_Char borderLightHorizontal(){
-		return TA_Line_Char.create('─', "line UTF-8 light line horizontal character '─'");
 	}
 
 	/**
@@ -126,8 +100,34 @@ public abstract class U8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char borderLightDoubleDash(){
+	static TA_Line_Char borderLightDoubleDash(){
 		return TA_Line_Char.create('╌', "line UTF-8 light double dash character '╌'");
+	}
+
+	/**
+	 * A line using UTF-8 light line horizontal character `─`.
+	 * 
+	 * ----
+	 * ──────────
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Line_Char borderLightHorizontal(){
+		return TA_Line_Char.create('─', "line UTF-8 light line horizontal character '─'");
+	}
+
+	/**
+	 * A line using UTF-8 light quadruple dash character `┈`.
+	 * 
+	 * ----
+	 * ┈┈┈┈┈┈┈┈┈┈
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Line_Char borderLightQuadrupleDash(){
+		return TA_Line_Char.create('┈', "line UTF-8 light quadruple dash character '┈'");
 	}
 
 	/**
@@ -139,7 +139,7 @@ public abstract class U8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char borderLightTripleDash(){
+	static TA_Line_Char borderLightTripleDash(){
 		return TA_Line_Char.create('┄', "line UTF-8 light triple dash character '┄'");
 	}
 
@@ -152,7 +152,7 @@ public abstract class U8_Lines_SameChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_Char visibleSpace(){
+	static TA_Line_Char visibleSpace(){
 		return TA_Line_Char.create('␣', "line UTF-8 visible space character '␣'");
 	}
 }

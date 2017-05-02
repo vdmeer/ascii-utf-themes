@@ -26,7 +26,7 @@ import de.vandermeer.asciithemes.TA_Frame;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_Frames {
+public interface A7_Frames {
 
 	/**
 	 * A frame using `-` for lines, `|` for borders and `+` for corners.
@@ -40,7 +40,7 @@ public abstract class A7_Frames {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame minusBarPlus(){
+	static TA_Frame minusBarPlus(){
 		return TA_Frame.create(
 				A7_Lines_SameChar.minus(),
 				TA_Corner_Chars.create('+', '+', '+', '+', "corner tuple using plus character '+'"),
@@ -50,44 +50,23 @@ public abstract class A7_Frames {
 	}
 
 	/**
-	 * A frame using a split line, borders, and corners with gt/lt characters `&gt;` and `&lt;`.
+	 * A frame using a split line, borders, and corners with backslash/slash characters `\\` and `\`.
 	 * 
 	 * ----
-	 * &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-	 * &gt;Lorem ipsum dolor&lt;
-	 * &gt;Lorem ipsum dolor&lt;
-	 * &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-	 * ----
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame split_gtlt(){
-		return TA_Frame.create(
-				A7_Lines_SplitChar.gtlt(),
-				TA_Corner_Chars.create('>', '<', '>', '<', "corner tuple using gt/lt characters '>' and '<'"),
-				TA_Border_Chars.create('>', '<', "border pair using gt/lt characters '>' and '<'"),
-				"frame using a split line, borders, and corners with gt/lt characters '>' and '<'"
-		);
-	}
-
-	/**
-	 * A frame using a split line, borders, and corners with gt/lt characters `&lt;` and `&gt;`.
-	 * 
-	 * ----
-	 * &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-	 * &lt;Lorem ipsum dolor&gt;
-	 * &lt;Lorem ipsum dolor&gt;
-	 * &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+	 * \\\\\\\\\\\\\\\\\\//////////
+	 * \\Lorem ipsum dolor/
+	 * \\Lorem ipsum dolor/
+	 * \\\\\\\\\\\\\\\\\\//////////
 	 * ----
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame split_ltgt(){
+	static TA_Frame split_backSlashSlash(){
 		return TA_Frame.create(
-				A7_Lines_SplitChar.ltgt(),
-				TA_Corner_Chars.create('<', '>', '<', '>', "corner tuple using gt/lt characters '<' and '>'"),
-				TA_Border_Chars.create('<', '>', "border pair using gt/lt characters '<' and '>'"),
-				"frame using a split line, borders, and corners with gt/lt characters '<' and '>'"
+				A7_Lines_SplitChar.backSlashSlash(),
+				TA_Corner_Chars.create('\\', '/', '\\', '/', "corner tuple using backslash/slash characters '\\' and '/'"),
+				TA_Border_Chars.create('\\', '/', "border pair using backslash/slash characters '\\' and '/'"),
+				"frame using a split line, borders, and corners with backslash/slash characters '\\' and '/'"
 		);
 	}
 
@@ -103,7 +82,7 @@ public abstract class A7_Frames {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame split_blbr(){
+	static TA_Frame split_blbr(){
 		return TA_Frame.create(
 				A7_Lines_SplitChar.blbr(),
 				TA_Corner_Chars.create('(', ')', '(', ')', "corner tuple using bl/br characters '(' and ')'"),
@@ -124,54 +103,12 @@ public abstract class A7_Frames {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame split_brbl(){
+	static TA_Frame split_brbl(){
 		return TA_Frame.create(
 				A7_Lines_SplitChar.brbl(),
 				TA_Corner_Chars.create(')', '(', ')', '(', "corner tuple using br/bl characters ')' and '('"),
 				TA_Border_Chars.create(')', '(', "border pair using br/bl characters ')' and '('"),
 				"frame using a split line, borders, and corners with br/bl characters ')' and '('"
-		);
-	}
-
-	/**
-	 * A frame using a split line, borders, and corners with sbl/sbr characters `[` and `]`.
-	 * 
-	 * ----
-	 * [[[[[[[[[]]]]]]]]]]
-	 * [Lorem ipsum dolor]
-	 * [Lorem ipsum dolor]
-	 * [[[[[[[[[]]]]]]]]]]
-	 * ----
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame split_sblsbr(){
-		return TA_Frame.create(
-				A7_Lines_SplitChar.sblsbr(),
-				TA_Corner_Chars.create('[', ']', '[', ']', "corner tuple using sbl/sbr characters '[' and ']'"),
-				TA_Border_Chars.create('[', ']', "border pair using sbl/sbr characters '[' and ']'"),
-				"frame using a split line, borders, and corners with sbl/sbr characters '[' and ']'"
-		);
-	}
-
-	/**
-	 * A frame using a split line, borders, and corners with sbr/sbl characters `]` and `[`.
-	 * 
-	 * ----
-	 * ]]]]]]]]][[[[[[[[[[
-	 * ]Lorem ipsum dolor[
-	 * ]Lorem ipsum dolor[
-	 * ]]]]]]]]][[[[[[[[[[
-	 * ----
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame split_sbrsbl(){
-		return TA_Frame.create(
-				A7_Lines_SplitChar.sbrsbl(),
-				TA_Corner_Chars.create(']', '[', ']', '[', "corner tuple using sbr/sbl characters ']' and '['"),
-				TA_Border_Chars.create(']', '[', "border pair using sbr/sbl characters ']' and '['"),
-				"frame using a split line, borders, and corners with sbr/sbl characters ']' and '['"
 		);
 	}
 
@@ -187,7 +124,7 @@ public abstract class A7_Frames {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame split_cblcbr(){
+	static TA_Frame split_cblcbr(){
 		return TA_Frame.create(
 				A7_Lines_SplitChar.cblcbr(),
 				TA_Corner_Chars.create('{', '}', '{', '}', "corner tuple using cbl/cbr characters '{' and '}'"),
@@ -208,12 +145,96 @@ public abstract class A7_Frames {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame split_cbrcbl(){
+	static TA_Frame split_cbrcbl(){
 		return TA_Frame.create(
 				A7_Lines_SplitChar.cbrcbl(),
 				TA_Corner_Chars.create('}', '{', '}', '{', "corner tuple using cbr/cbl characters '}' and '{'"),
 				TA_Border_Chars.create('}', '{', "border pair using cbr/cbl characters '}' and '{'"),
 				"frame using a split line, borders, and corners with cbr/cbl characters '}' and '{'"
+		);
+	}
+
+	/**
+	 * A frame using a split line, borders, and corners with gt/lt characters `&gt;` and `&lt;`.
+	 * 
+	 * ----
+	 * &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+	 * &gt;Lorem ipsum dolor&lt;
+	 * &gt;Lorem ipsum dolor&lt;
+	 * &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+	 * ----
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame split_gtlt(){
+		return TA_Frame.create(
+				A7_Lines_SplitChar.gtlt(),
+				TA_Corner_Chars.create('>', '<', '>', '<', "corner tuple using gt/lt characters '>' and '<'"),
+				TA_Border_Chars.create('>', '<', "border pair using gt/lt characters '>' and '<'"),
+				"frame using a split line, borders, and corners with gt/lt characters '>' and '<'"
+		);
+	}
+
+	/**
+	 * A frame using a split line, borders, and corners with gt/lt characters `&lt;` and `&gt;`.
+	 * 
+	 * ----
+	 * &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+	 * &lt;Lorem ipsum dolor&gt;
+	 * &lt;Lorem ipsum dolor&gt;
+	 * &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+	 * ----
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame split_ltgt(){
+		return TA_Frame.create(
+				A7_Lines_SplitChar.ltgt(),
+				TA_Corner_Chars.create('<', '>', '<', '>', "corner tuple using gt/lt characters '<' and '>'"),
+				TA_Border_Chars.create('<', '>', "border pair using gt/lt characters '<' and '>'"),
+				"frame using a split line, borders, and corners with gt/lt characters '<' and '>'"
+		);
+	}
+
+	/**
+	 * A frame using a split line, borders, and corners with sbl/sbr characters `[` and `]`.
+	 * 
+	 * ----
+	 * [[[[[[[[[]]]]]]]]]]
+	 * [Lorem ipsum dolor]
+	 * [Lorem ipsum dolor]
+	 * [[[[[[[[[]]]]]]]]]]
+	 * ----
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame split_sblsbr(){
+		return TA_Frame.create(
+				A7_Lines_SplitChar.sblsbr(),
+				TA_Corner_Chars.create('[', ']', '[', ']', "corner tuple using sbl/sbr characters '[' and ']'"),
+				TA_Border_Chars.create('[', ']', "border pair using sbl/sbr characters '[' and ']'"),
+				"frame using a split line, borders, and corners with sbl/sbr characters '[' and ']'"
+		);
+	}
+
+	/**
+	 * A frame using a split line, borders, and corners with sbr/sbl characters `]` and `[`.
+	 * 
+	 * ----
+	 * ]]]]]]]]][[[[[[[[[[
+	 * ]Lorem ipsum dolor[
+	 * ]Lorem ipsum dolor[
+	 * ]]]]]]]]][[[[[[[[[[
+	 * ----
+	 * 
+	 * @return the frame
+	 */
+	static TA_Frame split_sbrsbl(){
+		return TA_Frame.create(
+				A7_Lines_SplitChar.sbrsbl(),
+				TA_Corner_Chars.create(']', '[', ']', '[', "corner tuple using sbr/sbl characters ']' and '['"),
+				TA_Border_Chars.create(']', '[', "border pair using sbr/sbl characters ']' and '['"),
+				"frame using a split line, borders, and corners with sbr/sbl characters ']' and '['"
 		);
 	}
 
@@ -229,33 +250,12 @@ public abstract class A7_Frames {
 	 * 
 	 * @return the frame
 	 */
-	public static TA_Frame split_slashbackSlash(){
+	static TA_Frame split_slashbackSlash(){
 		return TA_Frame.create(
 				A7_Lines_SplitChar.slashbackSlash(),
 				TA_Corner_Chars.create('/', '\\', '/', '\\', "corner tuple using slash/backslash characters '/' and '\\'"),
 				TA_Border_Chars.create('/', '\\', "border pair using slash/backslash characters '/' and '\\'"),
 				"frame using a split line, borders, and corners with slash/backslash characters '/' and '\\'"
-		);
-	}
-
-	/**
-	 * A frame using a split line, borders, and corners with backslash/slash characters `\\` and `\`.
-	 * 
-	 * ----
-	 * \\\\\\\\\\\\\\\\\\//////////
-	 * \\Lorem ipsum dolor/
-	 * \\Lorem ipsum dolor/
-	 * \\\\\\\\\\\\\\\\\\//////////
-	 * ----
-	 * 
-	 * @return the frame
-	 */
-	public static TA_Frame split_backSlashSlash(){
-		return TA_Frame.create(
-				A7_Lines_SplitChar.backSlashSlash(),
-				TA_Corner_Chars.create('\\', '/', '\\', '/', "corner tuple using backslash/slash characters '\\' and '/'"),
-				TA_Border_Chars.create('\\', '/', "border pair using backslash/slash characters '\\' and '/'"),
-				"frame using a split line, borders, and corners with backslash/slash characters '\\' and '/'"
 		);
 	}
 }

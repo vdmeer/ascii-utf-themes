@@ -25,86 +25,95 @@ package de.vandermeer.asciithemes;
 public interface TA_FrameOptions {
 
 	/** Option for using the top line of the frame. */
-	static int OPT_LINE_TOP           = 0b0_000000_01;
+	static final int OPT_LINE_TOP			= 0b0_000000_01;
 
 	/** Option for using the bottom line of the frame. */
-	static int OPT_LINE_BOTTOM        = 0b0_000000_10;
+	static final int OPT_LINE_BOTTOM		= 0b0_000000_10;
 
 
 	/** Option for using the left border of the frame. */
-	static int OPT_BORDER_LEFT        = 0b0_0000_01_00;
+	static final int OPT_BORDER_LEFT		= 0b0_0000_01_00;
 
 	/** Option for using the right border of the frame. */
-	static int OPT_BORDER_RIGHT       = 0b0_0000_10_00;
+	static final int OPT_BORDER_RIGHT		= 0b0_0000_10_00;
 
 
 	/** Option for using the top left corner of the frame. */
-	static int OPT_CORNER_TOPLEFT     = 0b0_0001_00_00;
+	static final int OPT_CORNER_TOPLEFT		= 0b0_0001_00_00;
 
 	/** Option for using the top right corner of the frame. */
-	static int OPT_CORNER_TOPRIGHT    = 0b0_0010_00_00;
+	static final int OPT_CORNER_TOPRIGHT	= 0b0_0010_00_00;
 
 	/** Option for using the bottom left corner of the frame. */
-	static int OPT_CORNER_BOTTOMLEFT  = 0b0_0100_00_00;
+	static final int OPT_CORNER_BOTTOMLEFT	= 0b0_0100_00_00;
 
 	/** Option for using the bottom right corner of the frame. */
-	static int OPT_CORNER_BOTTOMRIGHT = 0b0_1000_00_00;
+	static final int OPT_CORNER_BOTTOMRIGHT	= 0b0_1000_00_00;
 
 
 	/** Option for showing empty horizontal rows. */
-	static int OPT_SHOW_EMPTY_ROWS    = 0b1_0000_00_00;
+	static final int OPT_SHOW_EMPTY_ROWS	= 0b1_0000_00_00;
 
 
 	/** Theme for using the full frame. */
-	static int THEME_FULL_FRAME = 
+	static final int THEME_FULL_FRAME = 
 			OPT_LINE_TOP | OPT_LINE_BOTTOM | OPT_BORDER_LEFT | OPT_BORDER_RIGHT |
 			OPT_CORNER_TOPLEFT | OPT_CORNER_TOPRIGHT | OPT_CORNER_BOTTOMLEFT | OPT_CORNER_BOTTOMRIGHT;
 
 	/** Theme for using only top and bottom lines. */
-	static int THEME_LINE_TOPBOTTOM = 
+	static final int THEME_LINE_TOPBOTTOM = 
 			OPT_LINE_TOP | OPT_LINE_BOTTOM;
 
 	/** Theme for using only left side. */
-	static int THEME_LEFT_ONLY = 
+	static final int THEME_LEFT_ONLY = 
 			OPT_CORNER_TOPLEFT | OPT_BORDER_LEFT | OPT_CORNER_BOTTOMLEFT;
 
 	/** Theme for using only left and right borders. */
-	static int THEME_BORDERS_ONLY =
+	static final int THEME_BORDERS_ONLY =
 			OPT_BORDER_LEFT | OPT_BORDER_RIGHT;
 
 	/** Theme for using only top/bottom lines and left/right borders, that is no corners. */
-	static int THEME_LINES_ONLY = 
+	static final int THEME_LINES_ONLY = 
 			OPT_LINE_TOP | OPT_LINE_BOTTOM | OPT_BORDER_LEFT | OPT_BORDER_RIGHT;
 
 	/** Theme for using only corners. */
-	static int THEME_CORNERS_ONLY = 
+	static final int THEME_CORNERS_ONLY = 
 			OPT_CORNER_TOPLEFT | OPT_CORNER_TOPRIGHT | OPT_CORNER_BOTTOMLEFT | OPT_CORNER_BOTTOMRIGHT;
 
 	/**
-	 * Test for some characters required in the top line of a frame.
+	 * Tests if the left border is requested.
 	 * @param mode the mode to test against
-	 * @return true if some characters need to be drawn for the top line, false otherwise
+	 * @return true if left border is requested, false otherwise
 	 */
-	static boolean someTopCharacters(int mode){
-		return ((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT || (mode & OPT_LINE_TOP) == OPT_LINE_TOP || (mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT);
+	static boolean borderLeft(int mode){
+		return ((mode & OPT_BORDER_LEFT) == OPT_BORDER_LEFT);
 	}
 
 	/**
-	 * Test for some characters required in the bottom line of a frame.
+	 * Tests if the left border is needed.
 	 * @param mode the mode to test against
-	 * @return true if some characters need to be drawn for the bottom line, false otherwise
+	 * @return true if left border is needed, false otherwise
 	 */
-	static boolean someBottomCharacters(int mode){
-		return ((mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT || (mode & OPT_LINE_BOTTOM) == OPT_LINE_BOTTOM || (mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT);
+	static boolean borderLeftNeeded(int mode){
+		return ((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT || (mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT);
 	}
 
 	/**
-	 * Tests if the top left corner is requested.
+	 * Tests if the right border is requested.
 	 * @param mode the mode to test against
-	 * @return true if top left corner is requested, false otherwise
+	 * @return true if right border is requested, false otherwise
 	 */
-	static boolean cornerTopLeft(int mode){
-		return ((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT);
+	static boolean borderRight(int mode){
+		return ((mode & OPT_BORDER_RIGHT) == OPT_BORDER_RIGHT);
+	}
+
+	/**
+	 * Tests if the right border is needed.
+	 * @param mode the mode to test against
+	 * @return true if right border is needed, false otherwise
+	 */
+	static boolean borderRightNeeded(int mode){
+		return ((mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT || (mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT);
 	}
 
 	/**
@@ -114,20 +123,6 @@ public interface TA_FrameOptions {
 	 */
 	static boolean cornerBottomLeft(int mode){
 		return ((mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT);
-	}
-
-	/**
-	 * Tests if the top left corner is needed.
-	 * @param mode the mode to test against
-	 * @return true if top left corner is needed, false otherwise
-	 */
-	static boolean cornerTopLeftNeeded(int mode){
-		if((mode & OPT_LINE_TOP) == OPT_LINE_TOP || (mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT){
-			if((mode & OPT_BORDER_LEFT) == OPT_BORDER_LEFT || (mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT){
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -145,21 +140,72 @@ public interface TA_FrameOptions {
 	}
 
 	/**
-	 * Tests if the top line is requested.
+	 * Tests if the bottom right corner is requested.
 	 * @param mode the mode to test against
-	 * @return true if top line is requested, false otherwise
+	 * @return true if bottom right corner is requested, false otherwise
 	 */
-	static boolean lineTop(int mode){
-		return ((mode & OPT_LINE_TOP) == OPT_LINE_TOP);
+	static boolean cornerBottomRight(int mode){
+		return ((mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT);
 	}
 
 	/**
-	 * Tests if a top line is needed because one or both corners are required.
+	 * Tests if the bottom right corner is needed.
 	 * @param mode the mode to test against
-	 * @return true if a top line is needed, false otherwise
+	 * @return true if bottom right corner is needed, false otherwise
 	 */
-	static boolean lineTopNeeded(int mode){
-		return ((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT || (mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT);
+	static boolean cornerBottomRightNeeded(int mode){
+		if((mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT || (mode & OPT_LINE_BOTTOM) == OPT_LINE_BOTTOM){
+			if((mode & OPT_BORDER_RIGHT) == OPT_BORDER_RIGHT || (mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Tests if the top left corner is requested.
+	 * @param mode the mode to test against
+	 * @return true if top left corner is requested, false otherwise
+	 */
+	static boolean cornerTopLeft(int mode){
+		return ((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT);
+	}
+
+	/**
+	 * Tests if the top left corner is needed.
+	 * @param mode the mode to test against
+	 * @return true if top left corner is needed, false otherwise
+	 */
+	static boolean cornerTopLeftNeeded(int mode){
+		if((mode & OPT_LINE_TOP) == OPT_LINE_TOP || (mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT){
+			if((mode & OPT_BORDER_LEFT) == OPT_BORDER_LEFT || (mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Tests if the top right corner is requested.
+	 * @param mode the mode to test against
+	 * @return true if top right corner is requested, false otherwise
+	 */
+	static boolean cornerTopRight(int mode){
+		return ((mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT);
+	}
+
+	/**
+	 * Tests if the top right corner is needed.
+	 * @param mode the mode to test against
+	 * @return true if top right corner is needed, false otherwise
+	 */
+	static boolean cornerTopRightNeeded(int mode){
+		if((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT || (mode & OPT_LINE_TOP) == OPT_LINE_TOP){
+			if((mode & OPT_BORDER_RIGHT) == OPT_BORDER_RIGHT || (mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -181,85 +227,21 @@ public interface TA_FrameOptions {
 	}
 
 	/**
-	 * Tests if the top right corner is requested.
+	 * Tests if the top line is requested.
 	 * @param mode the mode to test against
-	 * @return true if top right corner is requested, false otherwise
+	 * @return true if top line is requested, false otherwise
 	 */
-	static boolean cornerTopRight(int mode){
-		return ((mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT);
+	static boolean lineTop(int mode){
+		return ((mode & OPT_LINE_TOP) == OPT_LINE_TOP);
 	}
 
 	/**
-	 * Tests if the bottom right corner is requested.
+	 * Tests if a top line is needed because one or both corners are required.
 	 * @param mode the mode to test against
-	 * @return true if bottom right corner is requested, false otherwise
+	 * @return true if a top line is needed, false otherwise
 	 */
-	static boolean cornerBottomRight(int mode){
-		return ((mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT);
-	}
-
-	/**
-	 * Tests if the top right corner is needed.
-	 * @param mode the mode to test against
-	 * @return true if top right corner is needed, false otherwise
-	 */
-	static boolean cornerTopRightNeeded(int mode){
-		if((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT || (mode & OPT_LINE_TOP) == OPT_LINE_TOP){
-			if((mode & OPT_BORDER_RIGHT) == OPT_BORDER_RIGHT || (mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Tests if the bottom right corner is needed.
-	 * @param mode the mode to test against
-	 * @return true if bottom right corner is needed, false otherwise
-	 */
-	static boolean cornerBottomRightNeeded(int mode){
-		if((mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT || (mode & OPT_LINE_BOTTOM) == OPT_LINE_BOTTOM){
-			if((mode & OPT_BORDER_RIGHT) == OPT_BORDER_RIGHT || (mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Tests if the left border is requested.
-	 * @param mode the mode to test against
-	 * @return true if left border is requested, false otherwise
-	 */
-	static boolean borderLeft(int mode){
-		return ((mode & OPT_BORDER_LEFT) == OPT_BORDER_LEFT);
-	}
-
-	/**
-	 * Tests if the right border is requested.
-	 * @param mode the mode to test against
-	 * @return true if right border is requested, false otherwise
-	 */
-	static boolean borderRight(int mode){
-		return ((mode & OPT_BORDER_RIGHT) == OPT_BORDER_RIGHT);
-	}
-
-	/**
-	 * Tests if the left border is needed.
-	 * @param mode the mode to test against
-	 * @return true if left border is needed, false otherwise
-	 */
-	static boolean borderLeftNeeded(int mode){
-		return ((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT || (mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT);
-	}
-
-	/**
-	 * Tests if the right border is needed.
-	 * @param mode the mode to test against
-	 * @return true if right border is needed, false otherwise
-	 */
-	static boolean borderRightNeeded(int mode){
-		return ((mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT || (mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT);
+	static boolean lineTopNeeded(int mode){
+		return ((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT || (mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT);
 	}
 
 	/**
@@ -269,5 +251,23 @@ public interface TA_FrameOptions {
 	 */
 	static boolean showEmptyRows(int mode){
 		return ((mode & OPT_SHOW_EMPTY_ROWS) == OPT_SHOW_EMPTY_ROWS);
+	}
+
+	/**
+	 * Test for some characters required in the bottom line of a frame.
+	 * @param mode the mode to test against
+	 * @return true if some characters need to be drawn for the bottom line, false otherwise
+	 */
+	static boolean someBottomCharacters(int mode){
+		return ((mode & OPT_CORNER_BOTTOMLEFT) == OPT_CORNER_BOTTOMLEFT || (mode & OPT_LINE_BOTTOM) == OPT_LINE_BOTTOM || (mode & OPT_CORNER_BOTTOMRIGHT) == OPT_CORNER_BOTTOMRIGHT);
+	}
+
+	/**
+	 * Test for some characters required in the top line of a frame.
+	 * @param mode the mode to test against
+	 * @return true if some characters need to be drawn for the top line, false otherwise
+	 */
+	static boolean someTopCharacters(int mode){
+		return ((mode & OPT_CORNER_TOPLEFT) == OPT_CORNER_TOPLEFT || (mode & OPT_LINE_TOP) == OPT_LINE_TOP || (mode & OPT_CORNER_TOPRIGHT) == OPT_CORNER_TOPRIGHT);
 	}
 }

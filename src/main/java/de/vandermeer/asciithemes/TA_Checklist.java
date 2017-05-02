@@ -28,6 +28,63 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Checklist extends TA_List {
 
 	/**
+	 * Creates a new checklist list with levels.
+	 * @param description list description
+	 * @param items an array with checked items
+	 * @return new list
+	 */
+	public static TA_Checklist create(final String description, final TA_CheckedItem ...items){
+		Validate.notNull(items);
+		Validate.noNullElements(items);
+		Validate.notBlank(description);
+
+		return new TA_Checklist() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLabel(int level, boolean checked) {
+				return items[level-1].getLabel(checked);
+			}
+
+			@Override
+			public int getMaxLevel() {
+				return items.length;
+			}
+		};
+	}
+
+	/**
+	 * Creates a new checklist with unlimited levels.
+	 * @param item the checked item to be used
+	 * @param description list description
+	 * @return new list
+	 */
+	public static TA_Checklist create(final TA_CheckedItem item, final String description){
+		Validate.notNull(item);
+		Validate.notBlank(description);
+
+		return new TA_Checklist() {
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public String getLabel(int level, boolean checked) {
+				return item.getLabel(checked);
+			}
+
+			@Override
+			public int getMaxLevel() {
+				return -1;
+			}
+		};
+	}
+
+	/**
 	 * Returns the label for a given level.
 	 * If the list is implementing a nested style, this method will always use the top level style.
 	 * @param level the level for the requested style
@@ -91,63 +148,6 @@ public interface TA_Checklist extends TA_List {
 			ret.appendPadding(2*(n-1), ' ').append(this.getLabel(6, false)).append(" unchecked item");
 		}
 		return ret;
-	}
-
-	/**
-	 * Creates a new checklist with unlimited levels.
-	 * @param item the checked item to be used
-	 * @param description list description
-	 * @return new list
-	 */
-	public static TA_Checklist create(final TA_CheckedItem item, final String description){
-		Validate.notNull(item);
-		Validate.notBlank(description);
-
-		return new TA_Checklist() {
-			@Override
-			public int getMaxLevel() {
-				return -1;
-			}
-
-			@Override
-			public String getLabel(int level, boolean checked) {
-				return item.getLabel(checked);
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
-	}
-
-	/**
-	 * Creates a new checklist list with levels.
-	 * @param description list description
-	 * @param items an array with checked items
-	 * @return new list
-	 */
-	public static TA_Checklist create(final String description, final TA_CheckedItem ...items){
-		Validate.notNull(items);
-		Validate.noNullElements(items);
-		Validate.notBlank(description);
-
-		return new TA_Checklist() {
-			@Override
-			public int getMaxLevel() {
-				return items.length;
-			}
-
-			@Override
-			public String getLabel(int level, boolean checked) {
-				return items[level-1].getLabel(checked);
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-		};
 	}
 
 }

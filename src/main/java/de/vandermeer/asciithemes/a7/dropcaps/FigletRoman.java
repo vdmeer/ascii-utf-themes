@@ -33,7 +33,7 @@ import de.vandermeer.asciithemes.TA_DropCaps;
 public class FigletRoman implements TA_DropCaps {
 
 	/** Local mapping of characters to drop caps. */
-	Map<Character, String[]> map = new HashMap<Character, String[]>(){
+	private Map<Character, String[]> map = new HashMap<Character, String[]>(){
 		private static final long serialVersionUID = 1L;{
 			put('A', new String[]{
 					"      .o.      ", 
@@ -329,6 +329,11 @@ public class FigletRoman implements TA_DropCaps {
 	};
 
 	@Override
+	public String getDescription() {
+		return "DropCap library based on Figlet font 'roman' - see http://www.jave.de/figlet/fonts/details/roman.html";
+	}
+
+	@Override
 	public String[] getDropCap(char letter) {
 		return this.map.get(Character.toUpperCase(letter));
 	}
@@ -337,11 +342,6 @@ public class FigletRoman implements TA_DropCaps {
 	public StrBuilder toDoc() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public Object getDescription() {
-		return "DropCap library based on Figlet font 'roman' - see http://www.jave.de/figlet/fonts/details/roman.html";
 	}
 
 }

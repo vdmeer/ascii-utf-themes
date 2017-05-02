@@ -25,7 +25,20 @@ import de.vandermeer.asciithemes.TA_Line_SplitChar;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_Lines_SplitChar {
+public interface A7_Lines_SplitChar {
+
+	/**
+	 * A split line using left `\\\\` and right '/'.
+	 * 
+	 * ----
+	 * \\\\\\\\\\/////
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Line_SplitChar backSlashSlash(){
+		return TA_Line_SplitChar.create('\\', '/', "split line using left `\\` and right '/'");
+	}
 
 	/**
 	 * A split line using left `(` and right ')'.
@@ -36,7 +49,7 @@ public abstract class A7_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar blbr(){
+	static TA_Line_SplitChar blbr(){
 		return TA_Line_SplitChar.create('(', ')', "split line using left `(` and right ')'");
 	}
 
@@ -49,7 +62,7 @@ public abstract class A7_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar brbl(){
+	static TA_Line_SplitChar brbl(){
 		return TA_Line_SplitChar.create(')', '(', "split line using left `)` and right '('");
 	}
 
@@ -62,7 +75,7 @@ public abstract class A7_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar cblcbr(){
+	static TA_Line_SplitChar cblcbr(){
 		return TA_Line_SplitChar.create('{', '}', "split line using left `{` and right '}'");
 	}
 
@@ -75,21 +88,8 @@ public abstract class A7_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar cbrcbl(){
+	static TA_Line_SplitChar cbrcbl(){
 		return TA_Line_SplitChar.create('}', '{', "split line using left `}` and right '{'");
-	}
-
-	/**
-	 * A split line using left `&lt;` and right '&gt;'.
-	 * 
-	 * ----
-	 * &lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Line_SplitChar ltgt(){
-		return TA_Line_SplitChar.create('<', '>', "split line using left `<` and right '>'");
 	}
 
 	/**
@@ -101,8 +101,21 @@ public abstract class A7_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar gtlt(){
+	static TA_Line_SplitChar gtlt(){
 		return TA_Line_SplitChar.create('>', '<', "split line using left `>` and right '<'");
+	}
+
+	/**
+	 * A split line using left `&lt;` and right '&gt;'.
+	 * 
+	 * ----
+	 * &lt;&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;
+	 * ----
+	 * 
+	 * @return the line
+	 */
+	static TA_Line_SplitChar ltgt(){
+		return TA_Line_SplitChar.create('<', '>', "split line using left `<` and right '>'");
 	}
 
 	/**
@@ -114,7 +127,7 @@ public abstract class A7_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar sblsbr(){
+	static TA_Line_SplitChar sblsbr(){
 		return TA_Line_SplitChar.create('[', ']', "split line using left `[` and right ']'");
 	}
 
@@ -127,21 +140,8 @@ public abstract class A7_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar sbrsbl(){
+	static TA_Line_SplitChar sbrsbl(){
 		return TA_Line_SplitChar.create(']', '[', "split line using left `]` and right '['");
-	}
-
-	/**
-	 * A split line using left `\\\\` and right '/'.
-	 * 
-	 * ----
-	 * \\\\\\\\\\/////
-	 * ----
-	 * 
-	 * @return the line
-	 */
-	public static TA_Line_SplitChar backSlashSlash(){
-		return TA_Line_SplitChar.create('\\', '/', "split line using left `\\` and right '/'");
 	}
 
 	/**
@@ -153,7 +153,7 @@ public abstract class A7_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar slashbackSlash(){
+	static TA_Line_SplitChar slashbackSlash(){
 		return TA_Line_SplitChar.create('/', '\\', "split line using left `/` and right '\\'");
 	}
 }

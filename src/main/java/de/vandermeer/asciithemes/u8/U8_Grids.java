@@ -25,33 +25,7 @@ import de.vandermeer.asciithemes.TA_GridConfig;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class U8_Grids {
-
-	/**
-	 * A grid using UTF-8 light border characters.
-	 * 
-	 * ----
-	 * Normal         Example
-	 * ┌─┬─┬─┬─┐      ┌─────┬─────┬─────┬─────┐
-	 * │ │ │ │ │      │ h1  │ h2  │ h3  │ h4  │
-	 * ├─┼─┼─┼─┤      ├─────┴─────┴─────┴─────┤
-	 * │ │ │ │ │      │ c11 to c14 w/col-span │
-	 * └─┴─┴─┴─┘      ├─────┬─────┬─────┬─────┤
-	 *                │ c21 │ c22 │ c23 │ c24 │
-	 *                ├─────┴─────┼─────┴─────┤
-	 *                │ c31 - c32 │ c33 - c34 │
-	 *                ├─────┬─────┼─────┬─────┤
-	 *                │ f1  │ f2  │ f3  │ f4  │
-	 *                └─────┴─────┴─────┴─────┘
-	 * ----
-	 * 
-	 * @return the grid
-	 */
-	public static TA_Grid borderLight(){
-		return TA_Grid.create("grid using UTF-8 light border characters")
-				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '─', '│', '┌', '┐', '└', '┘', '├', '┤', '┼', '┬', '┴')
-		;
-	}
+public interface U8_Grids {
 
 	/**
 	 * A grid using UTF-8 double border characters.
@@ -73,62 +47,9 @@ public abstract class U8_Grids {
 	 * 
 	 * @return the grid
 	 */
-	public static TA_Grid borderDouble(){
+	static TA_Grid borderDouble(){
 		return TA_Grid.create("grid using UTF-8 double border characters")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '═', '║', '╔', '╗', '╚', '╝', '╠', '╣', '╬', '╦', '╩')
-		;
-	}
-
-	/**
-	 * A grid using UTF-8 light characters horizontally and double border characters vertically.
-	 * 
-	 * ----
-	 * Normal         Example
-	 * ╓─╥─╥─╥─╖      ╓─────╥─────╥─────╥─────╖
-	 * ║ ║ ║ ║ ║      ║ h1  ║ h2  ║ h3  ║ h4  ║
-	 * ╟─╫─╫─╫─╢      ╟─────╨─────╨─────╨─────╢
-	 * ║ ║ ║ ║ ║      ║ c11 to c14 w/col-span ║
-	 * ╙─╨─╨─╨─╜      ╟─────╥─────╥─────╥─────╢
-	 *                ║ c21 ║ c22 ║ c23 ║ c24 ║
-	 *                ╟─────╨─────╫─────╨─────╢
-	 *                ║ c31 - c32 ║ c33 - c34 ║
-	 *                ╟─────╥─────╫─────╥─────╢
-	 *                ║ f1  ║ f2  ║ f3  ║ f4  ║
-	 *                ╙─────╨─────╨─────╨─────╜
-	 * ----
-	 * 
-	 * @return the grid
-	 */
-	public static TA_Grid borderLightDouble(){
-		return TA_Grid.create("grid using UTF-8 light characters horizontally and double border characters vertically")
-				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '─', '║', '╓', '╖', '╙', '╜', '╟', '╢', '╫', '╥', '╨')
-		;
-	}
-
-	/**
-	 * A grid combining UTF-8 light characters (normal rule) with double line characters (strong rule).
-	 * 
-	 * ----
-	 * Normal         Strong         Example
-	 * ┌─┬─┬─┬─┐      ╒═╤═╤═╤═╕      ╒═════╤═════╤═════╤═════╕
-	 * │ │ │ │ │      │ │ │ │ │      │ h1  │ h2  │ h3  │ h4  │
-	 * ├─┼─┼─┼─┤      ╞═╪═╪═╪═╡      ╞═════╧═════╧═════╧═════╡
-	 * │ │ │ │ │      │ │ │ │ │      │ c11 to c14 w/col-span │
-	 * └─┴─┴─┴─┘      ╘═╧═╧═╧═╛      ├─────┬─────┬─────┬─────┤
-	 *                               │ c21 │ c22 │ c23 │ c24 │
-	 *                               ├─────┴─────┼─────┴─────┤
-	 *                               │ c31 - c32 │ c33 - c34 │
-	 *                               ╞═════╤═════╪═════╤═════╡
-	 *                               │ f1  │ f2  │ f3  │ f4  │
-	 *                               ╘═════╧═════╧═════╧═════╛
-	 * ----
-	 * 
-	 * @return the grid
-	 */
-	public static TA_Grid borderStrongDoubleLight(){
-		return TA_Grid.create("grid combining UTF-8 light characters (normal rule) with double line characters (strong rule)")
-				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '─', '│', '┌', '┐', '└', '┘', '├', '┤', '┼', '┬', '┴')
-				.addCharacterMap(TA_GridConfig.RULESET_STRONG, ' ', '═', '│', '╒', '╕', '╘', '╛', '╞', '╡', '╪', '╤', '╧')
 		;
 	}
 
@@ -152,7 +73,7 @@ public abstract class U8_Grids {
 	 * 
 	 * @return the grid
 	 */
-	public static TA_Grid borderDoubleLight(){
+	static TA_Grid borderDoubleLight(){
 		return TA_Grid.create("grid using UTF-8 double characters horizontally and light border characters vertically")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '═', '│', '╒', '╕', '╘', '╛', '╞', '╡', '╪', '╤', '╧')
 		;
@@ -178,9 +99,88 @@ public abstract class U8_Grids {
 	 * 
 	 * @return the grid
 	 */
-	public static TA_Grid borderheavy(){
+	static TA_Grid borderheavy(){
 		return TA_Grid.create("grid using UTF-8 heavy border characters")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '━', '┃', '┏', '┓', '┗', '┛', '┣', '┫', '╋', '┳', '┻')
+		;
+	}
+
+	/**
+	 * A grid using UTF-8 light border characters.
+	 * 
+	 * ----
+	 * Normal         Example
+	 * ┌─┬─┬─┬─┐      ┌─────┬─────┬─────┬─────┐
+	 * │ │ │ │ │      │ h1  │ h2  │ h3  │ h4  │
+	 * ├─┼─┼─┼─┤      ├─────┴─────┴─────┴─────┤
+	 * │ │ │ │ │      │ c11 to c14 w/col-span │
+	 * └─┴─┴─┴─┘      ├─────┬─────┬─────┬─────┤
+	 *                │ c21 │ c22 │ c23 │ c24 │
+	 *                ├─────┴─────┼─────┴─────┤
+	 *                │ c31 - c32 │ c33 - c34 │
+	 *                ├─────┬─────┼─────┬─────┤
+	 *                │ f1  │ f2  │ f3  │ f4  │
+	 *                └─────┴─────┴─────┴─────┘
+	 * ----
+	 * 
+	 * @return the grid
+	 */
+	static TA_Grid borderLight(){
+		return TA_Grid.create("grid using UTF-8 light border characters")
+				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '─', '│', '┌', '┐', '└', '┘', '├', '┤', '┼', '┬', '┴')
+		;
+	}
+
+	/**
+	 * A grid using UTF-8 light characters horizontally and double border characters vertically.
+	 * 
+	 * ----
+	 * Normal         Example
+	 * ╓─╥─╥─╥─╖      ╓─────╥─────╥─────╥─────╖
+	 * ║ ║ ║ ║ ║      ║ h1  ║ h2  ║ h3  ║ h4  ║
+	 * ╟─╫─╫─╫─╢      ╟─────╨─────╨─────╨─────╢
+	 * ║ ║ ║ ║ ║      ║ c11 to c14 w/col-span ║
+	 * ╙─╨─╨─╨─╜      ╟─────╥─────╥─────╥─────╢
+	 *                ║ c21 ║ c22 ║ c23 ║ c24 ║
+	 *                ╟─────╨─────╫─────╨─────╢
+	 *                ║ c31 - c32 ║ c33 - c34 ║
+	 *                ╟─────╥─────╫─────╥─────╢
+	 *                ║ f1  ║ f2  ║ f3  ║ f4  ║
+	 *                ╙─────╨─────╨─────╨─────╜
+	 * ----
+	 * 
+	 * @return the grid
+	 */
+	static TA_Grid borderLightDouble(){
+		return TA_Grid.create("grid using UTF-8 light characters horizontally and double border characters vertically")
+				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '─', '║', '╓', '╖', '╙', '╜', '╟', '╢', '╫', '╥', '╨')
+		;
+	}
+
+	/**
+	 * A grid combining UTF-8 light characters (normal rule) with double line characters (strong rule).
+	 * 
+	 * ----
+	 * Normal         Strong         Example
+	 * ┌─┬─┬─┬─┐      ╒═╤═╤═╤═╕      ╒═════╤═════╤═════╤═════╕
+	 * │ │ │ │ │      │ │ │ │ │      │ h1  │ h2  │ h3  │ h4  │
+	 * ├─┼─┼─┼─┤      ╞═╪═╪═╪═╡      ╞═════╧═════╧═════╧═════╡
+	 * │ │ │ │ │      │ │ │ │ │      │ c11 to c14 w/col-span │
+	 * └─┴─┴─┴─┘      ╘═╧═╧═╧═╛      ├─────┬─────┬─────┬─────┤
+	 *                               │ c21 │ c22 │ c23 │ c24 │
+	 *                               ├─────┴─────┼─────┴─────┤
+	 *                               │ c31 - c32 │ c33 - c34 │
+	 *                               ╞═════╤═════╪═════╤═════╡
+	 *                               │ f1  │ f2  │ f3  │ f4  │
+	 *                               ╘═════╧═════╧═════╧═════╛
+	 * ----
+	 * 
+	 * @return the grid
+	 */
+	static TA_Grid borderStrongDoubleLight(){
+		return TA_Grid.create("grid combining UTF-8 light characters (normal rule) with double line characters (strong rule)")
+				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '─', '│', '┌', '┐', '└', '┘', '├', '┤', '┼', '┬', '┴')
+				.addCharacterMap(TA_GridConfig.RULESET_STRONG, ' ', '═', '│', '╒', '╕', '╘', '╛', '╞', '╡', '╪', '╤', '╧')
 		;
 	}
 

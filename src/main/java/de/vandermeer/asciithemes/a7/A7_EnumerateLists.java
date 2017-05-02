@@ -24,55 +24,7 @@ import de.vandermeer.asciithemes.TA_EnumerateList;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_EnumerateLists {
-
-	/**
-	 * An enumerate using {@link A7_NumberingSchemes#blank()}.
-	 * 
-	 * ----
-	 *   item 1
-	 *   item 2
-	 *     item 1
-	 *     item 2
-	 *       item 1
-	 *       item 2
-	 * 
-	 *  item 1
-	 *  item 1/2
-	 *  item 1/2/3
-	 *  item 1/2/3/4
-	 *  item 1/2/3/4/5
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_EnumerateList blank(){
-		return TA_EnumerateList.create(A7_NumberingSchemes.blank(), "enumerate list using ' ' for unlimeted levels");
-	}
-
-	/**
-	 * An enumerate using {@link A7_NumberingSchemes#number()}.
-	 * 
-	 * ----
-	 * 1 item 1
-	 * 1 item 2
-	 *   2 item 1
-	 *   2 item 2
-	 *     3 item 1
-	 *     3 item 2
-	 * 
-	 * 1. item 1
-	 * 1.2. item 1/2
-	 * 1.2.3. item 1/2/3
-	 * 1.2.3.4. item 1/2/3/4
-	 * 1.2.3.4.5. item 1/2/3/4/5
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_EnumerateList number(){
-		return TA_EnumerateList.create(A7_NumberingSchemes.number(), "enumerate list using '0-9' for unlimeted levels");
-	}
+public interface A7_EnumerateLists {
 
 	/**
 	 * An enumerate using {@link A7_NumberingSchemes#alpha()}.
@@ -94,7 +46,7 @@ public abstract class A7_EnumerateLists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_EnumerateList alpha(){
+	static TA_EnumerateList alpha(){
 		return TA_EnumerateList.create(A7_NumberingSchemes.alpha(), "enumerate list using 'a-z' for unlimeted levels");
 	}
 
@@ -118,8 +70,87 @@ public abstract class A7_EnumerateLists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_EnumerateList Alpha(){
+	static TA_EnumerateList Alpha(){
 		return TA_EnumerateList.create(A7_NumberingSchemes.Alpha(), "enumerate list using 'A-Z' for unlimeted levels");
+	}
+
+	/**
+	 * An enumerate using {@link A7_NumberingSchemes#number()}, {@link A7_NumberingSchemes#Alpha()}, {@link A7_NumberingSchemes#alpha()}, {@link A7_NumberingSchemes#roman()}, and {@link A7_NumberingSchemes#Roman()}.
+	 * 
+	 * ----
+	 * 1 item 1
+	 * 1 item 2
+	 *   2 item 1
+	 *   2 item 2
+	 *     3 item 1
+	 *     3 item 2
+	 * 
+	 * 1. item 1
+	 * 1.B. item 1/2
+	 * 1.B.c. item 1/2/3
+	 * 1.B.c.IV. item 1/2/3/4
+	 * 1.B.c.IV.v. item 1/2/3/4/5
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_EnumerateList arabic_Alpha_alpha_Roman_roman(){
+		return TA_EnumerateList.create(
+				"enumerate list using the following schemes for 5 levels: numbers, Alpha numeric, alpha numeric, upper case Roman literals, lower case Roman literals",
+				A7_NumberingSchemes.number(),
+				A7_NumberingSchemes.Alpha(),
+				A7_NumberingSchemes.alpha(),
+				A7_NumberingSchemes.Roman(),
+				A7_NumberingSchemes.roman()
+		);
+	}
+
+	/**
+	 * An enumerate using {@link A7_NumberingSchemes#blank()}.
+	 * 
+	 * ----
+	 *   item 1
+	 *   item 2
+	 *     item 1
+	 *     item 2
+	 *       item 1
+	 *       item 2
+	 * 
+	 *  item 1
+	 *  item 1/2
+	 *  item 1/2/3
+	 *  item 1/2/3/4
+	 *  item 1/2/3/4/5
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_EnumerateList blank(){
+		return TA_EnumerateList.create(A7_NumberingSchemes.blank(), "enumerate list using ' ' for unlimeted levels");
+	}
+
+	/**
+	 * An enumerate using {@link A7_NumberingSchemes#number()}.
+	 * 
+	 * ----
+	 * 1 item 1
+	 * 1 item 2
+	 *   2 item 1
+	 *   2 item 2
+	 *     3 item 1
+	 *     3 item 2
+	 * 
+	 * 1. item 1
+	 * 1.2. item 1/2
+	 * 1.2.3. item 1/2/3
+	 * 1.2.3.4. item 1/2/3/4
+	 * 1.2.3.4.5. item 1/2/3/4/5
+	 * ----
+	 * 
+	 * @return the list
+	 */
+	static TA_EnumerateList number(){
+		return TA_EnumerateList.create(A7_NumberingSchemes.number(), "enumerate list using '0-9' for unlimeted levels");
 	}
 
 	/**
@@ -142,7 +173,7 @@ public abstract class A7_EnumerateLists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_EnumerateList roman(){
+	static TA_EnumerateList roman(){
 		return TA_EnumerateList.create(A7_NumberingSchemes.roman(), "enumerate list using Roman number literals with lower case ASCII characters for unlimeted levels");
 	}
 
@@ -166,38 +197,7 @@ public abstract class A7_EnumerateLists {
 	 * 
 	 * @return the list
 	 */
-	public static TA_EnumerateList Roman(){
+	static TA_EnumerateList Roman(){
 		return TA_EnumerateList.create(A7_NumberingSchemes.Roman(), "enumerate list using Roman number literals with upper case ASCII characters for unlimeted levels");
-	}
-
-	/**
-	 * An enumerate using {@link A7_NumberingSchemes#number()}, {@link A7_NumberingSchemes#Alpha()}, {@link A7_NumberingSchemes#alpha()}, {@link A7_NumberingSchemes#roman()}, and {@link A7_NumberingSchemes#Roman()}.
-	 * 
-	 * ----
-	 * 1 item 1
-	 * 1 item 2
-	 *   2 item 1
-	 *   2 item 2
-	 *     3 item 1
-	 *     3 item 2
-	 * 
-	 * 1. item 1
-	 * 1.B. item 1/2
-	 * 1.B.c. item 1/2/3
-	 * 1.B.c.IV. item 1/2/3/4
-	 * 1.B.c.IV.v. item 1/2/3/4/5
-	 * ----
-	 * 
-	 * @return the list
-	 */
-	public static TA_EnumerateList arabic_Alpha_alpha_Roman_roman(){
-		return TA_EnumerateList.create(
-				"enumerate list using the following schemes for 5 levels: numbers, Alpha numeric, alpha numeric, upper case Roman literals, lower case Roman literals",
-				A7_NumberingSchemes.number(),
-				A7_NumberingSchemes.Alpha(),
-				A7_NumberingSchemes.alpha(),
-				A7_NumberingSchemes.Roman(),
-				A7_NumberingSchemes.roman()
-		);
 	}
 }

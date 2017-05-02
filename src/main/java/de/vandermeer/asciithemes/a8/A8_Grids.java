@@ -25,7 +25,7 @@ import de.vandermeer.asciithemes.TA_GridConfig;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A8_Grids {
+public interface A8_Grids {
 
 	/**
 	 * A grid using normal, strong, and heavy extended ASCII characters for lines only (LaTeX style table).
@@ -47,7 +47,7 @@ public abstract class A8_Grids {
 	 * 
 	 * @return the grid
 	 */
-	public static TA_Grid lineDobuleTripple(){
+	static TA_Grid lineDobuleTripple(){
 		return TA_Grid.create("grid using normal, strong, and heavy extended ASCII characters for lines only (LaTeX style table)")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '─', ' ', '─', '─', '─', '─', '─', '─', '─', '─', '─')
 				.addCharacterMap(TA_GridConfig.RULESET_STRONG, ' ', '═', ' ', '═', '═', '═', '═', '═', '═', '═', '═', '═')
@@ -75,7 +75,7 @@ public abstract class A8_Grids {
 	 * 
 	 * @return the grid
 	 */
-	public static TA_Grid lineDoubleBlocks(){
+	static TA_Grid lineDoubleBlocks(){
 		return TA_Grid.create("grid using normal, strong, and heavy extended ASCII characters for lines only (LaTeX style table)")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '═', ' ', '═', '═', '═', '═', '═', '═', '═', '═', '═')
 				.addCharacterMap(TA_GridConfig.RULESET_STRONG, ' ', '▓', ' ', '▓', '▓', '▓', '▓', '▓', '▓', '▓', '▓', '▓')

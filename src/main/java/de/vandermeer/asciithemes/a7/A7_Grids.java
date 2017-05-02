@@ -25,7 +25,7 @@ import de.vandermeer.asciithemes.TA_GridConfig;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A7_Grids {
+public interface A7_Grids {
 
 	/**
 	 * A grid using `-` for lines, `|` for borders and `+` for corners.
@@ -47,7 +47,7 @@ public abstract class A7_Grids {
 	 * 
 	 * @return the grid
 	 */
-	public static TA_Grid minusBarPlus(){
+	static TA_Grid minusBarPlus(){
 		return TA_Grid.create("grid using '-' for lines, '|' for borders and '+' for corners")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '-', '|', '+', '+', '+', '+', '+', '+', '+', '+', '+')
 		;
@@ -73,7 +73,7 @@ public abstract class A7_Grids {
 	 * 
 	 * @return the grid
 	 */
-	public static TA_Grid minusBarPlusEquals(){
+	static TA_Grid minusBarPlusEquals(){
 		return TA_Grid.create("grid using '-' for lines, '|' for borders and '+' for corners plus '=' for strong lines")
 				.addCharacterMap(TA_GridConfig.RULESET_NORMAL, ' ', '-', '|', '+', '+', '+', '+', '+', '+', '+', '+', '+')
 				.addCharacterMap(TA_GridConfig.RULESET_STRONG, ' ', '=', '|', '=', '=', '=', '=', '=', '=', '=', '=', '=')

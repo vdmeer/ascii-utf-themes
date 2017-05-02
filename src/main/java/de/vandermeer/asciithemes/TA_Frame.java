@@ -31,13 +31,89 @@ import org.apache.commons.lang3.text.StrBuilder;
 public interface TA_Frame extends IsTextArt {
 
 	/**
-	 * Returns a string containing the input collection with the requested frame.
-	 * @param coll input collection
-	 * @param mode frame mode
-	 * @return string with the framed collection
+	 * Creates a new frame theme using the same top/bottom lines.
+	 * @param line the frame top/bottom line
+	 * @param corner the frame corner
+	 * @param border the frame border
+	 * @param description a description for the line, cannot be blank
+	 * @return new frame theme
 	 */
-	default String addFrameString(Collection<StrBuilder> coll, int mode){
-		return new StrBuilder().appendWithSeparators(this.addFrame(coll, mode), "\n").toString();
+	static TA_Frame create(final TA_Line line, final TA_Corner corner, final TA_Border border, final String description){
+		Validate.notNull(line);
+		Validate.notNull(corner);
+		Validate.notNull(border);
+		Validate.notBlank(description);
+
+		return new TA_Frame() {
+			@Override
+			public TA_Border getBorder() {
+				return border;
+			}
+
+			@Override
+			public TA_Line getBottomline() {
+				return line;
+			}
+
+			@Override
+			public TA_Corner getCorner() {
+				return corner;
+			}
+
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public TA_Line getTopline() {
+				return line;
+			}
+		};
+	}
+
+	/**
+	 * Creates a new frame theme using different lines and the same top/bottom corners.
+	 * @param topline the frame top line
+	 * @param bottomline the frame bottom line
+	 * @param corner the frame corner
+	 * @param border the frame border
+	 * @param description a description for the line, cannot be blank
+	 * @return new frame theme
+	 */
+	static TA_Frame create(final TA_Line topline, final TA_Line bottomline, final TA_Corner corner, final TA_Border border, final String description){
+		Validate.notNull(topline);
+		Validate.notNull(bottomline);
+		Validate.notNull(corner);
+		Validate.notNull(border);
+		Validate.notBlank(description);
+
+		return new TA_Frame() {
+			@Override
+			public TA_Border getBorder() {
+				return border;
+			}
+
+			@Override
+			public TA_Line getBottomline() {
+				return bottomline;
+			}
+
+			@Override
+			public TA_Corner getCorner() {
+				return corner;
+			}
+
+			@Override
+			public String getDescription(){
+				return description;
+			}
+
+			@Override
+			public TA_Line getTopline() {
+				return topline;
+			}
+		};
 	}
 
 	/**
@@ -108,6 +184,69 @@ public interface TA_Frame extends IsTextArt {
 	}
 
 	/**
+	 * Returns a string containing the input collection with the requested frame.
+	 * @param coll input collection
+	 * @param mode frame mode
+	 * @return string with the framed collection
+	 */
+	default String addFrameString(Collection<StrBuilder> coll, int mode){
+		return new StrBuilder().appendWithSeparators(this.addFrame(coll, mode), "\n").toString();
+	}
+
+	/**
+	 * Returns the border for the frame.
+	 * @return frame border, cannot be null
+	 */
+	TA_Border getBorder();
+
+	/**
+	 * Returns the bottom line of the theme.
+	 * @return line character, cannot be null
+	 */
+	TA_Line getBottomline();
+
+	/**
+	 * Returns the corner.
+	 * @return corner, cannot be null
+	 */
+	TA_Corner getCorner();
+
+	/**
+	 * Returns the top line of the theme.
+	 * @return line character, cannot be null
+	 */
+	TA_Line getTopline();
+
+	/**
+	 * Renders a bottom line for the frame.
+	 * @param mode the frame mode
+	 * @param width the width of lines in the frame
+	 * @return a builder with bottom line, empty if none was created
+	 */
+	default StrBuilder renderBottomLine(int mode, int width){
+		StrBuilder ret = new StrBuilder(width);
+		if(TA_FrameOptions.cornerBottomLeft(mode)){
+			ret.append(this.getCorner().getCorner(TA_Corner.MODE_BOTTOM_LEFT));
+		}
+		else if(TA_FrameOptions.cornerBottomLeftNeeded(mode)){
+			ret.appendPadding(this.getCorner().getCorner(TA_Corner.MODE_BOTTOM_LEFT).length(), ' ');
+		}
+		if(TA_FrameOptions.lineBottom(mode)){
+			ret.append(this.getBottomline().getLine(width));
+		}
+		else if(TA_FrameOptions.lineBottomNeeded(mode)){
+			ret.appendPadding(width, ' ');
+		}
+		if(TA_FrameOptions.cornerBottomRight(mode)){
+			ret.append(this.getCorner().getCorner(TA_Corner.MODE_BOTTOM_RIGHT));
+		}
+		else if(TA_FrameOptions.cornerBottomRightNeeded(mode)){
+			ret.appendPadding(this.getCorner().getCorner(TA_Corner.MODE_BOTTOM_RIGHT).length(), ' ');
+		}
+		return ret;
+	}
+
+	/**
 	 * Renders a top line for the frame.
 	 * @param mode the frame mode
 	 * @param width the width of lines in the frame
@@ -140,150 +279,11 @@ public interface TA_Frame extends IsTextArt {
 		return ret;
 	}
 
-	/**
-	 * Renders a bottom line for the frame.
-	 * @param mode the frame mode
-	 * @param width the width of lines in the frame
-	 * @return a builder with bottom line, empty if none was created
-	 */
-	default StrBuilder renderBottomLine(int mode, int width){
-		StrBuilder ret = new StrBuilder(width);
-		if(TA_FrameOptions.cornerBottomLeft(mode)){
-			ret.append(this.getCorner().getCorner(TA_Corner.MODE_BOTTOM_LEFT));
-		}
-		else if(TA_FrameOptions.cornerBottomLeftNeeded(mode)){
-			ret.appendPadding(this.getCorner().getCorner(TA_Corner.MODE_BOTTOM_LEFT).length(), ' ');
-		}
-		if(TA_FrameOptions.lineBottom(mode)){
-			ret.append(this.getBottomline().getLine(width));
-		}
-		else if(TA_FrameOptions.lineBottomNeeded(mode)){
-			ret.appendPadding(width, ' ');
-		}
-		if(TA_FrameOptions.cornerBottomRight(mode)){
-			ret.append(this.getCorner().getCorner(TA_Corner.MODE_BOTTOM_RIGHT));
-		}
-		else if(TA_FrameOptions.cornerBottomRightNeeded(mode)){
-			ret.appendPadding(this.getCorner().getCorner(TA_Corner.MODE_BOTTOM_RIGHT).length(), ' ');
-		}
-		return ret;
-	}
-
-	/**
-	 * Returns the border for the frame.
-	 * @return frame border, cannot be null
-	 */
-	TA_Border getBorder();
-
-	/**
-	 * Returns the bottom line of the theme.
-	 * @return line character, cannot be null
-	 */
-	TA_Line getBottomline();
-
-	/**
-	 * Returns the corner.
-	 * @return corner, cannot be null
-	 */
-	TA_Corner getCorner();
-
-	/**
-	 * Returns the top line of the theme.
-	 * @return line character, cannot be null
-	 */
-	TA_Line getTopline();
-
 	@Override
 	default StrBuilder toDoc() {
 		ArrayList<StrBuilder> doc = new ArrayList<>();
 		doc.add(new StrBuilder(18).append("Lorem ipsum dolor"));
 		doc.add(new StrBuilder(18).append("Lorem ipsum dolor"));
 		return new StrBuilder().appendWithSeparators(this.addFrame(doc, TA_FrameOptions.THEME_FULL_FRAME), "\n");
-	}
-
-	/**
-	 * Creates a new frame theme using the same top/bottom lines.
-	 * @param line the frame top/bottom line
-	 * @param corner the frame corner
-	 * @param border the frame border
-	 * @param description a description for the line, cannot be blank
-	 * @return new frame theme
-	 */
-	static TA_Frame create(final TA_Line line, final TA_Corner corner, final TA_Border border, final String description){
-		Validate.notNull(line);
-		Validate.notNull(corner);
-		Validate.notNull(border);
-		Validate.notBlank(description);
-
-		return new TA_Frame() {
-			@Override
-			public TA_Border getBorder() {
-				return border;
-			}
-
-			@Override
-			public TA_Line getBottomline() {
-				return line;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-
-			@Override
-			public TA_Corner getCorner() {
-				return corner;
-			}
-
-			@Override
-			public TA_Line getTopline() {
-				return line;
-			}
-		};
-	}
-
-	/**
-	 * Creates a new frame theme using different lines and the same top/bottom corners.
-	 * @param topline the frame top line
-	 * @param bottomline the frame bottom line
-	 * @param corner the frame corner
-	 * @param border the frame border
-	 * @param description a description for the line, cannot be blank
-	 * @return new frame theme
-	 */
-	static TA_Frame create(final TA_Line topline, final TA_Line bottomline, final TA_Corner corner, final TA_Border border, final String description){
-		Validate.notNull(topline);
-		Validate.notNull(bottomline);
-		Validate.notNull(corner);
-		Validate.notNull(border);
-		Validate.notBlank(description);
-
-		return new TA_Frame() {
-			@Override
-			public TA_Border getBorder() {
-				return border;
-			}
-
-			@Override
-			public TA_Line getBottomline() {
-				return bottomline;
-			}
-
-			@Override
-			public String getDescription(){
-				return description;
-			}
-
-			@Override
-			public TA_Corner getCorner() {
-				return corner;
-			}
-
-			@Override
-			public TA_Line getTopline() {
-				return topline;
-			}
-		};
 	}
 }

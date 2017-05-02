@@ -25,7 +25,7 @@ import de.vandermeer.asciithemes.TA_Line_SplitChar;
  * @version    v0.0.1 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class A8_Lines_SplitChar {
+public interface A8_Lines_SplitChar {
 
 	/**
 	 * A split line using left `»` and right '«'.
@@ -36,7 +36,7 @@ public abstract class A8_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar daq(){
+	static TA_Line_SplitChar daq(){
 		return TA_Line_SplitChar.create('»', '«', "split line using left `»` and right '«'");
 	}
 
@@ -49,7 +49,7 @@ public abstract class A8_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar daqRev(){
+	static TA_Line_SplitChar daqRev(){
 		return TA_Line_SplitChar.create('«', '»', "split line using left `«` and right '»'");
 	}
 
@@ -62,7 +62,7 @@ public abstract class A8_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar paqm(){
+	static TA_Line_SplitChar paqm(){
 		return TA_Line_SplitChar.create('›', '‹', "split line using left `›` and right '‹'");
 	}
 
@@ -75,7 +75,7 @@ public abstract class A8_Lines_SplitChar {
 	 * 
 	 * @return the line
 	 */
-	public static TA_Line_SplitChar paqmRev(){
+	static TA_Line_SplitChar paqmRev(){
 		return TA_Line_SplitChar.create('‹', '›', "split line using left `‹` and right '›'");
 	}
 

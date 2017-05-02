@@ -26,6 +26,12 @@ import org.apache.commons.lang3.text.StrBuilder;
  */
 public interface TA_Border extends IsTextArt {
 
+	/** Mode for processing the left border. */
+	static final int MODE_LEFT	= 1;
+
+	/** Mode for processing the right border. */
+	static final int MODE_RIGHT	= 2;
+
 	/**
 	 * Returns the border.
 	 * @param mode the mode for processing a corner (use one of {@link #MODE_LEFT}, {@link #MODE_RIGHT})
@@ -62,9 +68,4 @@ public interface TA_Border extends IsTextArt {
 		return this.getBorder(mode, builder).toString();
 	}
 
-	/** Mode for processing the left border. */
-	static int MODE_LEFT     = 1;
-
-	/** Mode for processing the right border. */
-	static int MODE_RIGHT    = 2;
 }
