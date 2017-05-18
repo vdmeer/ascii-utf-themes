@@ -15,6 +15,26 @@
 
 package de.vandermeer.asciithemes;
 
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_BOTTOM_CONNECTOR;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_BOTTOM_CORNER_LEFT;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_BOTTOM_CORNER_RIGHT;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_BOTTOM_LINE;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_CONTENT_LEFT;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_CONTENT_MID;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_CONTENT_RIGHT;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_MID_BORDER_LEFT;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_MID_BORDER_RIGHT;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_MID_CONNECTOR;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_MID_LINE;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_TOP_CONNECTOR;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_TOP_CORNER_LEFT;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_TOP_CORNER_RIGHT;
+import static de.vandermeer.asciithemes.TA_GridOptions.HAS_TOP_LINE;
+import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_BORDERS;
+import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR;
+import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_CONNECTORS_VER;
+import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_CORNERS_HOR;
+
 /**
  * Themes for a {@link TA_Grid}.
  * 
@@ -28,10 +48,10 @@ public enum TA_GridThemes {
 	 * Theme for using the full grid.
 	 */
 	FULL(
-			TA_GridOptions.HAS_TOP_CONNECTOR | TA_GridOptions.HAS_TOP_CORNER_LEFT | TA_GridOptions.HAS_TOP_CORNER_RIGHT | TA_GridOptions.HAS_TOP_LINE |
-			TA_GridOptions.HAS_BOTTOM_CONNECTOR | TA_GridOptions.HAS_BOTTOM_CORNER_LEFT | TA_GridOptions.HAS_BOTTOM_CORNER_RIGHT | TA_GridOptions.HAS_BOTTOM_LINE |
-			TA_GridOptions.HAS_MID_CONNECTOR | TA_GridOptions.HAS_MID_BORDER_LEFT | TA_GridOptions.HAS_MID_BORDER_RIGHT | TA_GridOptions.HAS_MID_LINE |
-			TA_GridOptions.HAS_CONTENT_LEFT | TA_GridOptions.HAS_CONTENT_MID | TA_GridOptions.HAS_CONTENT_RIGHT
+			HAS_TOP_CONNECTOR | HAS_TOP_CORNER_LEFT | HAS_TOP_CORNER_RIGHT | HAS_TOP_LINE |
+			HAS_BOTTOM_CONNECTOR | HAS_BOTTOM_CORNER_LEFT | HAS_BOTTOM_CORNER_RIGHT | HAS_BOTTOM_LINE |
+			HAS_MID_CONNECTOR | HAS_MID_BORDER_LEFT | HAS_MID_BORDER_RIGHT | HAS_MID_LINE |
+			HAS_CONTENT_LEFT | HAS_CONTENT_MID | HAS_CONTENT_RIGHT
 	),
 
 	/**
@@ -45,140 +65,153 @@ public enum TA_GridThemes {
 	 * Theme for using the outside borders.
 	 */
 	OUTSIDE(
-			  TA_GridOptions.HAS_TOP_CONNECTOR | TA_GridOptions.HAS_TOP_CORNER_LEFT | TA_GridOptions.HAS_TOP_CORNER_RIGHT | TA_GridOptions.HAS_TOP_LINE
-			| TA_GridOptions.HAS_BOTTOM_CONNECTOR | TA_GridOptions.HAS_BOTTOM_CORNER_LEFT | TA_GridOptions.HAS_BOTTOM_CORNER_RIGHT | TA_GridOptions.HAS_BOTTOM_LINE
-			| TA_GridOptions.HAS_MID_BORDER_LEFT | TA_GridOptions.HAS_MID_BORDER_RIGHT
-			| TA_GridOptions.HAS_CONTENT_LEFT | TA_GridOptions.HAS_CONTENT_RIGHT
-			| TA_GridOptions.OPT_CONVERT_BORDERS | TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR
+			  HAS_TOP_CONNECTOR | HAS_TOP_CORNER_LEFT | HAS_TOP_CORNER_RIGHT | HAS_TOP_LINE
+			| HAS_BOTTOM_CONNECTOR | HAS_BOTTOM_CORNER_LEFT | HAS_BOTTOM_CORNER_RIGHT | HAS_BOTTOM_LINE
+			| HAS_MID_BORDER_LEFT | HAS_MID_BORDER_RIGHT
+			| HAS_CONTENT_LEFT | HAS_CONTENT_RIGHT
+			| OPT_CONVERT_BORDERS | OPT_CONVERT_CONNECTORS_HOR
 	),
 
 	/**
 	 * Theme for using inside borders.
 	 */
 	INSIDE(
-			  TA_GridOptions.HAS_MID_CONNECTOR | TA_GridOptions.HAS_MID_LINE
-			| TA_GridOptions.HAS_CONTENT_MID
+			  HAS_MID_CONNECTOR | HAS_MID_LINE
+			| HAS_CONTENT_MID
 	),
 
 	/**
 	 * Theme for using the inside borders horizontal lines only.
 	 */
 	INSIDE_HORIZONTAL(
-			  TA_GridOptions.HAS_MID_CONNECTOR | TA_GridOptions.HAS_MID_LINE
-			| TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR
+			  HAS_MID_CONNECTOR | HAS_MID_LINE
+			| OPT_CONVERT_CONNECTORS_HOR
 	),
 
 	/**
-	 * Theme for using only top/bottom lines and left/right borders, that is no corners.
+	 * Theme for using all horizontal line but no corners.
 	 */
 	HORIZONTAL(
-			  TA_GridOptions.HAS_TOP_CONNECTOR | TA_GridOptions.HAS_TOP_LINE
-			| TA_GridOptions.HAS_BOTTOM_CONNECTOR | TA_GridOptions.HAS_BOTTOM_LINE
-			| TA_GridOptions.HAS_MID_CONNECTOR | TA_GridOptions.HAS_MID_LINE
-			| TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR
+			  HAS_TOP_CONNECTOR | HAS_TOP_LINE
+			| HAS_BOTTOM_CONNECTOR | HAS_BOTTOM_LINE
+			| HAS_MID_CONNECTOR | HAS_MID_LINE
+			| OPT_CONVERT_CONNECTORS_HOR
+	),
+
+	/**
+	 * Theme for using all horizontal line with corners.
+	 */
+	LATEX(
+			  HAS_TOP_CONNECTOR | HAS_TOP_LINE
+			| HAS_BOTTOM_CONNECTOR | HAS_BOTTOM_LINE
+			| HAS_MID_CONNECTOR | HAS_MID_LINE
+			| HAS_TOP_CORNER_LEFT | HAS_TOP_CORNER_RIGHT
+			| HAS_BOTTOM_CORNER_LEFT | HAS_BOTTOM_CORNER_RIGHT
+			| HAS_MID_BORDER_LEFT | HAS_MID_BORDER_RIGHT
+			| OPT_CONVERT_CONNECTORS_HOR | OPT_CONVERT_CORNERS_HOR
 	),
 
 	/**
 	 * Theme for using the inside borders vertical lines only.
 	 */
 	INSIDE_VERTICAL(
-			  TA_GridOptions.HAS_CONTENT_MID | TA_GridOptions.HAS_MID_CONNECTOR
-			| TA_GridOptions.OPT_CONVERT_CONNECTORS_VER
+			  HAS_CONTENT_MID | HAS_MID_CONNECTOR
+			| OPT_CONVERT_CONNECTORS_VER
 	),
 
 	/**
 	 * Theme for using borders vertical lines only.
 	 */
 	VERTICAL(
-			  TA_GridOptions.HAS_MID_BORDER_LEFT | TA_GridOptions.HAS_MID_CONNECTOR | TA_GridOptions.HAS_MID_BORDER_RIGHT
-			| TA_GridOptions.HAS_CONTENT_LEFT | TA_GridOptions.HAS_CONTENT_MID | TA_GridOptions.HAS_CONTENT_RIGHT
-			| TA_GridOptions.OPT_CONVERT_BORDERS | TA_GridOptions.OPT_CONVERT_CONNECTORS_VER
+			  HAS_MID_BORDER_LEFT | HAS_MID_CONNECTOR | HAS_MID_BORDER_RIGHT
+			| HAS_CONTENT_LEFT | HAS_CONTENT_MID | HAS_CONTENT_RIGHT
+			| OPT_CONVERT_BORDERS | OPT_CONVERT_CONNECTORS_VER
 	),
 
 	/**
 	 * Theme for using only top and bottom lines.
 	 */
 	LINE_TOPBOTTOM(
-			  TA_GridOptions.HAS_TOP_CONNECTOR | TA_GridOptions.HAS_TOP_LINE
-			| TA_GridOptions.HAS_BOTTOM_CONNECTOR | TA_GridOptions.HAS_BOTTOM_LINE
-			| TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR
+			  HAS_TOP_CONNECTOR | HAS_TOP_LINE
+			| HAS_BOTTOM_CONNECTOR | HAS_BOTTOM_LINE
+			| OPT_CONVERT_CONNECTORS_HOR
 	),
 
 	/**
 	 * Theme for using only left side.
 	 */
 	LEFT(
-			  TA_GridOptions.HAS_MID_BORDER_LEFT | TA_GridOptions.HAS_CONTENT_LEFT
-			| TA_GridOptions.OPT_CONVERT_BORDERS
+			  HAS_MID_BORDER_LEFT | HAS_CONTENT_LEFT
+			| OPT_CONVERT_BORDERS
 	),
 
 	/**
 	 * Theme for using only right side.
 	 */
 	RIGHT(
-			  TA_GridOptions.HAS_MID_BORDER_RIGHT | TA_GridOptions.HAS_CONTENT_RIGHT
-			| TA_GridOptions.OPT_CONVERT_BORDERS
+			  HAS_MID_BORDER_RIGHT | HAS_CONTENT_RIGHT
+			| OPT_CONVERT_BORDERS
 	),
 
 	/**
 	 * Theme for using only left and right borders.
 	 */
 	BORDERS(
-			  TA_GridOptions.HAS_MID_BORDER_LEFT | TA_GridOptions.HAS_MID_BORDER_RIGHT
-			| TA_GridOptions.HAS_CONTENT_LEFT | TA_GridOptions.HAS_CONTENT_RIGHT
-			| TA_GridOptions.OPT_CONVERT_BORDERS
+			  HAS_MID_BORDER_LEFT | HAS_MID_BORDER_RIGHT
+			| HAS_CONTENT_LEFT | HAS_CONTENT_RIGHT
+			| OPT_CONVERT_BORDERS
 	),
 
 	/**
 	 * Theme for using only corners.
 	 */
 	CORNERS(
-			  TA_GridOptions.HAS_TOP_CORNER_LEFT | TA_GridOptions.HAS_TOP_CORNER_RIGHT
-			| TA_GridOptions.HAS_BOTTOM_CORNER_LEFT | TA_GridOptions.HAS_BOTTOM_CORNER_RIGHT
+			  HAS_TOP_CORNER_LEFT | HAS_TOP_CORNER_RIGHT
+			| HAS_BOTTOM_CORNER_LEFT | HAS_BOTTOM_CORNER_RIGHT
 	),
 
 	/**
 	 * Theme for using only corners and connectors.
 	 */
 	CC(
-			  TA_GridOptions.HAS_TOP_CORNER_LEFT | TA_GridOptions.HAS_TOP_CORNER_RIGHT | TA_GridOptions.HAS_TOP_CONNECTOR
-			| TA_GridOptions.HAS_BOTTOM_CORNER_LEFT | TA_GridOptions.HAS_BOTTOM_CORNER_RIGHT | TA_GridOptions.HAS_BOTTOM_CONNECTOR
-			| TA_GridOptions.HAS_MID_BORDER_LEFT | TA_GridOptions.HAS_MID_BORDER_RIGHT 
-			| TA_GridOptions.HAS_MID_CONNECTOR
+			  HAS_TOP_CORNER_LEFT | HAS_TOP_CORNER_RIGHT | HAS_TOP_CONNECTOR
+			| HAS_BOTTOM_CORNER_LEFT | HAS_BOTTOM_CORNER_RIGHT | HAS_BOTTOM_CONNECTOR
+			| HAS_MID_BORDER_LEFT | HAS_MID_BORDER_RIGHT 
+			| HAS_MID_CONNECTOR
 	),
 
 	/**
 	 * Theme for using only connectors.
 	 */
 	CONNECTORS(
-			  TA_GridOptions.HAS_TOP_CONNECTOR
-			| TA_GridOptions.HAS_BOTTOM_CONNECTOR
-			| TA_GridOptions.HAS_MID_CONNECTOR
+			  HAS_TOP_CONNECTOR
+			| HAS_BOTTOM_CONNECTOR
+			| HAS_MID_CONNECTOR
 	),
 
 	/**
 	 * Theme for using top and bottom lines only.
 	 */
 	TOPBOTTOM(
-			  TA_GridOptions.HAS_TOP_CONNECTOR | TA_GridOptions.HAS_TOP_LINE
-			| TA_GridOptions.HAS_BOTTOM_CONNECTOR | TA_GridOptions.HAS_BOTTOM_LINE
-			| TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR
+			  HAS_TOP_CONNECTOR | HAS_TOP_LINE
+			| HAS_BOTTOM_CONNECTOR | HAS_BOTTOM_LINE
+			| OPT_CONVERT_CONNECTORS_HOR
 	),
 
 	/**
 	 * Theme for using top line only.
 	 */
 	TOP(
-			  TA_GridOptions.HAS_TOP_CONNECTOR | TA_GridOptions.HAS_TOP_LINE
-			| TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR
+			  HAS_TOP_CONNECTOR | HAS_TOP_LINE
+			| OPT_CONVERT_CONNECTORS_HOR
 	),
 
 	/**
 	 * Theme for using bottom line only.
 	 */
 	BOTTOM(
-			  TA_GridOptions.HAS_BOTTOM_CONNECTOR | TA_GridOptions.HAS_BOTTOM_LINE
-			| TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR
+			  HAS_BOTTOM_CONNECTOR | HAS_BOTTOM_LINE
+			| OPT_CONVERT_CONNECTORS_HOR
 	),
 
 	;

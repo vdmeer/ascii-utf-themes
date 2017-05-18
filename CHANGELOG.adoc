@@ -1,3 +1,8 @@
+v0.0.# - ### - 2017-##-##
+-------------------------------------
+* added convert corner option to grids (and LaTeX theme)
+
+
 v0.0.1 - initial release - 2017-04-04
 -------------------------------------
 * original release with simple paragraph class

@@ -201,6 +201,7 @@ public interface TA_Grid extends IsTextArt {
 					postype = TA_GridHelpers.adjustBorder(postype, i, k, mode, frame);
 					postype = TA_GridHelpers.convertBorders(postype, i, k, frame.size()-1, frame.get(i).size()-1, mode);
 					postype = TA_GridHelpers.convertConnectors(postype, i, k, frame.size()-1, frame.get(i).size()-1, mode);
+					postype = TA_GridHelpers.convertCorners(postype, i, k, frame.size()-1, frame.get(i).size()-1, mode);
 
 					Character c = cmap.get(postype);
 					if(c==null){

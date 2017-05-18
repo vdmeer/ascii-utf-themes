@@ -33,6 +33,8 @@ import static de.vandermeer.asciithemes.TA_GridOptions.HAS_TOP_LINE;
 import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_BORDERS;
 import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_CONNECTORS_HOR;
 import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_CONNECTORS_VER;
+import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_CORNERS_HOR;
+import static de.vandermeer.asciithemes.TA_GridOptions.OPT_CONVERT_CORNERS_VER;
 import static de.vandermeer.asciithemes.TA_GridOptions.optionNeeded;
 import static de.vandermeer.asciithemes.TA_GridOptions.testOption;
 
@@ -290,6 +292,71 @@ public interface TA_GridHelpers {
 					postype = postype & ~TA_GridConfig.TYPE_LEFT;
 					postype = postype & ~TA_GridConfig.TYPE_RIGHT;
 					return postype;
+				}
+			}
+		}
+		return postype;
+	}
+
+	/**
+	 * Removes top/down connections if the given mode requires and the position/type is a corner.
+	 * The method will process top/bottom/mid separately
+	 * @param postype the type position to test
+	 * @param v vertical position of position/type
+	 * @param h horizontal position of position/type
+	 * @param vsize max vertical index
+	 * @param hsize max horizontal index
+	 * @param mode the mode to test against
+	 * @return original position/type if no corner conversion was needed, converted position/type otherwise
+	 */
+	static int convertCorners(int postype, int v, int h, int vsize, int hsize, int mode){
+		if(v==0){
+			//top
+			if(testOption(TA_GridConfig.CHAR_TOP_RULE, postype)){
+				if(h==0 || h==hsize){
+					//in the middle
+					if(testOption(OPT_CONVERT_CORNERS_HOR, mode)){
+						postype = postype & ~TA_GridConfig.TYPE_DOWN;
+						postype = postype | TA_GridConfig.TYPE_RIGHT;
+						postype = postype | TA_GridConfig.TYPE_LEFT;
+						return postype;
+					}
+				}
+			}
+		}
+		if(v==vsize){
+			//bottom
+			if(testOption(TA_GridConfig.CHAR_BOTTOM_RULE, postype)){
+				if(h==0 || h==hsize){
+					//in the middle
+					if(testOption(OPT_CONVERT_CORNERS_HOR, mode)){
+						postype = postype & ~TA_GridConfig.TYPE_UP;
+						postype = postype | TA_GridConfig.TYPE_RIGHT;
+						postype = postype | TA_GridConfig.TYPE_LEFT;
+						return postype;
+					}
+				}
+			}
+		}
+		else{
+			//mid, avoid already corrected borders
+			//TODO this works for HOR but not correctly for VER!
+			if(testOption(TA_GridConfig.CHAR_MID_RULE, postype)){
+				if(h==0 || h==hsize){
+					if(testOption(OPT_CONVERT_CORNERS_HOR, mode)){
+						postype = postype & ~TA_GridConfig.TYPE_UP;
+						postype = postype & ~TA_GridConfig.TYPE_DOWN;
+						postype = postype | TA_GridConfig.TYPE_RIGHT;
+						postype = postype | TA_GridConfig.TYPE_LEFT;
+						return postype;
+					}
+					if(testOption(OPT_CONVERT_CORNERS_VER, mode)){
+						postype = postype & ~TA_GridConfig.TYPE_LEFT;
+						postype = postype & ~TA_GridConfig.TYPE_RIGHT;
+						postype = postype | TA_GridConfig.TYPE_UP;
+						postype = postype | TA_GridConfig.TYPE_DOWN;
+						return postype;
+					}
 				}
 			}
 		}

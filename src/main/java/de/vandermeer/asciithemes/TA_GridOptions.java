@@ -101,10 +101,10 @@ public interface TA_GridOptions {
 	static final int OPT_CONVERT_CONNECTORS_VER	= 0b00100_000_0000_0000_0000;
 
 	/** Option for converting all corners to horizontal line equivalent. */
-//	static int OPT_CONVERT_CORNERS_HOR           = 0b01000_000_0000_0000_0000;
+	static int OPT_CONVERT_CORNERS_HOR			= 0b01000_000_0000_0000_0000;
 
 	/** Option for converting all corners to vertical line equivalent. */
-//	static int OPT_CONVERT_CORNERS_VER           = 0b10000_000_0000_0000_0000;
+	static int OPT_CONVERT_CORNERS_VER			= 0b10000_000_0000_0000_0000;
 
 
 	/** Option for showing an empty horizontal top row. */
