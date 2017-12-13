@@ -100,7 +100,13 @@ public interface TA_GridHelpers {
 					}
 					if(l<(ar[k].length-1)){
 						if(testOption(HAS_CONTENT_MID, mode)){
-							al.add(TA_GridConfig.PT_VERTICAL | rowtype);
+							boolean rightAllNull = true;
+							for(int m=l+1; m<ar[k].length; m++){
+								rightAllNull = rightAllNull & (ar[k][m] == null);
+							}
+							if(!rightAllNull){
+								al.add(TA_GridConfig.PT_VERTICAL | rowtype);
+							}
 						}
 						else if(optionNeeded(HAS_CONTENT_MID, mode)){
 							al.add(TA_GridConfig.TYPE_NONE | rowtype);
