@@ -39,7 +39,10 @@ import static de.vandermeer.asciithemes.TA_GridOptions.optionNeeded;
 import static de.vandermeer.asciithemes.TA_GridOptions.testOption;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.text.StrBuilder;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -515,4 +518,58 @@ public interface TA_GridHelpers {
 		ret.add(heavyRule);
 		return ret;
 	}
+	
+
+	public static void cellColor(Pair<String, String> pair, int row, int column, ArrayList<ArrayList<Object>> frame) {
+
+		int r = -1;
+		int c = 0;	
+		int cellSeperator = TA_GridConfig.RULESET_NORMAL| TA_GridConfig.PT_VERTICAL;
+		for(int i=0; i<frame.size(); i++){
+			
+			if( ((Integer)frame.get(i).get(0)).equals(new Integer(cellSeperator))){
+				
+			
+				if( r==row){
+					for(int k=0; k<frame.get(i).size(); k++){
+						
+						if (frame.get(i).get(k) instanceof Integer && 
+								((Integer) frame.get(i).get(k)).equals(new Integer(cellSeperator))  ){
+						
+							if(c==column){	
+								for(int m=k+1; m<frame.get(i).size(); m++){	
+									if(frame.get(i).get(m) instanceof Character && !((Character)frame.get(i).get(m)).equals(' ') ){			
+										Character[] charArray = ArrayUtils.toObject( pair.getLeft().toCharArray());
+										List<Character> charArrayList = new ArrayList<Character>(Arrays.asList(charArray));
+										frame.get(i).addAll(m, charArrayList);
+										break;
+									}
+								}
+							}
+							
+							if (c==column+1){
+								for(int m=k-1; m>=0; m--){	
+									if(frame.get(i).get(m) instanceof Character && !((Character)frame.get(i).get(m)).equals(' ') ){
+									
+										Character[] charArray = ArrayUtils.toObject( pair.getRight().toCharArray());
+										List<Character> charArrayList = new ArrayList<Character>(Arrays.asList(charArray));
+										frame.get(i).addAll(m+1, charArrayList);
+										break;
+									}
+								}
+							}
+							
+							c++;
+						}
+							
+					}	
+				}
+			}else{
+				r++;
+			}
+			c=0;
+		}
+	   
+
+	}	
 }

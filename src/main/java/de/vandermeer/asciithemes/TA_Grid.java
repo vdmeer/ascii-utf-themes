@@ -145,7 +145,7 @@ public interface TA_Grid extends IsTextArt {
 	 * @param mode options for the grid
 	 * @return new list with grid
 	 */
-	default ArrayList<StrBuilder> addGrid(Collection<Object> content, int mode){
+	default ArrayList<StrBuilder> addGrid(Collection<Object> content, int mode, ArrayList<ArrayList<Pair<String, String>>> colorConfig ){
 		Validate.notNull(content);
 		Validate.noNullElements(content);
 		Validate.validState(content.size()>0, "no content provided, size of collection was 0");
@@ -192,17 +192,18 @@ public interface TA_Grid extends IsTextArt {
 		//finally render the table, remove any non-connections
 		Map<Integer, Character> cmap = this.getCharacterMap();
 		ArrayList<StrBuilder> ret = new ArrayList<>();
+	
 		for(int i=0; i<frame.size(); i++){
 			StrBuilder sb = new StrBuilder();
 			for(int k=0; k<frame.get(i).size(); k++){
 				Object o = frame.get(i).get(k);
 				if(o instanceof Integer){
 					int postype = (Integer)o;
+					
 					postype = TA_GridHelpers.adjustBorder(postype, i, k, mode, frame);
 					postype = TA_GridHelpers.convertBorders(postype, i, k, frame.size()-1, frame.get(i).size()-1, mode);
 					postype = TA_GridHelpers.convertConnectors(postype, i, k, frame.size()-1, frame.get(i).size()-1, mode);
-					postype = TA_GridHelpers.convertCorners(postype, i, k, frame.size()-1, frame.get(i).size()-1, mode);
-
+				
 					Character c = cmap.get(postype);
 					if(c==null){
 						//remove added rulesets (top, middle, bottom, content) and try again
@@ -210,9 +211,31 @@ public interface TA_Grid extends IsTextArt {
 						postype = postype & ~TA_GridConfig.CHAR_MID_RULE;
 						postype = postype & ~TA_GridConfig.CHAR_BOTTOM_RULE;
 						postype = postype & ~TA_GridConfig.CHAR_CONTENT_RULE;
+					
 						c = cmap.get(postype);
-					}
+					}	
 					Validate.validState(c!=null, "problem creating a border character, did not find character for <" + c + ">");
+					frame.get(i).set(k, new Integer(postype));
+				}	
+			}
+		}
+		
+		if(colorConfig!=null){
+			for(int i=0; i<colorConfig.size(); i++){
+				for(int k=0; k<colorConfig.get(i).size(); k++){
+					TA_GridHelpers.cellColor(colorConfig.get(i).get(k), i, k, frame);
+				}
+			}
+		}
+
+		
+		for(int i=0; i<frame.size(); i++){
+			StrBuilder sb = new StrBuilder();
+			for(int k=0; k<frame.get(i).size(); k++){
+				Object o = frame.get(i).get(k);
+				if(o instanceof Integer){
+					int postype = (Integer)o;
+					Character c = cmap.get(postype);
 					sb.append(c);
 				}
 				if(o instanceof Character){
@@ -234,7 +257,7 @@ public interface TA_Grid extends IsTextArt {
 	 * @return new list with grid
 	 */
 	default ArrayList<StrBuilder> addGrid(Collection<Object> content, TA_GridThemes theme){
-		return this.addGrid(content, theme.get());
+		return this.addGrid(content, theme.get(), null);
 	}
 
 	/**
@@ -248,7 +271,7 @@ public interface TA_Grid extends IsTextArt {
 	 * @return new list with grid
 	 */
 	default ArrayList<StrBuilder> addGrid(Collection<Object> content, TA_GridThemes theme, TA_GridThemeOptions options){
-		return this.addGrid(content, theme.get() | options.get());
+		return this.addGrid(content, theme.get() | options.get(), null);
 	}
 
 	/**
