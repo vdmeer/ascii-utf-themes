@@ -14,7 +14,7 @@
       -->
     <groupId>de.vandermeer</groupId>
     <artifactId>ascii-utf-themes</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <!--
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>de.vandermeer</groupId>
             <artifactId>skb-interfaces</artifactId>
-            <version>0.0.2</version>
+            <version>0.0.3-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
